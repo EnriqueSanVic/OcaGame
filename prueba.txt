@@ -2,5 +2,9 @@
 Crear repositorio: 
 git init
 
-Clonar repositorio privado:
+Clonar repositorio privado: 
+git clone https://<Usuario>:<AccessToken>@github.com:<EnriqueSanVic/OcaGame.git>
+
+Actualizar repositorio (posibles modificaciones de compañeros y posibles conflictos):
+git pull
 
