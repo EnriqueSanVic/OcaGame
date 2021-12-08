@@ -9,7 +9,8 @@ Actualizar repositorio (posibles modificaciones de compañeros y posibles confli
 git pull
 
 Subir repositorio
-git ejemplo scdwedwdwdwdwdwdwdwdwdwdwdwd
+
+git ejemplo wdwde de la rama developer
 
 Pare resolver conclitos en un merge:
 https://phoenixnap.com/kb/how-to-resolve-merge-conflicts-in-git
