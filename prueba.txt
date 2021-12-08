@@ -1,1 +1,6 @@
-hola que tal soy kike
+
+Crear repositorio: 
+git init
+
+Clonar repositorio privado:
+
