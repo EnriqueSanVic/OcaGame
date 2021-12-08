@@ -9,7 +9,7 @@ Actualizar repositorio (posibles modificaciones de compañeros y posibles confli
 git pull
 
 Subir repositorio
-git ejemplo sd32rhr382r98ru239r832u8r32
+git ejemplo Esto viene de la rama developer
 
 Pare resolver conclitos en un merge:
 https://phoenixnap.com/kb/how-to-resolve-merge-conflicts-in-git
