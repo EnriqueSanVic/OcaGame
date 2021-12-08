@@ -8,5 +8,10 @@ git clone https://<Usuario>:<AccessToken>@github.com:<EnriqueSanVic/OcaGame.git>
 Actualizar repositorio (posibles modificaciones de compañeros y posibles conflictos):
 git pull
 
-dsfldskfjewofiwoefhewiefjewlifuhwfiuewhfñofijewf
-oweifjewoifjewiofeijfwefijo
+Subir repositorio
+git push
+
+
+Al hacer un push  o un pull pueden surgir conflictos lo que nos lleva a un merge
+
+
