@@ -11,7 +11,11 @@ git pull
 Subir repositorio
 git push
 
+Pare resolver conclitos en un merge:
+https://phoenixnap.com/kb/how-to-resolve-merge-conflicts-in-git
 
-Al hacer un push  o un pull pueden surgir conflictos lo que nos lleva a un merge
+
+
+
 
 
