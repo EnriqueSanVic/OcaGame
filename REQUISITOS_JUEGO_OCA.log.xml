@@ -1,0 +1,463 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<rem:log xmlns:rem="http://rem.lsi.us.es">
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Importance] actualizada [PD] -> [importante]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DRS-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Urgency] actualizada [PD] -> [puede esperar]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Status] actualizada [PD] -> [en construcción]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Urgency] actualizada [PD] -> [puede esperar]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DFS-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CHS-0004</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CHS-0004</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DFS-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Urgency] actualizada [PD] -> [hay presión]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Importance] actualizada [PD] -> [importante]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Importance] actualizada [PD] -> [importante]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DRS-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Status] actualizada [PD] -> [en construcción]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [Status] actualizada [PD] -> [en construcción]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>C</rem:type>
+<rem:owner>IRQ-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Creación]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DFS-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CHS-0004</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>C</rem:type>
+<rem:owner>IRQ-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Creación]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [RelevantConcept] actualizada [En ambos modos de juego el sistema contará con la funcionalidad de guardar y cargar partida. Este sistema de guardado tendrá un único slot de guardado para cada modo, es decir, solo se podrá guardar una partida simultánea para cada modo de juego.
+Los ficheros de guardado van a tener el nombre: 
+guardado_modo1.obj
+guardado_modo2.obj
+
+Para el guardado de las partidas se crearán dos objetos del modelo que serán los encargados de almacenar el estado completo de una partida en juego. Estos objetos serán serializados y guardados en sus ficheros correspondientes de guardado en el directorio llamado “datos” una vez que se quieran recuperar, la clase modelo tendrá que recuperarlos desserializándolos y redistribuyendo todos los datos del estado de la partida a sus variables y atributos correspondientes de las clases que controlan el juego.
+] -> [En ambos modos de juego el sistema contará con la funcionalidad de guardar y cargar partida. Este sistema de guardado tendrá un único slot de guardado para cada modo, es decir, solo se podrá guardar una partida simultánea para cada modo de juego.
+Para el guardado de las partidas se crearán dos objetos del modelo que serán los encargados de almacenar el estado completo de una partida en juego. Estos objetos serán serializados y guardados en sus ficheros correspondientes de guardado en el directorio llamado “datos” una vez que se quieran recuperar, la clase modelo tendrá que recuperarlos desserializándolos y redistribuyendo todos los datos del estado de la partida a sus variables y atributos correspondientes de las clases que controlan el juego.
+Los ficheros de guardado van a tener el nombre: 
+guardado_modo1.obj
+guardado_modo2.obj
+]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>C</rem:type>
+<rem:owner>IRQ-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Creación]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DRS-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>U</rem:type>
+<rem:owner>IRQ-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>13</rem:day>
+</rem:date>
+<rem:description><![CDATA[Propiedad [RelevantConcept] actualizada [En ambos modos de juego el sistema contará con la funcionalidad de guardar y cargar partida. Este sistema de guardado tendrá un único slot de guardado para cada modo, es decir, solo se podrá guardar una partida simultánea para cada modo de juego.
+Para el guardado de las partidas se crearán dos objetos del modelo que serán los encargados de almacenar el estado completo de una partida en juego. Estos objetos serán serializados y guardados en sus ficheros correspondientes de guardado en el directorio llamado “datos” una vez que se quieran recuperar, la clase modelo tendrá que recuperarlos desserializándolos y redistribuyendo todos los datos del estado de la partida a sus variables y atributos correspondientes de las clases que controlan el juego.
+] -> [En ambos modos de juego el sistema contará con la funcionalidad de guardar y cargar partida. Este sistema de guardado tendrá un único slot de guardado para cada modo, es decir, solo se podrá guardar una partida simultánea para cada modo de juego.
+Los ficheros de guardado van a tener el nombre: 
+guardado_modo1.obj
+guardado_modo2.obj
+
+Para el guardado de las partidas se crearán dos objetos del modelo que serán los encargados de almacenar el estado completo de una partida en juego. Estos objetos serán serializados y guardados en sus ficheros correspondientes de guardado en el directorio llamado “datos” una vez que se quieran recuperar, la clase modelo tendrá que recuperarlos desserializándolos y redistribuyendo todos los datos del estado de la partida a sus variables y atributos correspondientes de las clases que controlan el juego.
+]]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DRS-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DFS-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CHS-0004</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CHS-0004</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>D</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Eliminado el objeto [SEC-0001]  con 0 hijos y 1 cambios]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DRS-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>D</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Eliminado el objeto [FRQ-0013]  con 0 hijos y 1 cambios]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>C</rem:type>
+<rem:owner>CHS-0004</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento creado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>D</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Eliminado el objeto [FRQ-0001]  con 0 hijos y 1 cambios]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DFS-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>C</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento creado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DRS-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>D</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Eliminado el objeto [ORG-0001] HOla con 0 hijos y 1 cambios]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>C</rem:type>
+<rem:owner>DFS-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento creado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CHS-0004</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>D</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Eliminado el objeto [PRG-0001]  con 0 hijos y 1 cambios]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>D</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Eliminado el objeto [ORG-0001]  con 0 hijos y 1 cambios]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>D</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Eliminado el objeto [TRM-0001]  con 0 hijos y 1 cambios]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>C</rem:type>
+<rem:owner>DRS-0002</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento creado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>CRS-0001</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>11</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+<rem:change>
+<rem:type>S</rem:type>
+<rem:owner>DFS-0003</rem:owner><rem:date>
+<rem:year>2021</rem:year>
+<rem:month>12</rem:month>
+<rem:day>12</rem:day>
+</rem:date>
+<rem:description><![CDATA[Documento guardado]]></rem:description>
+</rem:change>
+</rem:log>
