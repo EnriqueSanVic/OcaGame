@@ -13,7 +13,9 @@ public abstract class LogicaJuego {
     
     private Random random;
     
+    //array con las posiciones de los jugadores
     private int[] posicionJugador;
+    
     
     
     private CasillaLogica[] tablero;
@@ -87,12 +89,11 @@ public abstract class LogicaJuego {
     }
     
 
-    //implementar metodo de evaluación de tirada para devolver si es posible mover un jugador
+    //implementar metodo de evaluación de tirada para devolver si es posible realizar el turno para un jugador
+    public abstract boolean evaluarTurnoInicio(int jugador);
     
-    
-    public abstract int evaluarTurnoAlInicio();
-    
-    public abstract int evaluarTurnoAlFinal();
+    //implementar metodo de evaluación de consecuencia de una tirada, es decir evalua la casilla en la que ha caido y cuales son las consecuendias
+    public abstract DirectivasEvaluacion evaluarTurnoFinal(int jugador);
 
     
     //retorna numero de 1 al 6 como un dado clasico
@@ -100,10 +101,37 @@ public abstract class LogicaJuego {
         return random.nextInt(6) + 1;
     }
     
+    
+    
     //el retorno es el numero de casillas de avance o retroceso que se debe usar
     public int mover (int jugador, int casillasDesplazamiento){
-        posicionJugador[jugador] += casillasDesplazamiento;
+        
+        
+        //si se sobrepasa de el limite de casillas se hace el rebote de la ficha
+        if(posicionJugador[jugador] + casillasDesplazamiento > tablero.length){
+            
+            int diferencia = (posicionJugador[jugador] + casillasDesplazamiento) - tablero.length;
+            
+            posicionJugador[jugador] = tablero.length - diferencia;
+         
+            //si es una tirada normal
+        }else{
+            posicionJugador[jugador] += casillasDesplazamiento;
+        }
+        
         return posicionJugador[jugador];
+        
+    }
+    
+    
+    
+    private boolean evaluarFin(int jugador){
+        
+        if(posicionJugador[jugador] == tablero.length){
+            return true;
+        }
+        
+        return false;
     }
     
     
