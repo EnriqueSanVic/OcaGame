@@ -19,6 +19,8 @@ public class Tablero extends JPanel{
     protected final int HEIGHT = 800;
     protected final int WIDTH = 800;
 
+    protected Ficha ficha1;
+    
     public Tablero() {
 
         //se carga la imagen del tablero
@@ -30,6 +32,9 @@ public class Tablero extends JPanel{
         
         //se le asigna un tamaño al tablero
         this.setSize(WIDTH, HEIGHT);
+        
+        
+        initFichas();
     }
 
     
@@ -39,6 +44,14 @@ public class Tablero extends JPanel{
     protected void paintComponent(Graphics grphcs) {
         super.paintComponent(grphcs);
         grphcs.drawImage(imagenTablero, 0, 0, this);
+    }
+
+    private void initFichas() {
+        
+        ficha1 = new Ficha(0, 20, 20);
+        
+        this.add(ficha1);
+        
     }
     
     
