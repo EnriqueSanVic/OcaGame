@@ -20,11 +20,13 @@ import javax.swing.JPanel;
  * @author Enrique Sánchez 
  */
 public class VistaJuego extends JFrame{
+
     //Fuente textos
     private final Font FUENTE_1 = new Font("Arial", 1, 15);
     //Fuente boton lanzar dado
     private final Font FUENTE_2 = new Font("Arial", 1, 20);
     private final int TABLERO_X=320, TABLERO_Y=0;
+    
     private final int WIDTH = 1450, HEIGHT = 865;
     
     private ControladorJuego controlador;
@@ -64,6 +66,11 @@ public class VistaJuego extends JFrame{
         anadirEscuchadores();
 
         this.setVisible(true);
+
+    }
+    
+    public void initEscena(){
+        panelTableroOca.initEscena();
     }
 
     private void crearObjetos() {
@@ -108,6 +115,7 @@ public class VistaJuego extends JFrame{
         this.getContentPane().setBackground(Color.orange);
         this.setSize(WIDTH, HEIGHT);
         this.setResizable(false);
+
         //Menus
         this.menuPartida.setFont(this.FUENTE_1);
         this.menuAcciones.setFont(this.FUENTE_1);
@@ -140,6 +148,7 @@ public class VistaJuego extends JFrame{
         this.botonLanzarDado.setFont(this.FUENTE_2);
         this.botonLanzarDado.setBackground(Color.green);
         this.botonLanzarDado.setBounds(1180, 600, 200, 100);
+
     }
 
     private void anadirObjetos() {

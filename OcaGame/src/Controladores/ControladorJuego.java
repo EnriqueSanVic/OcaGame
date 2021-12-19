@@ -28,7 +28,12 @@ public class ControladorJuego extends WindowAdapter implements ActionListener{
         this.hilos = new ArrayList<Hilo>(); 
         this.vista = new VistaJuego(this);
         this.logica1 = new LogicaJuegoModo1();
+      
+        vista.initEscena();
+
+        
     }
+    
     
     public void aniadirHilo(Hilo hilo){
         this.hilos.add(hilo);
