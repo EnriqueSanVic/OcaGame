@@ -35,7 +35,7 @@ public class LogicaJuegoModo2 extends LogicaJuego{
         }
         
         return new DirectivasEvaluacion(super.getPosicionJugador()[jugador],directivas.penalizacion, directivas.tirarOtraVez);
-        
+    
     }
 
 }

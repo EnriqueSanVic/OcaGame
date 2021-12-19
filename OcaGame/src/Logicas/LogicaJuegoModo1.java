@@ -8,11 +8,6 @@ package Logicas;
  */
 public class LogicaJuegoModo1 extends LogicaJuego{
 
-
-
-    
-    
-    
     //en el modo 1 siempre va a poder avanzar en su turno , no existen los bloqueos
     @Override
     public boolean evaluarTurnoInicio(int jugador) {
@@ -36,9 +31,7 @@ public class LogicaJuegoModo1 extends LogicaJuego{
         //en el modo 1 no se actua con la penalizacion, se le retorna al controlador para que el actue
         
         return new DirectivasEvaluacion(super.getPosicionJugador()[jugador],directivas.penalizacion, directivas.tirarOtraVez);
-        
+       
     }
-
-    
 
 }
