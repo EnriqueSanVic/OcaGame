@@ -5,6 +5,9 @@ package Vistas;
 import Controladores.ControladorJuego;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
+import java.awt.Component;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +21,8 @@ import javax.swing.JPanel;
  * @author Enrique Sánchez 
  */
 public class VistaJuego extends JFrame{
+    
+    private final int WIDTH = 1350, HEIGHT = 835;
     
     private ControladorJuego controlador;
     
@@ -37,7 +42,10 @@ public class VistaJuego extends JFrame{
     private JPanel panelDadoCubilete;
     private JButton botonLanzarDado; 
     
-    private int idioma = 0; //0=español 1=ingles;
+    //cola de dibujado por comodidad para una vez configurados los conmponentes sean añadidos para al finalizar la configuracion se añadan al frame
+    private List<Component> colaDibujado;
+    
+    private final int idioma = 0; //0=español 1=ingles;
     
     
     public VistaJuego(ControladorJuego control){
@@ -46,6 +54,8 @@ public class VistaJuego extends JFrame{
     }
 
     private void iniciarVista() {
+        
+        colaDibujado = new ArrayList<Component>();
         
         crearObjetos();
         disenoObjetos();
@@ -79,18 +89,34 @@ public class VistaJuego extends JFrame{
     }
 
     private void disenoObjetos() {
+        
+        //configuracion del frame
         this.setLayout(null);
         this.getContentPane().setBackground(Color.orange);
-        this.setSize(1170, 800);
+        this.setSize(WIDTH, HEIGHT);
+        this.setResizable(false);
         
-        this.panelTableroOca.setBounds(185, 0, this.panelTableroOca.WIDTH, this.panelTableroOca.HEIGHT);
+        //configuracion del tablero
+        final int tableroX = 250, tableroY = 0;
+        
+        this.panelTableroOca.setLocation(tableroX, tableroY);
+        colaDibujado.add(panelTableroOca);
+        
+        
     }
 
     private void anadirObjetos() {
-        this.add(this.panelTableroOca);
+        
+        //re recorren todos los componoentes de la cola de dibujado para añadirlos al frame
+        for (Component i:colaDibujado) {
+            this.add(i);
+        }
+        
     }
 
     private void anadirEscuchadores() {
+        
+        this.addWindowListener(controlador);
     }
     
 }

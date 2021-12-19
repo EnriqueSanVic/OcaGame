@@ -2,7 +2,10 @@
 package Vistas;
 
 import java.awt.Graphics;
-import javax.swing.ImageIcon;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
@@ -10,20 +13,34 @@ import javax.swing.JPanel;
  */
 public class Tablero extends JPanel{
     
-    ImageIcon imagenTablero;
+    private final String IMAGE_PATH = "./img/tablero/tablero.png";
+    
+    private BufferedImage imagenTablero;
     protected final int HEIGHT = 800;
     protected final int WIDTH = 800;
 
     public Tablero() {
-        super();
-        this.imagenTablero = new ImageIcon(getClass().getResource("../img/tablero/TableroOca.jpg"));
-        this.setSize(800, 800);
+
+        //se carga la imagen del tablero
+        try {
+            this.imagenTablero = ImageIO.read(new File(IMAGE_PATH));
+        } catch (IOException ex) {
+            System.out.println("Error de carga de imagen");
+        }
+        
+        //se le asigna un tamaño al tablero
+        this.setSize(WIDTH, HEIGHT);
     }
 
+    
+
+    //se pinta el componente con la imagen del tablero
     @Override
-    public void paint(Graphics grafico) {
-        grafico.drawImage(imagenTablero.getImage(), 0, 0, WIDTH, HEIGHT, null);
-        super.paint(grafico);
+    protected void paintComponent(Graphics grphcs) {
+        super.paintComponent(grphcs);
+        grphcs.drawImage(imagenTablero, 0, 0, this);
     }
+    
+    
     
 }
