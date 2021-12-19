@@ -21,15 +21,18 @@ public abstract class LogicaJuego {
 
     public LogicaJuego() {
         init();
+        
     }
 
     
     private void init() {
-        
+        this.posicionJugador = new int[2];
         random = new Random();
-        
+
         posicionJugador[0] = 0;
         posicionJugador[1] = 0;
+        
+        tablero = new CasillaLogica[63];
 
         //inicializamos cada casilla a 0 y luego re iniciamos las casillas que tiene un contenido no vacío
         for (int i = 0; i < tablero.length; i++) {
@@ -117,9 +120,7 @@ public abstract class LogicaJuego {
         
     }
     
-    
 
-    
     //retorna numero de 1 al 6 como un dado clasico
     public int tirarDado(){
         return random.nextInt(6) + 1;
