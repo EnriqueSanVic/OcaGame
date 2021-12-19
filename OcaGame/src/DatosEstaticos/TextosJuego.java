@@ -20,6 +20,8 @@ public class TextosJuego {
     
     public static String[] MENU_LANZAR_DADO = {"Lanzar Dado", "Drop Dice"};
 
+    public static String[] TITULO_JUGADORES = {"JUGADORES:", "PLAYERS:"};
+    
     public static String[] LABEL_PENALIZACIONES = {"PENALIZACIONES:", "PENALTIES:"};
     public static String[] BOTON_LANZAR_DADO = {"LANZAR DADO", "DROP DICE"};
 
