@@ -22,7 +22,7 @@ import javax.swing.JPanel;
  */
 public class VistaJuego extends JFrame{
     
-    private final int WIDTH = 1350, HEIGHT = 835;
+    private final int WIDTH = 1450, HEIGHT = 865;
     
     private ControladorJuego controlador;
     
@@ -64,6 +64,11 @@ public class VistaJuego extends JFrame{
         
         
         this.setVisible(true);
+
+    }
+    
+    public void initEscena(){
+        panelTableroOca.initEscena();
     }
 
     private void crearObjetos() {
@@ -97,10 +102,11 @@ public class VistaJuego extends JFrame{
         this.setResizable(false);
         
         //configuracion del tablero
-        final int tableroX = 250, tableroY = 0;
+        final int tableroX = 320, tableroY = 0;
         
         this.panelTableroOca.setLocation(tableroX, tableroY);
         colaDibujado.add(panelTableroOca);
+        
         
         
     }
