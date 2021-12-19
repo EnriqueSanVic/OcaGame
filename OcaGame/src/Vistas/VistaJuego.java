@@ -6,7 +6,6 @@ import Controladores.ControladorJuego;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.MenuShortcut;
 import java.awt.event.KeyEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -49,6 +48,9 @@ public class VistaJuego extends JFrame{
     
     private int idioma = 0; //0=español 1=ingles;
     
+    private boolean impulsoTirarDado; //0= no; 1= si;
+    
+    private int numeroFinalDado;
     
     public VistaJuego(ControladorJuego control){
         this.controlador = control;
@@ -94,6 +96,8 @@ public class VistaJuego extends JFrame{
         //Panel dado
         this.panelDadoCubilete = new JPanel();
         this.dadoGrafico = new DadoGrafico(this);
+        this.controlador.aniadirHilo(this.dadoGrafico);
+        new Thread(this.dadoGrafico).start();
         //Boton dado
         this.botonLanzarDado = new JButton(TextosJuego.BOTON_LANZAR_DADO[this.idioma]);
     }
@@ -164,8 +168,37 @@ public class VistaJuego extends JFrame{
     }
 
     private void anadirEscuchadores() {
-        
-        this.addWindowListener(controlador);
+        this.addWindowListener(this.controlador);
+        this.botonLanzarDado.addActionListener(this.controlador);
+    }
+
+    public boolean getImpulsoTirarDado() {
+        return impulsoTirarDado;
+    }
+
+    public void setImpulsoTirarDado(boolean impulso) {
+        this.impulsoTirarDado = impulso;
+    }
+
+    public synchronized void notificarTiradaDado() {
+        dadoGrafico.notificarTirada();
+    }
+
+    public int getNumeroFinalDado() {
+        return numeroFinalDado;
+    }
+
+    public void setNumeroFinalDado(int numeroFinalDado) {
+        this.numeroFinalDado = numeroFinalDado;
     }
     
+    //Metodo que avisa al controlador cuando la animacion del dado a finalizado.
+    public void finalAnimacionDado() {
+        this.controlador.eventoFinalizacionDado();
+    }
+    
+    public void bloquearBoton(boolean b){
+        this.botonLanzarDado.setEnabled(b);
+    }
+   
 }
