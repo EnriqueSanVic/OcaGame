@@ -17,7 +17,6 @@ public abstract class LogicaJuego {
     private int[] posicionJugador;
     
     
-    
     private CasillaLogica[] tablero;
 
     public LogicaJuego() {
@@ -37,49 +36,49 @@ public abstract class LogicaJuego {
             tablero[i] = new CasillaLogica(0,0);
         }
         
-        tablero[4] = new CasillaLogica(4,0); //oca 5
+        tablero[4] = new CasillaLogica(4,0,true); //oca 5
         
-        tablero[5] = new CasillaLogica(6,0); //puente 6
+        tablero[5] = new CasillaLogica(6,0,true); //puente 6
         
-        tablero[8] = new CasillaLogica(5,0); //oca 9
+        tablero[8] = new CasillaLogica(5,0,true); //oca 9
         
-        tablero[11] = new CasillaLogica(-6,0); //puente 12
+        tablero[11] = new CasillaLogica(-6,0,true); //puente 12
         
-        tablero[13] = new CasillaLogica(4,0); //oca 14
+        tablero[13] = new CasillaLogica(4,0,true); //oca 14
         
-        tablero[17] = new CasillaLogica(5,0); //oca 18
+        tablero[17] = new CasillaLogica(5,0,true); //oca 18
         
         tablero[18] = new CasillaLogica(0,1); //posada 19
         
-        tablero[22] = new CasillaLogica(4,0); //oca 23
+        tablero[22] = new CasillaLogica(4,0,true); //oca 23
         
-        tablero[25] = new CasillaLogica(27,0); //dado 26
+        tablero[25] = new CasillaLogica(27,0,true); //dado 26
         
-        tablero[26] = new CasillaLogica(5,0); //oca 27
+        tablero[26] = new CasillaLogica(5,0,true); //oca 27
         
         tablero[30] = new CasillaLogica(0,2); //pozo 31
         
-        tablero[31] = new CasillaLogica(4,0); //oca 32
+        tablero[31] = new CasillaLogica(4,0,true); //oca 32
         
-        tablero[35] = new CasillaLogica(5,0); //oca 36
+        tablero[35] = new CasillaLogica(5,0,true); //oca 36
         
-        tablero[40] = new CasillaLogica(4,0); //oca 41
+        tablero[40] = new CasillaLogica(4,0,true); //oca 41
         
         tablero[41] = new CasillaLogica(0,3); //laberinto 42
         
-        tablero[44] = new CasillaLogica(5,0); //oca 45
+        tablero[44] = new CasillaLogica(5,0,true); //oca 45
         
-        tablero[49] = new CasillaLogica(4,0); //oca 50
+        tablero[49] = new CasillaLogica(4,0,true); //oca 50
         
-        tablero[51] = new CasillaLogica(0,4); //carcer 52
+        tablero[51] = new CasillaLogica(0,4); //carcel 52
         
-        tablero[52] = new CasillaLogica(-27,0); //dado 53
+        tablero[52] = new CasillaLogica(-27,0,true); //dado 53
 
-        tablero[53] = new CasillaLogica(5,0); //oca 54
+        tablero[53] = new CasillaLogica(5,0,true); //oca 54
         
         tablero[57] = new CasillaLogica(-57,0); //muerte 58
         
-        tablero[58] = new CasillaLogica(4,0); //oca 59
+        tablero[58] = new CasillaLogica(4,0,true); //oca 59
         
         tablero[62] = new CasillaLogica(0,0); //oca 63 Final
 
@@ -93,7 +92,32 @@ public abstract class LogicaJuego {
     public abstract boolean evaluarTurnoInicio(int jugador);
     
     //implementar metodo de evaluación de consecuencia de una tirada, es decir evalua la casilla en la que ha caido y cuales son las consecuendias
-    public abstract DirectivasEvaluacion evaluarTurnoFinal(int jugador);
+    public  DirectivasEvaluacion evaluarTurnoFinal(int jugador){
+        
+        int avance, tiempo;
+        
+        boolean tirarOtraVez;
+        
+        avance = tablero[posicionJugador[jugador]].avance;
+        
+        tiempo = tablero[posicionJugador[jugador]].penalizacion;
+        
+        tirarOtraVez = tablero[posicionJugador[jugador]].tirarOtraVez;
+                        
+        //si hay una consecuencia de avance se mueve al jugador
+        if(avance != 0){
+            
+            mover(jugador, avance);
+            
+        }
+        
+        return  new DirectivasEvaluacion(avance, tiempo, tirarOtraVez);
+        
+        
+        
+    }
+    
+    
 
     
     //retorna numero de 1 al 6 como un dado clasico
@@ -132,6 +156,14 @@ public abstract class LogicaJuego {
         }
         
         return false;
+    }
+
+    public int[] getPosicionJugador() {
+        return posicionJugador;
+    }
+
+    public CasillaLogica[] getTablero() {
+        return tablero;
     }
     
     
