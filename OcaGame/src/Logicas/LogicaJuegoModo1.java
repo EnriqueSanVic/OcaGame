@@ -19,10 +19,8 @@ public class LogicaJuegoModo1 extends LogicaJuego{
     }
 
     @Override
-    public DirectivasEvaluacion evaluarTurnoFinal(int jugador) {
-        
-        
-        
+    public DirectivasEvaluacion evaluarTurnoFinal(int jugador) { 
+        return null;
     }
 
     
