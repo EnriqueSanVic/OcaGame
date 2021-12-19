@@ -22,6 +22,8 @@ public class ControladorJuego extends WindowAdapter{
     public ControladorJuego(){
         this.vista = new VistaJuego(this);
         this.hilos = new ArrayList<Hilo>();
+        
+        vista.initEscena();
     }
     
     

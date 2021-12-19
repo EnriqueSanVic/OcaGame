@@ -4,11 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Controladores/ControladorJuego.java</file>
-            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Logicas/LogicaJuegoModo2.java</file>
-            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Logicas/DirectivasEvaluacion.java</file>
+            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/DatosEstaticos/TextosJuego.java</file>
             <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Vistas/VistaJuego.java</file>
-            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Logicas/LogicaJuego.java</file>
-            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Logicas/CasillaLogica.java</file>
+            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/ocagame/OcaGame.java</file>
+            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Vistas/Tablero.java</file>
+            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Vistas/CasillaGrafica.java</file>
+            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Vistas/Ficha.java</file>
+            <file>file:/C:/Users/%23%23%23%23/Desktop/OcaGame/OcaGame/src/Vistas/ManejadotFicha.java</file>
         </group>
     </open-files>
 </project-private>
