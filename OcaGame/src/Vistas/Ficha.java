@@ -3,6 +3,7 @@
 package Vistas;
 
 import DatosEstaticos.Constantes;
+import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -11,10 +12,15 @@ import javax.swing.JLabel;
  * @author Enrique Sánchez 
  */
 public class Ficha extends JLabel{
+    
+    protected int casillaActual;
 
     private final int WIDTH = 50, HEIGHT = 50;
     
-    public Ficha(int jugador, int x, int y) {
+    public Ficha(int casillaActual, int jugador, int x, int y) {
+        
+        this.casillaActual = casillaActual;
+        
         init(jugador, x, y);
     }
 
@@ -43,7 +49,41 @@ public class Ficha extends JLabel{
         
         
     }
+    
+    public Point getCentro(){
+        return new Point(WIDTH/2, HEIGHT/2);
+    }
+    
+    public Point getCentroAbsoluto(){
+        
+        Point centro = getCentro();
+        
+        return new Point( this.getLocation().x + centro.x, this.getLocation().y + centro.y);
+    }
 
+    public void mover(int x,int y){
+        this.setLocation(this.getLocation().x + x, this.getLocation().y + y);
+    }
+    
+    
+    //trnasporta el centro de la ficha a las coordenadas de los argumentos
+    public void transportarCentro(int x,int y){
+        
+        Point centro = getCentro();
+        
+        this.setLocation(x - centro.x, y - centro.y);
+    }
+
+    public int getCasillaActual() {
+        return casillaActual;
+    }
+
+    public void setCasillaActual(int casillaActual) {
+        this.casillaActual = casillaActual;
+    }
+    
+    
+    
     
     
 }
