@@ -18,7 +18,7 @@ public class ManejadorFicha extends Thread implements Hilo{
     
     private Ficha ficha;
     
-    private final int TIEMPO_DELAY= 5;
+    private final int TIEMPO_DELAY= 4;
     
     private int casillaDestino;
     
