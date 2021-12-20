@@ -7,6 +7,7 @@ import DatosEstaticos.TextosJuego;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyEvent;
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -14,6 +15,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 /**
  *
@@ -47,6 +49,7 @@ public class VistaJuego extends JFrame{
     private JPanel panelDadoCubilete;
     private DadoGrafico dadoGrafico;
     private JButton botonLanzarDado; 
+    private Border blackline;
     
     private int idioma = 0; //0=español 1=ingles;
     
@@ -115,7 +118,6 @@ public class VistaJuego extends JFrame{
         this.getContentPane().setBackground(Color.orange);
         this.setSize(WIDTH, HEIGHT);
         this.setResizable(false);
-
         //Menus
         this.menuPartida.setFont(this.FUENTE_1);
         this.menuAcciones.setFont(this.FUENTE_1);
@@ -125,6 +127,8 @@ public class VistaJuego extends JFrame{
         this.menuSalir.setFont(this.FUENTE_1);
         this.menuLanzarDado.setFont(this.FUENTE_1);
         //Panel de nombres
+        this.blackline = BorderFactory.createLineBorder(Color.black);
+        this.panelNombresJugadores.setBorder(blackline);
         this.panelNombresJugadores.setBackground(Color.CYAN);
         this.panelNombresJugadores.setBounds(50, 50, 220, 250);
         this.panelNombresJugadores.setLayout(null);
@@ -132,6 +136,7 @@ public class VistaJuego extends JFrame{
         this.jugadoresTitulo.setFont(this.FUENTE_1);
         this.jugadoresTitulo.setBounds(65, 5, 200, 50);
         //Panel de penalizaciones/tiempo
+        this.panelPenalizaciones.setBorder(blackline);
         this.panelPenalizaciones.setBackground(Color.PINK);
         this.panelPenalizaciones.setBounds(50, 350, 220, 350);
         this.panelPenalizaciones.setLayout(null);
@@ -141,6 +146,7 @@ public class VistaJuego extends JFrame{
         //Tablero oca
         this.panelTableroOca.setLocation(this.TABLERO_X, this.TABLERO_Y);
         //Panel dado y cubilete
+        this.panelDadoCubilete.setBorder(blackline);
         this.panelDadoCubilete.setBackground(Color.MAGENTA);
         this.panelDadoCubilete.setBounds(1160, 50, 250, 450);
         this.panelDadoCubilete.setLayout(null);        
@@ -208,6 +214,21 @@ public class VistaJuego extends JFrame{
     
     public void bloquearBoton(boolean b){
         this.botonLanzarDado.setEnabled(b);
+    }
+    
+    //Getters elementos paneles.
+
+    public JPanel getPanelNombresJugadores() {
+        return this.panelNombresJugadores;
+    }
+
+    public JPanel getPanelPenalizaciones() {
+        return this.panelPenalizaciones;
+    }
+    
+    //Metodo que devuelve el objeto border utilizado.
+    public Border getBlackBorder(){
+        return this.blackline;
     }
    
 }

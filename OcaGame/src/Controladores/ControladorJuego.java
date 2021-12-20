@@ -5,6 +5,8 @@ package Controladores;
 import Hilos.Hilo;
 import Logicas.LogicaJuegoModo1;
 import Vistas.VistaJuego;
+import Vistas.VistaJuegoModo1;
+import Vistas.VistaJuegoModo2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -26,7 +28,7 @@ public class ControladorJuego extends WindowAdapter implements ActionListener{
     
     public ControladorJuego(){
         this.hilos = new ArrayList<Hilo>(); 
-        this.vista = new VistaJuego(this);
+        this.vista = new VistaJuegoModo2(this); //Cambiado para testing
         this.logica1 = new LogicaJuegoModo1();
       
         vista.initEscena();
@@ -79,8 +81,6 @@ public class ControladorJuego extends WindowAdapter implements ActionListener{
                     this.vista.setImpulsoTirarDado(true);
                     this.vista.setNumeroFinalDado(numeroFinal);
                     this.vista.notificarTiradaDado();
-                    
-                    
                 break;
             default:
                 break;
