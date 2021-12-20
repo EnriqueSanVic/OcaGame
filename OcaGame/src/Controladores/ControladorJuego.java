@@ -30,6 +30,8 @@ public class ControladorJuego extends WindowAdapter implements ActionListener{
         this.logica1 = new LogicaJuegoModo1();
       
         vista.initEscena();
+        
+        
 
         
     }

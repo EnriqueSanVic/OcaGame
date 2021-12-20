@@ -2,6 +2,7 @@
 
 package Vistas;
 
+import Vistas.TableroSystem.Tablero;
 import Controladores.ControladorJuego;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;

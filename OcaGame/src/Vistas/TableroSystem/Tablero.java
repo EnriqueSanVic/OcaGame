@@ -1,5 +1,5 @@
 
-package Vistas;
+package Vistas.TableroSystem;
 
 import DatosEstaticos.Constantes;
 import java.awt.Graphics;
@@ -127,6 +127,33 @@ public class Tablero extends JPanel{
 
         casillas[26] = new CasillaGrafica(142, 8,61, 105, false);
         
+        casillas[27] = new CasillaGrafica(102, 8,35, 93, false);
+        
+        casillas[28] = new CasillaGrafica(7, 105,93, 37, true);
+        
+        casillas[29] = new CasillaGrafica(7, 147,103, 63, true);
+        
+        casillas[30] = new CasillaGrafica(7, 214,103, 63, true);
+        
+        casillas[31] = new CasillaGrafica(7, 282,103, 63, true);
+        
+        casillas[32] = new CasillaGrafica(7, 349,103, 63, true);
+        
+        casillas[33] = new CasillaGrafica(7, 417,103, 63, true);
+        
+        casillas[34] = new CasillaGrafica(7, 484,103, 63, true);
+        
+        casillas[35] = new CasillaGrafica(7, 551,93, 37, true);
+        
+        casillas[36] = new CasillaGrafica(102, 588,35, 93, false);
+        
+        casillas[37] = new CasillaGrafica(142, 579,62, 105, false);
+        
+        casillas[38] = new CasillaGrafica(208, 579,62, 105, false);
+        
+        casillas[39] = new CasillaGrafica(274, 579,62, 105, false);
+        
+        
         
         for (int i = 0; i < casillas.length; i++) {
             
@@ -146,7 +173,7 @@ public class Tablero extends JPanel{
         ManejadorFicha.iniciarEnCasilla(0, ficha1, casillas);
         ManejadorFicha.iniciarEnCasilla(0, ficha2, casillas);
         
-        ManejadorFicha manejador = new ManejadorFicha(18, ficha1, casillas);
+        ManejadorFicha manejador = new ManejadorFicha(39, ficha1, casillas);
         manejador.start();
         
         try {
@@ -155,7 +182,7 @@ public class Tablero extends JPanel{
             Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        manejador = new ManejadorFicha(18, ficha2, casillas);
+        manejador = new ManejadorFicha(39, ficha2, casillas);
         manejador.start();
         
         

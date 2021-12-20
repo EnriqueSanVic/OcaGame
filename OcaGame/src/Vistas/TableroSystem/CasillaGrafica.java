@@ -1,7 +1,8 @@
 
 
-package Vistas;
+package Vistas.TableroSystem;
 
+import Vistas.TableroSystem.Ficha;
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.JPanel;

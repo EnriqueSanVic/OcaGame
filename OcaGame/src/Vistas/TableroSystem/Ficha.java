@@ -1,6 +1,6 @@
 
 
-package Vistas;
+package Vistas.TableroSystem;
 
 import DatosEstaticos.Constantes;
 import java.awt.Point;
