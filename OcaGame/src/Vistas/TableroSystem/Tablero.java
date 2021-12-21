@@ -216,7 +216,7 @@ public class Tablero extends JPanel{
         ManejadorFicha.iniciarEnCasilla(0, ficha1, casillas);
         ManejadorFicha.iniciarEnCasilla(0, ficha2, casillas);
         
-        ManejadorFicha manejador = new ManejadorFicha(62, ficha1, casillas);
+        ManejadorFicha manejador = new ManejadorFicha(15, ficha1, casillas);
         manejador.start();
         
         try {
@@ -225,7 +225,7 @@ public class Tablero extends JPanel{
             Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        manejador = new ManejadorFicha(62, ficha2, casillas);
+        manejador = new ManejadorFicha(15, ficha2, casillas);
         manejador.start();
         
         
