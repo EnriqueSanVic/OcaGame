@@ -1,2 +1,6 @@
-
+/OcaGame/build/
 /OcaGame/dist/
+/OcaGame/nbproject/
+/OcaGame/test/
+/OcaGame/build.xml
+/OcaGame/manifest.mf
