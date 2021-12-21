@@ -34,7 +34,7 @@ public class Ficha extends JLabel{
         switch(jugador){
             case Constantes.JUGADOR_2:
                 
-                this.setIcon(new ImageIcon("./img/ficha2Chica.png"));
+                this.setIcon(new ImageIcon(Constantes.PATH_ICONO_FICHAJ2));
                 
                 break;
                 
@@ -42,7 +42,7 @@ public class Ficha extends JLabel{
             case Constantes.JUGADOR_1:  
             default:
                 
-                this.setIcon(new ImageIcon("./img/ficha1Chica.png"));
+                this.setIcon(new ImageIcon(Constantes.PATH_ICONO_FICHAJ1));
                 
                 break;
         }

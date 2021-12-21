@@ -204,10 +204,7 @@ public class Tablero extends JPanel{
                 this.add(casillas[i]);
             }
         }
-        
-        
-        
-        
+
     }
 
     public void initEscena() {
