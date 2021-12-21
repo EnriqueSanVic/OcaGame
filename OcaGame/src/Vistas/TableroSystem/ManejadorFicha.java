@@ -1,7 +1,8 @@
 
 
-package Vistas;
+package Vistas.TableroSystem;
 
+import Vistas.TableroSystem.Ficha;
 import Hilos.Hilo;
 import java.awt.Point;
 
@@ -17,16 +18,19 @@ public class ManejadorFicha extends Thread implements Hilo{
     
     private Ficha ficha;
     
-    private final int TIEMPO_DELAY= 5;
+    private final int TIEMPO_DELAY= 4;
     
     private int casillaDestino;
     
     private CasillaGrafica[] casillas;
 
     public ManejadorFicha(int casillaDestino, Ficha ficha, CasillaGrafica[] casillas) {
+        
         this.casillaDestino = casillaDestino;
         this.ficha = ficha;
         this.casillas = casillas;
+        
+        this.setPriority(Thread.MAX_PRIORITY);
     }
     
     
@@ -203,6 +207,7 @@ public class ManejadorFicha extends Thread implements Hilo{
         try {
             wait();
         } catch (InterruptedException ex) {
+            
         }
     }
 

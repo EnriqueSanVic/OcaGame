@@ -1,6 +1,7 @@
 
 package Vistas;
 
+import Vistas.TableroSystem.Tablero;
 import Controladores.ControladorJuego;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
@@ -20,11 +21,13 @@ import javax.swing.border.Border;
  *
  * @author Enrique Sánchez 
  */
-public class VistaJuego extends JFrame{
+public abstract class VistaJuego extends JFrame{
     
     //Constantes de configuracion.
-    private final Font FUENTE_1 = new Font("Arial", 1, 15); //Textos.
-    private final Font FUENTE_2 = new Font("Arial", 1, 22); //Boton dado.
+    protected final Font FUENTE_1 = new Font("Arial", 1, 15); //Textos.
+    protected final Font FUENTE_2 = new Font("Arial", 1, 22); //Boton dado.
+    protected final Font FUENTE_3 = new Font("Arial", 1, 50); //Numero penalizacion
+
     
     private final int TABLERO_X=320, TABLERO_Y=0; //Posicion del tablero.
     private final int FRAME_WIDTH = 1450, FRAME_HEIGHT = 865; //Medidas del frame.
@@ -103,7 +106,7 @@ public class VistaJuego extends JFrame{
     }
 
     //Metodo que inicializa elementos de la vista general del juego.
-    private void crearObjetos() {
+    protected void crearObjetos() {
         //MenuItems Partida.
         this.menuNuevaPartida = new JMenuItem(TextosJuego.MENU_NUEVA_PARTIDA[this.IDIOMA]);
         this.menuNuevaPartida.setMnemonic(KeyEvent.VK_N);
@@ -139,7 +142,7 @@ public class VistaJuego extends JFrame{
     }
 
     //Metodo que da un diseño a los elementos de la vista general del juego.
-    private void disenoObjetos() {
+    protected void disenoObjetos() {
         //Frame.
         this.setLayout(null);
         this.getContentPane().setBackground(Color.orange);
@@ -185,7 +188,7 @@ public class VistaJuego extends JFrame{
     }
 
     //Metodo que añade elementos a la vista general del juego.
-    private void anadirObjetos() {
+    protected void anadirObjetos() {
         //Menus.
         this.menuPartida.add(this.menuNuevaPartida);
         this.menuPartida.add(this.menuGuardarPartida);
@@ -212,7 +215,7 @@ public class VistaJuego extends JFrame{
     }
 
     //Metodo que añade el escuchador necesario a ciertos elemento.
-    private void anadirEscuchadores() {
+    protected void anadirEscuchadores() {
         this.addWindowListener(this.controlador);
         this.botonLanzarDado.addActionListener(this.controlador);
     }

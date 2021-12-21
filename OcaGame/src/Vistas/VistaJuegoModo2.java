@@ -4,7 +4,6 @@ package Vistas;
 import Controladores.ControladorJuego;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
-import java.awt.Font;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,8 +17,7 @@ public class VistaJuegoModo2 extends VistaJuego{
     private final String PATH_ICONO_FICHAJ1 = "./img/ficha1Chica.png";
     private final String PATH_ICONO_FICHAJ2 = "./img/ficha2Chica.png";
     
-    private final Font FUENTE_1 = new Font("Arial", 1, 30); //Nombres y turnos de jugadores.
-    private final Font FUENTE_2 = new Font("Arial", 1, 50); //Numero de los turnos penalizados de los jugadores.
+  
   
     private final int FICHAJ1_X=10, FICHAJ1_Y=50; //Posicion de la ficha J1.
     private final int FICHAJ1_WIDTH = 50, FICHAJ1_HEIGHT = 50; //Medidas de la ficha J1.
@@ -79,13 +77,12 @@ public class VistaJuegoModo2 extends VistaJuego{
     //Constructor.
     public VistaJuegoModo2(ControladorJuego control) {
         super(control);
-        crearObjetos();
-        disenoObjetos();        
-        anadirObjetos();
     }
 
     //Metodo que instancia los atributos necesarios de la clase.
-    private void crearObjetos() {
+    protected void crearObjetos() {
+        
+        super.crearObjetos();
         //Iconos.
         this.iconoFicha1 = new ImageIcon(this.PATH_ICONO_FICHAJ1);
         this.iconoFicha2 = new ImageIcon(this.PATH_ICONO_FICHAJ2);
@@ -111,18 +108,21 @@ public class VistaJuegoModo2 extends VistaJuego{
     }
 
     //Metodo que da formato a los atributos necesarios de la clase.
-    private void disenoObjetos() {
+    protected void disenoObjetos() {
+        
+        super.disenoObjetos();
+        
         //Ficha J1.
         this.fichaNombreJ1.setIcon(this.iconoFicha1);
         this.fichaNombreJ1.setBounds(this.FICHAJ1_X, this.FICHAJ1_Y, this.FICHAJ1_WIDTH, this.FICHAJ1_HEIGHT);
         //Nombre J1. 
-        this.nombreJugador1.setFont(this.FUENTE_1);
+        this.nombreJugador1.setFont(super.FUENTE_2);
         this.nombreJugador1.setBounds(this.NOMBREJ1_X, this.NOMBREJ1_Y, this.NOMBREJ1_WIDTH, this.NOMBREJ1_HEIGHT);
         //Ficha J2.
         this.fichaNombreJ2.setIcon(this.iconoFicha2);
         this.fichaNombreJ2.setBounds(this.FICHAJ2_X, this.FICHAJ2_Y, this.FICHAJ2_WIDTH, this.FICHAJ2_HEIGHT);
         //Nombre J2.
-        this.nombreJugador2.setFont(this.FUENTE_1);
+        this.nombreJugador2.setFont(super.FUENTE_2);
         this.nombreJugador2.setBounds(this.NOMBREJ2_X, this.NOMBREJ2_Y, this.NOMBREJ2_WIDTH, this.NOMBREJ2_HEIGHT);
         //Panel de Penalizacion del J1.
         this.panelPenalizacionJ1.setBorder(super.getBlackBorder());
@@ -133,10 +133,10 @@ public class VistaJuegoModo2 extends VistaJuego{
         this.fichaPenalizacionJ1.setIcon(this.iconoFicha1);
         this.fichaPenalizacionJ1.setBounds(this.FICHAJ1_PENALIZACION_X, this.FICHAJ1_PENALIZACION_Y, this.FICHAJ1_PENALIZACION_WIDTH, this.FICHAJ1_PENALIZACION_HEIGHT);
         //Numero de turnos penalizados J1.
-        this.numeroTurnosPenalizadoJ1.setFont(this.FUENTE_2);
+        this.numeroTurnosPenalizadoJ1.setFont(this.FUENTE_3);
         this.numeroTurnosPenalizadoJ1.setBounds(this.NUM_TURNOSJ1_PENALIZACION_X, this.NUM_TURNOSJ1_PENALIZACION_Y, this.NUM_TURNOSJ1_PENALIZACION_WIDTH, this.NUM_TURNOSJ1_PENALIZACION_HEIGHT);
         //Label turnos J1.
-        this.labelTurnosJ1.setFont(this.FUENTE_1);
+        this.labelTurnosJ1.setFont(super.FUENTE_2);
         this.labelTurnosJ1.setBounds(this.LABEL_TURNOSJ1_PENALIZACION_X, this.LABEL_TURNOSJ1_PENALIZACION_Y, this.LABEL_TURNOSJ1_PENALIZACION_WIDTH, this.LABEL_TURNOSJ1_PENALIZACION_HEIGHT); 
         //Panel de Penalizacion del J2.
         this.panelPenalizacionJ2.setBorder(super.getBlackBorder());
@@ -147,15 +147,18 @@ public class VistaJuegoModo2 extends VistaJuego{
         this.fichaPenalizacionJ2.setIcon(this.iconoFicha2);
         this.fichaPenalizacionJ2.setBounds(this.FICHAJ2_PENALIZACION_X, this.FICHAJ2_PENALIZACION_Y, this.FICHAJ2_PENALIZACION_WIDTH, this.FICHAJ2_PENALIZACION_HEIGHT);
         //Numero de turnos penalizados J2.
-        this.numeroTurnosPenalizadoJ2.setFont(this.FUENTE_2);
+        this.numeroTurnosPenalizadoJ2.setFont(this.FUENTE_3);
         this.numeroTurnosPenalizadoJ2.setBounds(this.NUM_TURNOSJ2_PENALIZACION_X, this.NUM_TURNOSJ2_PENALIZACION_Y, this.NUM_TURNOSJ2_PENALIZACION_WIDTH, this.NUM_TURNOSJ2_PENALIZACION_HEIGHT);
         //Label turnos J2.
-        this.labelTurnosJ2.setFont(this.FUENTE_1);
+        this.labelTurnosJ2.setFont(super.FUENTE_2);
         this.labelTurnosJ2.setBounds(this.LABEL_TURNOSJ2_PENALIZACION_X, this.LABEL_TURNOSJ2_PENALIZACION_Y, this.LABEL_TURNOSJ2_PENALIZACION_WIDTH, this.LABEL_TURNOSJ2_PENALIZACION_HEIGHT);
     }
     
     //Metodo que añade los elementos a su respectivo contenedor.
-    private void anadirObjetos() {
+    protected void anadirObjetos() {
+        
+        super.anadirObjetos();
+        
         //Nombre y ficha J1.
         super.getPanelNombresJugadores().add(this.fichaNombreJ1);
         super.getPanelNombresJugadores().add(this.nombreJugador1);

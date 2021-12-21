@@ -1,7 +1,8 @@
 
 
-package Vistas;
+package Vistas.TableroSystem;
 
+import Vistas.TableroSystem.Ficha;
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.JPanel;
@@ -44,7 +45,7 @@ public class CasillaGrafica extends JPanel{
         
         this.setLocation(x,y);
         
-        this.setOpaque(true);
+        this.setOpaque(false);
         
         this.setBackground(Color.black);
 
