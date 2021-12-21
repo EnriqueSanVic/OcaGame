@@ -2,6 +2,7 @@
 package Vistas;
 
 import Controladores.ControladorJuego;
+import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -14,8 +15,7 @@ import javax.swing.JPanel;
 public class VistaJuegoModo2 extends VistaJuego{
     
     //Constantes de configuracion.
-    private final String PATH_ICONO_FICHAJ1 = "./img/ficha1Chica.png";
-    private final String PATH_ICONO_FICHAJ2 = "./img/ficha2Chica.png";
+    
     
   
   
@@ -80,12 +80,13 @@ public class VistaJuegoModo2 extends VistaJuego{
     }
 
     //Metodo que instancia los atributos necesarios de la clase.
+    @Override
     protected void crearObjetos() {
         
         super.crearObjetos();
         //Iconos.
-        this.iconoFicha1 = new ImageIcon(this.PATH_ICONO_FICHAJ1);
-        this.iconoFicha2 = new ImageIcon(this.PATH_ICONO_FICHAJ2);
+        this.iconoFicha1 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ1);
+        this.iconoFicha2 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ2);
         
         //Panel nombres Jugadores. 
         this.fichaNombreJ1 = new JLabel();
@@ -108,6 +109,7 @@ public class VistaJuegoModo2 extends VistaJuego{
     }
 
     //Metodo que da formato a los atributos necesarios de la clase.
+    @Override
     protected void disenoObjetos() {
         
         super.disenoObjetos();
@@ -155,6 +157,7 @@ public class VistaJuegoModo2 extends VistaJuego{
     }
     
     //Metodo que añade los elementos a su respectivo contenedor.
+    @Override
     protected void anadirObjetos() {
         
         super.anadirObjetos();
