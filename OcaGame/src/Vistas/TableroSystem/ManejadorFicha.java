@@ -207,6 +207,7 @@ public class ManejadorFicha extends Thread implements Hilo{
         try {
             wait();
         } catch (InterruptedException ex) {
+            
         }
     }
 

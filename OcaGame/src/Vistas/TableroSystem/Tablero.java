@@ -44,8 +44,7 @@ public class Tablero extends JPanel{
         initFichas();
         initCasillas();
         
-        
-        
+
     }
 
     
