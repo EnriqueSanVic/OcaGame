@@ -14,41 +14,48 @@ import javax.swing.JPanel;
  */
 public class DadoGrafico extends JPanel implements Runnable, Hilo{
     
-    private final int ALTURA_CUBILETE = 410;
-    private final int ANCHURA_CUBILETE = 210;
-    private final int POSICION_PANEL_X = 20;
-    private final int POSICION_PANEL_Y = 20;
-    private final int ALTURA_DADO = 50;
-    private final int ANCHURA_DADO = 50;
-    private final int POSICION_INICIAL_DADO_X = 75;
-    private final int POSICION_INICIAL_DADO_Y = 360;
-    private int posicion_Dado_X;
-    private int posicion_Dado_Y;
+    //Constantes de configuracion.
+    private final int NUMERO_INICIAL_DADO = 3; //Numero de la cara inicial del dado al iniciarse la vista.
+    
+    private final int POSICION_PANEL_X = 20, POSICION_PANEL_Y = 20; //Posiciones del Panel cubilete.
+    private final int ALTURA_CUBILETE = 410, ANCHURA_CUBILETE = 210; //Medidas del Panel cubilete.
+   
+    private final int POSICION_INICIAL_DADO_X = 75, POSICION_INICIAL_DADO_Y = 360; //Posiciones del Dado.
+    private final int ANCHURA_DADO = 50, ALTURA_DADO = 50; //Medidas del Dado.
+    
+    private final int VELOCIDAD_DE_PINTADO = 20; //Velocidad de pintado de la animacion del dado.
+    
+    private final int VELOCIDAD_INICIAL_DADO = 20; //Velocidad inicial del dado tanto en x como en y.
+   
+    //Atributos de la clase.
+    private VistaJuego vistaJuego;
     
     private ImageIcon imagenDadoInicial;
     private ImageIcon imagenDadoCambiante;
     private JLabel dado;
+       
+    private int velocidad_Dado_X;
+    private int velocidad_Dado_Y;
+    private int direccionDado;
     
-    private boolean dadoON;
     private int numeroFinal;
     
-    private final int VELOCIDAD_DE_PINTADO = 20;
-    private int velocidad_Dado_X=10;
-    private int velocidad_Dado_Y=10;
-    private int direccionDado;
-    private int numeroDadoActual=3;
+    private int posicion_Dado_X;
+    private int posicion_Dado_Y;
     
-    private VistaJuego vistaJuego;
+    private boolean dadoON;
     
+    private int numeroDadoActual;
+
+    //Constructor.
     public DadoGrafico(VistaJuego vistaJuego){
         super();
-        crearCubilete();
-        crearDado();
         this.vistaJuego = vistaJuego;
         this.vistaJuego.setImpulsoTirarDado(false);
-        this.dadoON = true;
-        posicion_Dado_X=POSICION_INICIAL_DADO_X;
-        posicion_Dado_Y=POSICION_INICIAL_DADO_Y;
+        crearCubilete();
+        crearDado();        
+        configurarDado();
+        this.dadoON = true; //Se inicia el hilo del dado.
     }
 
     @Override
@@ -114,6 +121,15 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         this.dado.setIcon(imagenDadoInicial);
         this.dado.setBounds(POSICION_INICIAL_DADO_X, POSICION_INICIAL_DADO_Y, ALTURA_DADO, ANCHURA_DADO);
         this.add(this.dado);
+    }
+    
+    //Metodo que asigna una configuracion inicial a las variables del dado.
+    private void configurarDado() {
+        this.numeroDadoActual = this.NUMERO_INICIAL_DADO;
+        this.velocidad_Dado_X = this.VELOCIDAD_INICIAL_DADO;
+        this.velocidad_Dado_Y = this.VELOCIDAD_INICIAL_DADO;
+        this.posicion_Dado_X=this.POSICION_INICIAL_DADO_X;
+        this.posicion_Dado_Y=this.POSICION_INICIAL_DADO_Y;
     }
 
     //Metodo que notifica al hilo del dado cuando hubo un cambio en su condicionante.
@@ -267,7 +283,6 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     public void setPosicionDado_Y(int posicionY) {
         this.posicion_Dado_Y = posicionY;
     }
-
    
 
 }
