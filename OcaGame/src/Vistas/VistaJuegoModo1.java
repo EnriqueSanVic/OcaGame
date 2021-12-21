@@ -4,7 +4,6 @@ package Vistas;
 import Controladores.ControladorJuego;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
@@ -20,9 +19,9 @@ public class VistaJuegoModo1 extends VistaJuego{
     //Constantes de configuracion.
     private final String PATH_ICONO_FICHAJ1 = "./img/ficha1.png"; //Icono grande ficha 1.
     
-    private final Font FUENTE_1 = new Font("Arial", 1, 15); //Cuenta atras
-    private final Font FUENTE_2 = new Font("Arial", 1, 30); //Turnos y nombre
-    private final Font FUENTE_3 = new Font("Arial", 1, 50); //Numero penalizacion
+    //NO HACEN FALTA YA ESTABAN DEFINIDAS EN LA CLASE PADRE
+    //private final Font FUENTE_1 = new Font("Arial", 1, 15); //Cuenta atras
+    //private final Font FUENTE_2 = new Font("Arial", 1, 30); //Turnos y nombre
     
     private final int FICHAJ1_X=60, FICHAJ1_Y=60; //Posicion de la ficha J1.
     private final int FICHAJ1_WIDTH = 100, FICHAJ1_HEIGHT = 100; //Medidas de la ficha J1.
@@ -69,14 +68,16 @@ public class VistaJuegoModo1 extends VistaJuego{
     //Constructor.
     public VistaJuegoModo1(ControladorJuego control) {
         super(control);
-        crearObjetos();
-        disenoObjetos();
-        anadirObjetos();
+        //solo iniciarTemporizador es un metodo del propio del constructor de esta clase
         iniciarTemporizador();
     }
     
     //Metodo que inicializa elementos de la vista modo 1
-    private void crearObjetos() {
+    @Override
+    protected void crearObjetos() {
+        
+        super.crearObjetos();
+        
         //Icono y nombre J1.
         this.iconoFichaJ1 = new ImageIcon(this.PATH_ICONO_FICHAJ1);
         this.fichaNombreJ1 = new JLabel();
@@ -93,12 +94,14 @@ public class VistaJuegoModo1 extends VistaJuego{
     }
     
     //Metodo que da un diseño a los elementos de la vista modo 1
-    private void disenoObjetos(){
+    protected void disenoObjetos(){
+        
+        super.disenoObjetos();
         //Ficha J1.
         this.fichaNombreJ1.setIcon(this.iconoFichaJ1);
         this.fichaNombreJ1.setBounds(this.FICHAJ1_X, this.FICHAJ1_Y, this.FICHAJ1_WIDTH, this.FICHAJ1_HEIGHT);
         //Nombre J1.
-        this.nombreJugador1.setFont(this.FUENTE_2);
+        this.nombreJugador1.setFont(super.FUENTE_2);
         this.nombreJugador1.setBounds(this.NOMBREJ1_X, this.NOMBREJ1_Y, this.NOMBREJ1_WIDTH, this.NOMBREJ1_HEIGHT);
         //Panel del Penalizacion.       
         this.panelPenalizacion.setBorder(super.getBlackBorder());
@@ -106,13 +109,13 @@ public class VistaJuegoModo1 extends VistaJuego{
         this.panelPenalizacion.setLayout(null);
         this.panelPenalizacion.setBounds(this.PANEL_PENALIZACION_X, this.PANEL_PENALIZACION_Y, this.PANEL_PENALIZACION_WIDTH, this.PANEL_PENALIZACION_HEIGHT);
         //Numero de Penalizacion (en seg).
-        this.numeroPenalizacionLabel.setFont(this.FUENTE_3);
+        this.numeroPenalizacionLabel.setFont(super.FUENTE_3);
         this.numeroPenalizacionLabel.setBounds(this.LABEL_NUMERO_PENALIZACION_X, this.LABEL_NUMERO_PENALIZACION_Y, this.LABEL_NUMERO_PENALIZACION_WIDTH, this.LABEL_NUMERO_PENALIZACION_HEIGHT);
         //Label seg / sec penalizados.
-        this.labelSegundosPenalizacion.setFont(this.FUENTE_2);
+        this.labelSegundosPenalizacion.setFont(super.FUENTE_2);
         this.labelSegundosPenalizacion.setBounds(this.LABEL_SEC_PENALIZACION_X, this.LABEL_SEC_PENALIZACION_Y, this.LABEL_SEC_PENALIZACION_WIDTH, this.LABEL_SEC_PENALIZACION_HEIGHT);
         //Label cuenta atras.
-        this.cuentaAtrasLabel.setFont(this.FUENTE_1);
+        this.cuentaAtrasLabel.setFont(super.FUENTE_1);
         this.cuentaAtrasLabel.setBounds(this.LABEL_CUENTAATRAS_X, this.LABEL_CUENTAATRAS_Y, this.LABEL_CUENTAATRAS_WIDTH, this.LABEL_CUENTAATRAS_HEIGHT);
         //Panel del temporizador .       
         this.panelTemporizador.setBorder(super.getBlackBorder());
@@ -120,15 +123,17 @@ public class VistaJuegoModo1 extends VistaJuego{
         this.panelTemporizador.setLayout(null);
         this.panelTemporizador.setBounds(this.PANEL_TEMPORIZADOR_X, this.PANEL_TEMPORIZADOR_Y, this.PANEL_TEMPORIZADOR_WIDTH, this.PANEL_TEMPORIZADOR_HEIGHT);
         //Numero de segundos en el temporizador.
-        this.segundosTemporizador.setFont(this.FUENTE_3);
+        this.segundosTemporizador.setFont(super.FUENTE_3);
         this.segundosTemporizador.setBounds(this.NUM_SEC_TEMPORIZADOR_X, this.NUM_SEC_TEMPORIZADOR_Y, this.NUM_SEC_TEMPORIZADOR_WIDTH, this.NUM_SEC_TEMPORIZADOR_HEIGHT);
         //Label seg / sec actuales.
-        this.labelSegundosTemporizador.setFont(this.FUENTE_2);
+        this.labelSegundosTemporizador.setFont(super.FUENTE_2);
         this.labelSegundosTemporizador.setBounds(this.LABEL_SEC_TEMPORIZADOR_X, this.LABEL_SEC_TEMPORIZADOR_Y, this.LABEL_SEC_TEMPORIZADOR_WIDTH, this.LABEL_SEC_TEMPORIZADOR_HEIGHT);
     }
     
     //Metodo que añade elementos a su padre en la vista modo 1.
-    private void anadirObjetos(){
+    protected void anadirObjetos(){
+        
+        super.anadirObjetos();
         //Ficha y nombre J1.
         super.getPanelNombresJugadores().add(this.fichaNombreJ1);
         super.getPanelNombresJugadores().add(this.nombreJugador1);
