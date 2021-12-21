@@ -7,14 +7,15 @@ import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -39,8 +40,10 @@ public abstract class VistaJuego extends JFrame{
     protected final Font FUENTE_3 = new Font("Arial", 1, 50); //Numero penalizacion
 
     
+    private final Color COLOR_MENU_BAR = new Color(237,134,253);
+    
     private final int TABLERO_X=320, TABLERO_Y=0; //Posicion del tablero.
-    private final int FRAME_WIDTH = 1450, FRAME_HEIGHT = 865; //Medidas del frame.
+    private final int FRAME_WIDTH = 1450, FRAME_HEIGHT = 860; //Medidas del frame.
     
     private final int PANEL_NOMBRE__X=50, PANEL_NOMBRE_Y=50; //Posicion del panel Nombre.
     private final int PANEL_NOMBRE_WIDTH = 220, PANEL_NOMBRE_HEIGHT = 250; //Medidas del panel Nombre.
@@ -165,15 +168,28 @@ public abstract class VistaJuego extends JFrame{
         this.getContentPane().setBackground(Color.orange);
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setResizable(false);
+        ponerMedioPantalla(this);
+        
+        //Menu bar
+        this.menuBar.setBackground(COLOR_MENU_BAR);
+        this.menuBar.setBorderPainted(false);
+
         //Menus
         this.menuPartida.setFont(this.FUENTE_1);
+        this.menuPartida.setBackground(COLOR_MENU_BAR);
         this.menuAcciones.setFont(this.FUENTE_1);
+        this.menuAcciones.setBackground(COLOR_MENU_BAR);
         //MenuItems
         this.menuNuevaPartida.setFont(this.FUENTE_1);
+        this.menuNuevaPartida.setBackground(COLOR_MENU_BAR);
         this.menuGuardarPartida.setFont(this.FUENTE_1);
+        this.menuGuardarPartida.setBackground(COLOR_MENU_BAR);
         this.menuCargarPartida.setFont(this.FUENTE_1);
+        this.menuCargarPartida.setBackground(COLOR_MENU_BAR);
         this.menuSalir.setFont(this.FUENTE_1);
+        this.menuSalir.setBackground(COLOR_MENU_BAR);
         this.menuLanzarDado.setFont(this.FUENTE_1);
+        this.menuLanzarDado.setBackground(COLOR_MENU_BAR);
         //Panel de nombres.
         this.blackline = BorderFactory.createLineBorder(Color.BLACK);
         this.panelNombresJugadores.setBorder(this.blackline);
@@ -336,20 +352,18 @@ public abstract class VistaJuego extends JFrame{
     }
    
     
-     private static class RoundedBorder implements Border { 
-         
-         private int radius; 
-         
-         RoundedBorder(int radius) { this.radius = radius; } 
-         
-         public Insets getBorderInsets(Component c) { return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius); } 
-         
-         
-         public boolean isBorderOpaque() { return true; } 
-         
-         
-         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) { g.drawRoundRect(x, y, width-1, height-1, radius, radius); }
+    private void ponerMedioPantalla(Frame ventana) {
+        
+        int width, height;
+        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
+        
+        width = (pantalla.width/2) - (ventana.getSize().width/2);
+        
+        height = (pantalla.height/2) - (ventana.getSize().height/2);
+        
+        ventana.setLocation(width, height);
 
+        
     }
     
 }

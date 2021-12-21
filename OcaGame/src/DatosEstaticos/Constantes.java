@@ -16,7 +16,7 @@ public class Constantes {
     public static final String PATH_ICONO_FICHAJ1 = "./img/fichas/ficha1Chica.png";
     public static final String PATH_ICONO_FICHAJ2 = "./img/fichas/ficha2Chica.png";
     
-    public static final String PATH_ICONO_BTN_TIRAR = "./img//rotulos/btnTirar.png"; 
-    public static final String PATH_ICONO_BTN_TIRAR_HOVER = "./img//rotulos/btnTirarHover.png";   
-    public static final String PATH_ICONO_BTN_TIRAR_DISABLE = "./img//rotulos/btnTirarDisable.png";   
+    public static final String PATH_ICONO_BTN_TIRAR = "./img//botones/btnTirar.png"; 
+    public static final String PATH_ICONO_BTN_TIRAR_HOVER = "./img//botones/btnTirarHover.png";   
+    public static final String PATH_ICONO_BTN_TIRAR_DISABLE = "./img//botones/btnTirarDisable.png";   
 }
