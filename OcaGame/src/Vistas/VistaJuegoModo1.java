@@ -76,7 +76,7 @@ public class VistaJuegoModo1 extends VistaJuego{
         super.crearObjetos();
         
         //Icono y nombre J1.
-        this.iconoFichaJ1 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ1);
+        this.iconoFichaJ1 = new ImageIcon(Constantes.PATH_ICONO_FICHA_GRANDEJ1);
         this.fichaNombreJ1 = new JLabel();
         this.nombreJugador1 = new JLabel("Alvaro", JLabel.CENTER); //Viene desde vista inicio la cadena
         //Penalizaciones.
