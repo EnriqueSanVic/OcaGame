@@ -2,6 +2,7 @@
 package Vistas;
 
 import Controladores.ControladorJuego;
+import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -17,11 +18,7 @@ import javax.swing.Timer;
 public class VistaJuegoModo1 extends VistaJuego{
     
     //Constantes de configuracion.
-    private final String PATH_ICONO_FICHAJ1 = "./img/ficha1.png"; //Icono grande ficha 1.
     
-    //NO HACEN FALTA YA ESTABAN DEFINIDAS EN LA CLASE PADRE
-    //private final Font FUENTE_1 = new Font("Arial", 1, 15); //Cuenta atras
-    //private final Font FUENTE_2 = new Font("Arial", 1, 30); //Turnos y nombre
     
     private final int FICHAJ1_X=60, FICHAJ1_Y=60; //Posicion de la ficha J1.
     private final int FICHAJ1_WIDTH = 100, FICHAJ1_HEIGHT = 100; //Medidas de la ficha J1.
@@ -79,7 +76,7 @@ public class VistaJuegoModo1 extends VistaJuego{
         super.crearObjetos();
         
         //Icono y nombre J1.
-        this.iconoFichaJ1 = new ImageIcon(this.PATH_ICONO_FICHAJ1);
+        this.iconoFichaJ1 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ1);
         this.fichaNombreJ1 = new JLabel();
         this.nombreJugador1 = new JLabel("Alvaro", JLabel.CENTER); //Viene desde vista inicio la cadena
         //Penalizaciones.

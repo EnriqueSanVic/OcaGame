@@ -3,11 +3,20 @@ package Vistas;
 
 import Vistas.TableroSystem.Tablero;
 import Controladores.ControladorJuego;
+import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import static java.awt.image.ImageObserver.WIDTH;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -15,6 +24,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 /**
@@ -47,8 +57,13 @@ public abstract class VistaJuego extends JFrame{
     private final int PANEL_DADO_X=1160, PANEL_DADO_Y=50; //Posicion del panel del Dado.
     private final int PANEL_DADO_WIDTH = 250, PANEL_DADO_HEIGHT = 450; //Medidas del panel del Dado.
 
-    private final int BOTON_DADO_X=1180, BOTON_DADO_Y=600; //Posicion del panel del Boton lanzar dado.
-    private final int BOTON_DADO_WIDTH = 200, BOTON_DADO_HEIGHT = 100; //Medidas del Boton lanzar dado.
+    private final int BOTON_DADO_X=1160, BOTON_DADO_Y=550; //Posicion del panel del Boton lanzar dado.
+    private final int BOTON_DADO_WIDTH = 250, BOTON_DADO_HEIGHT = 76; //Medidas del Boton lanzar dado.
+    
+    
+    private final ImageIcon ICONO_BOTON_TIRAR = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR); //icono del boton de tirar dado
+    private final ImageIcon ICONO_BOTON_TIRAR_HOVER = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_HOVER); //icono del boton de tirar dado imagen acion 
+    private final ImageIcon ICONO_BOTON_TIRAR_DISABLE = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_DISABLE); //icono del boton de tirar dado cuando está desactivado
     
     private final int IDIOMA = 0; //Idioma. 0=español 1=ingles;
     
@@ -138,7 +153,9 @@ public abstract class VistaJuego extends JFrame{
         this.controlador.aniadirHilo(this.dadoGrafico);
         new Thread(this.dadoGrafico).start();
         //Boton dado.
-        this.botonLanzarDado = new JButton(TextosJuego.BOTON_LANZAR_DADO[this.IDIOMA]);
+        this.botonLanzarDado = new JButton();
+        
+        
     }
 
     //Metodo que da un diseño a los elementos de la vista general del juego.
@@ -183,8 +200,50 @@ public abstract class VistaJuego extends JFrame{
         this.panelDadoCubilete.setLayout(null);        
         //Boton Lanzar Dado.
         this.botonLanzarDado.setFont(this.FUENTE_2);
-        this.botonLanzarDado.setBackground(Color.GREEN);
         this.botonLanzarDado.setBounds(this.BOTON_DADO_X, this.BOTON_DADO_Y, this.BOTON_DADO_WIDTH, this.BOTON_DADO_HEIGHT);
+        this.botonLanzarDado.setOpaque(false);
+        this.botonLanzarDado.setBorderPainted(false);
+        this.botonLanzarDado.setFocusPainted(false);
+        this.botonLanzarDado.setContentAreaFilled(false);
+        
+        this.botonLanzarDado.setText(TextosJuego.BOTON_LANZAR_DADO[this.IDIOMA]);
+        this.botonLanzarDado.setForeground(Color.BLACK);
+        this.botonLanzarDado.setActionCommand(TextosJuego.BOTON_LANZAR_DADO[0]);
+        this.botonLanzarDado.setIcon(ICONO_BOTON_TIRAR);
+        this.botonLanzarDado.setDisabledIcon(ICONO_BOTON_TIRAR_DISABLE);
+        this.botonLanzarDado.setHorizontalTextPosition(SwingConstants.CENTER);
+        
+        
+        
+        /*
+        
+            Definición de los métodos de escuchador para el boton de lanzar dado, está implementado como unca clase anonima
+            debido a que es para aplicar unas funcionalidades puramente visuales que no tiene nada que ver con el resto de 
+            acciones del juego
+        */
+        this.botonLanzarDado.addMouseListener(new MouseAdapter() {
+            private final int HUNDIMIENTO_BOTON = 5;
+
+            public void mouseEntered(MouseEvent e) {
+                botonLanzarDado.setIcon(ICONO_BOTON_TIRAR_HOVER);
+                botonLanzarDado.setForeground(Color.WHITE);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                botonLanzarDado.setIcon(ICONO_BOTON_TIRAR);
+                botonLanzarDado.setForeground(Color.BLACK);
+            }
+
+            public void mousePressed(MouseEvent e) {
+                botonLanzarDado.setLocation(botonLanzarDado.getLocation().x, botonLanzarDado.getLocation().y + HUNDIMIENTO_BOTON);
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                botonLanzarDado.setLocation(botonLanzarDado.getLocation().x, botonLanzarDado.getLocation().y - HUNDIMIENTO_BOTON);
+            }
+        });
+        
+        
     }
 
     //Metodo que añade elementos a la vista general del juego.
@@ -276,4 +335,21 @@ public abstract class VistaJuego extends JFrame{
         return this.IDIOMA;
     }
    
+    
+     private static class RoundedBorder implements Border { 
+         
+         private int radius; 
+         
+         RoundedBorder(int radius) { this.radius = radius; } 
+         
+         public Insets getBorderInsets(Component c) { return new Insets(this.radius+1, this.radius+1, this.radius+2, this.radius); } 
+         
+         
+         public boolean isBorderOpaque() { return true; } 
+         
+         
+         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) { g.drawRoundRect(x, y, width-1, height-1, radius, radius); }
+
+    }
+    
 }
