@@ -12,7 +12,8 @@ public class Constantes {
     
     public static final int JUGADOR_1 = 0;
     public static final int JUGADOR_2 = 1;
-
+    
+    public static final String PATH_ICONO_FICHA_GRANDEJ1 = "./img/fichas/ficha1.png";
     public static final String PATH_ICONO_FICHAJ1 = "./img/fichas/ficha1Chica.png";
     public static final String PATH_ICONO_FICHAJ2 = "./img/fichas/ficha2Chica.png";
     

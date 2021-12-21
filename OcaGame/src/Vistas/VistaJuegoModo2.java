@@ -80,6 +80,7 @@ public class VistaJuegoModo2 extends VistaJuego{
     }
 
     //Metodo que instancia los atributos necesarios de la clase.
+    @Override
     protected void crearObjetos() {
         
         super.crearObjetos();
@@ -108,6 +109,7 @@ public class VistaJuegoModo2 extends VistaJuego{
     }
 
     //Metodo que da formato a los atributos necesarios de la clase.
+    @Override
     protected void disenoObjetos() {
         
         super.disenoObjetos();
@@ -155,6 +157,7 @@ public class VistaJuegoModo2 extends VistaJuego{
     }
     
     //Metodo que añade los elementos a su respectivo contenedor.
+    @Override
     protected void anadirObjetos() {
         
         super.anadirObjetos();
