@@ -94,6 +94,7 @@ public class VistaJuegoModo1 extends VistaJuego{
     }
     
     //Metodo que da un diseño a los elementos de la vista modo 1
+    @Override
     protected void disenoObjetos(){
         
         super.disenoObjetos();
@@ -131,6 +132,7 @@ public class VistaJuegoModo1 extends VistaJuego{
     }
     
     //Metodo que añade elementos a su padre en la vista modo 1.
+    @Override
     protected void anadirObjetos(){
         
         super.anadirObjetos();
