@@ -44,8 +44,7 @@ public class Tablero extends JPanel{
         initFichas();
         initCasillas();
         
-        
-        
+
     }
 
     
@@ -153,7 +152,51 @@ public class Tablero extends JPanel{
         
         casillas[39] = new CasillaGrafica(274, 579,62, 105, false);
         
+        casillas[40] = new CasillaGrafica(340, 579,62, 105, false);
         
+        casillas[41] = new CasillaGrafica(407, 579,62, 105, false);
+        
+        casillas[42] = new CasillaGrafica(473, 579,62, 105, false);
+        
+        casillas[43] = new CasillaGrafica(540, 589,43, 93, false);
+        
+        casillas[44] = new CasillaGrafica(579, 538,103, 39, true);
+        
+        casillas[45] = new CasillaGrafica(579, 470,103, 63, true);
+        
+        casillas[46] = new CasillaGrafica(579, 402,103, 63, true);
+        
+        casillas[47] = new CasillaGrafica(579, 335,103, 63, true);
+        
+        casillas[48] = new CasillaGrafica(579, 267,103, 63, true);
+        
+        casillas[49] = new CasillaGrafica(579, 226,103, 36, true);
+        
+        casillas[50] = new CasillaGrafica(539, 119,48, 93, false);
+        
+        casillas[51] = new CasillaGrafica(470, 118,63, 105, false);
+        
+        casillas[52] = new CasillaGrafica(402, 118,63, 105, false);
+        
+        casillas[53] = new CasillaGrafica(334, 118,63, 105, false);
+        
+        casillas[54] = new CasillaGrafica(266, 118,63, 105, false);
+        
+        casillas[55] = new CasillaGrafica(213, 119,48, 93, false);
+        
+        casillas[56] = new CasillaGrafica(118, 210,93, 64, true);
+        
+        casillas[57] = new CasillaGrafica(118, 279,103, 65, true);
+        
+        casillas[58] = new CasillaGrafica(118, 348,103, 68, true);
+        
+        casillas[59] = new CasillaGrafica(118, 420,103, 45, true);
+        
+        casillas[60] = new CasillaGrafica(213, 478,48, 93, false);
+        
+        casillas[61] = new CasillaGrafica(267, 467,62, 105, false);
+        
+        casillas[62] = new CasillaGrafica(350, 467,62, 105, false);
         
         for (int i = 0; i < casillas.length; i++) {
             
@@ -173,7 +216,7 @@ public class Tablero extends JPanel{
         ManejadorFicha.iniciarEnCasilla(0, ficha1, casillas);
         ManejadorFicha.iniciarEnCasilla(0, ficha2, casillas);
         
-        ManejadorFicha manejador = new ManejadorFicha(39, ficha1, casillas);
+        ManejadorFicha manejador = new ManejadorFicha(62, ficha1, casillas);
         manejador.start();
         
         try {
@@ -182,7 +225,7 @@ public class Tablero extends JPanel{
             Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        manejador = new ManejadorFicha(39, ficha2, casillas);
+        manejador = new ManejadorFicha(62, ficha2, casillas);
         manejador.start();
         
         

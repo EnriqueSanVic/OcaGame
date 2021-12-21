@@ -45,7 +45,7 @@ public class CasillaGrafica extends JPanel{
         
         this.setLocation(x,y);
         
-        this.setOpaque(true);
+        this.setOpaque(false);
         
         this.setBackground(Color.black);
 
