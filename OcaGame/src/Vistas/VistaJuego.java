@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -91,7 +92,7 @@ public abstract class VistaJuego extends JFrame{
     private JPanel panelPenalizaciones;
     private JLabel penalizacionesTitulo;
     
-    private Tablero panelTableroOca;
+    private Tablero tablero;
     
     private JPanel panelDadoCubilete;
     private DadoGrafico dadoGrafico;
@@ -120,7 +121,7 @@ public abstract class VistaJuego extends JFrame{
     }
     
     public void initEscena(){
-        panelTableroOca.initEscena();
+        tablero.initEscena();
     }
 
     //Metodo que inicializa elementos de la vista general del juego.
@@ -149,7 +150,7 @@ public abstract class VistaJuego extends JFrame{
         this.panelPenalizaciones = new JPanel();
         this.penalizacionesTitulo = new JLabel(TextosJuego.LABEL_PENALIZACIONES[this.IDIOMA], JLabel.CENTER);
         //Tablero Oca.
-        this.panelTableroOca = new Tablero();
+        this.tablero = new Tablero();
         //Panel dado.
         this.panelDadoCubilete = new JPanel();
         this.dadoGrafico = new DadoGrafico(this);
@@ -208,7 +209,7 @@ public abstract class VistaJuego extends JFrame{
         this.penalizacionesTitulo.setFont(this.FUENTE_1);
         this.penalizacionesTitulo.setBounds(this.TITULO_PENALIZACIONES_X, this.TITULO_PENALIZACIONES_Y, this.TITULO_PENALIZACIONES_WIDTH, this.TITULO_PENALIZACIONES_HEIGHT);
         //Tablero Oca. (el propio tablero se ajusta solo).
-        this.panelTableroOca.setLocation(this.TABLERO_X, this.TABLERO_Y);
+        this.tablero.setLocation(this.TABLERO_X, this.TABLERO_Y);
         //Panel dado y cubilete.
         this.panelDadoCubilete.setBorder(blackline);
         this.panelDadoCubilete.setBackground(Color.MAGENTA);
@@ -283,7 +284,7 @@ public abstract class VistaJuego extends JFrame{
         //Paneles al frame
         this.add(this.panelNombresJugadores);
         this.add(this.panelPenalizaciones);
-        this.add(this.panelTableroOca);
+        this.add(this.tablero);
         this.add(this.panelDadoCubilete);
         //Boton lanzar dado al frame
         this.add(this.botonLanzarDado);
@@ -364,6 +365,14 @@ public abstract class VistaJuego extends JFrame{
         ventana.setLocation(width, height);
 
         
+    }
+    
+    public void crearPuntero(int nCasilla, MouseListener escuchador){
+        tablero.crearPuntero(nCasilla, escuchador);
+    }
+    
+    public void eliminarPuntero(){
+        tablero.eliminarPuntero();
     }
     
 }

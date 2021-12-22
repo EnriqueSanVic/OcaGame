@@ -3,6 +3,7 @@ package Vistas.TableroSystem;
 
 import DatosEstaticos.Constantes;
 import java.awt.Graphics;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,11 +19,17 @@ public class Tablero extends JPanel{
     
     private final String IMAGE_PATH = "./img/tablero/tablero.png";
     
+    
+    
+    
+    
     private BufferedImage imagenTablero;
     protected final int HEIGHT = 800;
     protected final int WIDTH = 800;
 
     protected Ficha ficha1, ficha2;
+    
+    protected PunteroGrafico puntero;
     
     private CasillaGrafica[] casillas;
     
@@ -206,8 +213,42 @@ public class Tablero extends JPanel{
         }
 
     }
+    
+    public void crearPuntero(int nCasilla, MouseListener escuchadorPuntero){
+        
+        //si existe un puntero por que no se ha controlado la destrucción, se destruye antes de crear otro
+        if(puntero != null){
+            puntero.parar();
+            puntero = null;
+        }
+        
+        puntero = new PunteroGrafico(casillas[nCasilla].getCentroAbsoluto(), escuchadorPuntero);
+        
+        this.add(puntero);
+        
+        puntero.iniciar();
+        
+        this.repaint();
+        
+    }
+    
+    public void eliminarPuntero(){
+        
+        puntero.parar();
+        
+        this.remove(puntero);
+        
+        puntero = null;
+        
+        this.repaint();
+        
+    }
+    
+    
 
     public void initEscena() {
+        
+        
         
         //se inicializa la ficha en la casilla
         ManejadorFicha.iniciarEnCasilla(0, ficha1, casillas);
