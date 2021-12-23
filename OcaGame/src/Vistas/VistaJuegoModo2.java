@@ -15,9 +15,6 @@ import javax.swing.JPanel;
 public class VistaJuegoModo2 extends VistaJuego{
     
     //Constantes de configuracion.
-    
-    
-  
   
     private final int FICHAJ1_X=10, FICHAJ1_Y=50; //Posicion de la ficha J1.
     private final int FICHAJ1_WIDTH = 50, FICHAJ1_HEIGHT = 50; //Medidas de la ficha J1.

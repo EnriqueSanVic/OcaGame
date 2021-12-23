@@ -34,13 +34,24 @@ import javax.swing.border.Border;
  */
 public abstract class VistaJuego extends JFrame{
     
-    //Constantes de configuracion.
-    protected final Font FUENTE_1 = new Font("Arial", 1, 15); //Textos.
-    protected final Font FUENTE_2 = new Font("Arial", 1, 22); //Boton dado.
-    protected final Font FUENTE_3 = new Font("Arial", 1, 50); //Numero penalizacion
-
+    //Constantes de configuracion. 
+    //Broadway/Arial
+    protected final Font FUENTE_1 = new Font("Broadway", 1, 15); //Textos.
+    protected final Font FUENTE_2 = new Font("Broadway", 1, 22); //Boton dado.
+    protected final Font FUENTE_3 = new Font("Broadway", 1, 50); //Numero penalizacion
     
-    private final Color COLOR_MENU_BAR = new Color(237,134,253);
+    private final Color COLOR_MENU_BAR = new Color(237,134,253); //Color para el MenuBar.
+    
+    private final ImageIcon ICONO_PANEL_NOMBRES = new ImageIcon(Constantes.PATH_ICONO_PANEL_NOMBRES); //icono del fondo Panel de nombres
+    private final ImageIcon ICONO_PANEL_PENALIZACIONES = new ImageIcon(Constantes.PATH_ICONO_PANEL_PENALIZACIONES); //icono del fondo Panel de penalizaciones.
+    
+    private final ImageIcon ICONO_BOTON_TIRAR = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR); //icono del boton de tirar dado
+    private final ImageIcon ICONO_BOTON_TIRAR_HOVER = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_HOVER); //icono del boton de tirar dado imagen acion 
+    private final ImageIcon ICONO_BOTON_TIRAR_DISABLE = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_DISABLE); //icono del boton de tirar dado cuando está desactivado
+    
+    private final ImageIcon ICONO_PANEL_DADO = new ImageIcon(Constantes.PATH_ICONO_PANEL_DADO); //panel del dado(bordes)
+    private final ImageIcon ICONO_BOTON_FOURNIER_HOVER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER_HOVER);
+    private final ImageIcon ICONO_BOTON_FOURNIER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER); //icono del boton de Fournier.
     
     private final int TABLERO_X=320, TABLERO_Y=0; //Posicion del tablero.
     private final int FRAME_WIDTH = 1450, FRAME_HEIGHT = 860; //Medidas del frame.
@@ -60,15 +71,16 @@ public abstract class VistaJuego extends JFrame{
     private final int PANEL_DADO_X=1160, PANEL_DADO_Y=50; //Posicion del panel del Dado.
     private final int PANEL_DADO_WIDTH = 250, PANEL_DADO_HEIGHT = 450; //Medidas del panel del Dado.
 
-    private final int BOTON_DADO_X=1160, BOTON_DADO_Y=550; //Posicion del panel del Boton lanzar dado.
+    private final int BOTON_DADO_X=1160, BOTON_DADO_Y=530; //Posicion del panel del Boton lanzar dado.
     private final int BOTON_DADO_WIDTH = 250, BOTON_DADO_HEIGHT = 76; //Medidas del Boton lanzar dado.
     
+    private final int LABEL_INSTRUCCIONES_X=1175, LABEL_INSTRUCCIONES_Y=645; //Posicion del label Instrucciones.
+    private final int LABEL_INSTRUCCIONES_WIDTH = 220, LABEL_INSTRUCCIONES_HEIGHT = 50; //Medidas del label Instrucciones.
     
-    private final ImageIcon ICONO_BOTON_TIRAR = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR); //icono del boton de tirar dado
-    private final ImageIcon ICONO_BOTON_TIRAR_HOVER = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_HOVER); //icono del boton de tirar dado imagen acion 
-    private final ImageIcon ICONO_BOTON_TIRAR_DISABLE = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_DISABLE); //icono del boton de tirar dado cuando está desactivado
+    private final int BOTON_FOURNIER_X=1175, BOTON_FOURNIER_Y=690; //Posicion del panel del Boton Fournier que despliega las instrucciones de cada casilla.
+    private final int BOTON_FOURNIER_WIDTH = 220, BOTON_FOURNIER_HEIGHT =65; //Medidas del Boton Fournier que despliega las instrucciones de cada casilla.
     
-    private final int IDIOMA = 0; //Idioma. 0=español 1=ingles;
+    private final int IDIOMA = 1; //Idioma. 0=español 1=ingles;
     
     //Atributos de la clase.
     private ControladorJuego controlador;
@@ -86,22 +98,30 @@ public abstract class VistaJuego extends JFrame{
     private JMenuItem menuLanzarDado;
     
     private JPanel panelNombresJugadores;
+    private JLabel fondoPanelNombres;
     private JLabel jugadoresTitulo;
     
     private JPanel panelPenalizaciones;
+    private JLabel fondoPanelPenalizaciones;
     private JLabel penalizacionesTitulo;
     
     private Tablero panelTableroOca;
     
+    private JLabel fondoPanelDado;
+    
     private JPanel panelDadoCubilete;
     private DadoGrafico dadoGrafico;
     private JButton botonLanzarDado; 
+    
+    private JLabel labelInstrucciones;
+    private JButton botonFournier;
     
     private Border blackline; //Linea negra para el borde de ciertos elementos.
     
     private boolean impulsoTirarDado; //Impulso de tirada de dado. 0= no hay; 1= si hay;
     
     private int numeroFinalDado; //Numero que saldrá en la tirada del dado.
+    
     
     //Constructor.
     public VistaJuego(ControladorJuego control){
@@ -144,9 +164,11 @@ public abstract class VistaJuego extends JFrame{
         this.menuBar = new JMenuBar();
         //Panel nombres.
         this.panelNombresJugadores = new JPanel();
+        this.fondoPanelNombres = new JLabel();
         this.jugadoresTitulo = new JLabel(TextosJuego.TITULO_JUGADORES[this.IDIOMA], JLabel.CENTER);
         //Panel penalizacion.
         this.panelPenalizaciones = new JPanel();
+        this.fondoPanelPenalizaciones = new JLabel();
         this.penalizacionesTitulo = new JLabel(TextosJuego.LABEL_PENALIZACIONES[this.IDIOMA], JLabel.CENTER);
         //Tablero Oca.
         this.panelTableroOca = new Tablero();
@@ -155,9 +177,14 @@ public abstract class VistaJuego extends JFrame{
         this.dadoGrafico = new DadoGrafico(this);
         this.controlador.aniadirHilo(this.dadoGrafico);
         new Thread(this.dadoGrafico).start();
+        //Label fondo panel dado.
+        this.fondoPanelDado = new JLabel();
         //Boton dado.
         this.botonLanzarDado = new JButton();
-        
+        //Label Instrucciones.
+        this.labelInstrucciones = new JLabel(TextosJuego.LABEL_INSTRUCCCIONES[this.IDIOMA], JLabel.CENTER);
+        //Boton Fournier.
+        this.botonFournier = new JButton();
         
     }
 
@@ -169,11 +196,9 @@ public abstract class VistaJuego extends JFrame{
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setResizable(false);
         ponerMedioPantalla(this);
-        
         //Menu bar
         this.menuBar.setBackground(COLOR_MENU_BAR);
         this.menuBar.setBorderPainted(false);
-
         //Menus
         this.menuPartida.setFont(this.FUENTE_1);
         this.menuPartida.setBackground(COLOR_MENU_BAR);
@@ -196,44 +221,51 @@ public abstract class VistaJuego extends JFrame{
         this.panelNombresJugadores.setBackground(Color.CYAN);
         this.panelNombresJugadores.setBounds(this.PANEL_NOMBRE__X, this.PANEL_NOMBRE_Y, this.PANEL_NOMBRE_WIDTH, this.PANEL_NOMBRE_HEIGHT);
         this.panelNombresJugadores.setLayout(null);
+        //JLabel Fondo Panel Nombres.
+        this.fondoPanelNombres.setIcon(this.ICONO_PANEL_NOMBRES);
+        this.fondoPanelNombres.setBounds(0, 0, this.PANEL_NOMBRE_WIDTH, this.PANEL_NOMBRE_HEIGHT);
         //Titulo Jugadores.
         this.jugadoresTitulo.setFont(this.FUENTE_1);
+        this.jugadoresTitulo.setForeground(Color.BLACK);
         this.jugadoresTitulo.setBounds(this.TITULO_JUGADORES_X, this.TITULO_JUGADORES_Y, this.TITULO_JUGADORES_WIDTH, this.TITULO_JUGADORES_HEIGHT);
         //Panel de Penalizaciones/Cuenta atrás.
         this.panelPenalizaciones.setBorder(blackline);
         this.panelPenalizaciones.setBackground(Color.PINK);
         this.panelPenalizaciones.setBounds(this.PANEL_PENALIZACIONES_X, this.PANEL_PENALIZACIONES_Y, this.PANEL_PENALIZACIONES_WIDTH, this.PANEL_PENALIZACIONES_HEIGHT);
         this.panelPenalizaciones.setLayout(null);
+        //JLabel Fondo Panel Nombres.
+        this.fondoPanelPenalizaciones.setIcon(this.ICONO_PANEL_PENALIZACIONES);
+        this.fondoPanelPenalizaciones.setBounds(0, 0, this.PANEL_PENALIZACIONES_WIDTH, this.PANEL_PENALIZACIONES_HEIGHT);
         //Titulo Penalizaciones.
         this.penalizacionesTitulo.setFont(this.FUENTE_1);
+        this.penalizacionesTitulo.setForeground(Color.BLACK);
         this.penalizacionesTitulo.setBounds(this.TITULO_PENALIZACIONES_X, this.TITULO_PENALIZACIONES_Y, this.TITULO_PENALIZACIONES_WIDTH, this.TITULO_PENALIZACIONES_HEIGHT);
         //Tablero Oca. (el propio tablero se ajusta solo).
         this.panelTableroOca.setLocation(this.TABLERO_X, this.TABLERO_Y);
         //Panel dado y cubilete.
-        this.panelDadoCubilete.setBorder(blackline);
-        this.panelDadoCubilete.setBackground(Color.MAGENTA);
+        //this.panelDadoCubilete.setBackground(Color.MAGENTA);
+        this.panelDadoCubilete.setOpaque(false);
         this.panelDadoCubilete.setBounds(this.PANEL_DADO_X, this.PANEL_DADO_Y, this.PANEL_DADO_WIDTH, this.PANEL_DADO_HEIGHT);
-        this.panelDadoCubilete.setLayout(null);        
+        this.panelDadoCubilete.setLayout(null);
+        //JLabel fondo panel boton.
+        this.fondoPanelDado.setIcon(this.ICONO_PANEL_DADO);
+        this.fondoPanelDado.setBounds(0, 0, this.PANEL_DADO_WIDTH, this.PANEL_DADO_HEIGHT);
         //Boton Lanzar Dado.
         this.botonLanzarDado.setFont(this.FUENTE_2);
-        this.botonLanzarDado.setBounds(this.BOTON_DADO_X, this.BOTON_DADO_Y, this.BOTON_DADO_WIDTH, this.BOTON_DADO_HEIGHT);
-        this.botonLanzarDado.setOpaque(false);
-        this.botonLanzarDado.setBorderPainted(false);
-        this.botonLanzarDado.setFocusPainted(false);
-        this.botonLanzarDado.setContentAreaFilled(false);
-        
-        this.botonLanzarDado.setText(TextosJuego.BOTON_LANZAR_DADO[this.IDIOMA]);
         this.botonLanzarDado.setForeground(Color.BLACK);
+        this.botonLanzarDado.setText(TextosJuego.BOTON_LANZAR_DADO[this.IDIOMA]);
+        this.botonLanzarDado.setHorizontalTextPosition(SwingConstants.CENTER);
         this.botonLanzarDado.setActionCommand(TextosJuego.BOTON_LANZAR_DADO[0]);
         this.botonLanzarDado.setIcon(ICONO_BOTON_TIRAR);
         this.botonLanzarDado.setDisabledIcon(ICONO_BOTON_TIRAR_DISABLE);
-        this.botonLanzarDado.setHorizontalTextPosition(SwingConstants.CENTER);
-        
-        
-        
+        this.botonLanzarDado.setOpaque(false);
+        this.botonLanzarDado.setBorderPainted(false);
+        this.botonLanzarDado.setFocusPainted(false);
+        this.botonLanzarDado.setContentAreaFilled(false); 
+        this.botonLanzarDado.setBounds(this.BOTON_DADO_X, this.BOTON_DADO_Y, this.BOTON_DADO_WIDTH, this.BOTON_DADO_HEIGHT);
+ 
         /*
-        
-            Definición de los métodos de escuchador para el boton de lanzar dado, está implementado como unca clase anonima
+            Definición de los métodos de escuchador para el boton de Lanzar Dado, está implementado como unca clase anonima
             debido a que es para aplicar unas funcionalidades puramente visuales que no tiene nada que ver con el resto de 
             acciones del juego
         */
@@ -251,15 +283,50 @@ public abstract class VistaJuego extends JFrame{
             }
 
             public void mousePressed(MouseEvent e) {
+                botonLanzarDado.setForeground(Color.GREEN);
                 botonLanzarDado.setLocation(botonLanzarDado.getLocation().x, botonLanzarDado.getLocation().y + HUNDIMIENTO_BOTON);
             }
 
             public void mouseReleased(MouseEvent e) {
+                botonLanzarDado.setForeground(Color.BLACK);
                 botonLanzarDado.setLocation(botonLanzarDado.getLocation().x, botonLanzarDado.getLocation().y - HUNDIMIENTO_BOTON);
             }
         });
         
+        //Label Instrucciones.
+        this.labelInstrucciones.setFont(this.FUENTE_1);
+        this.labelInstrucciones.setForeground(Color.BLACK);
+        this.labelInstrucciones.setBounds(this.LABEL_INSTRUCCIONES_X, this.LABEL_INSTRUCCIONES_Y, this.LABEL_INSTRUCCIONES_WIDTH, this.LABEL_INSTRUCCIONES_HEIGHT);
+        //Boton Fournier.
+        this.botonFournier.setBounds(this.BOTON_FOURNIER_X, this.BOTON_FOURNIER_Y, this.BOTON_FOURNIER_WIDTH, this.BOTON_FOURNIER_HEIGHT);
+        this.botonFournier.setBorder(this.blackline);
+        this.botonFournier.setActionCommand(TextosJuego.LABEL_INSTRUCCCIONES[0]);
+        this.botonFournier.setIcon(ICONO_BOTON_FOURNIER);
         
+        /*
+            Definición de los métodos de escuchador para el boton de Fournier, está implementado como unca clase anonima
+            debido a que es para aplicar unas funcionalidades puramente visuales que no tiene nada que ver con el resto de 
+            acciones del juego
+        */
+        this.botonFournier.addMouseListener(new MouseAdapter() {
+            private final int HUNDIMIENTO_BOTON = 5;
+
+            public void mouseEntered(MouseEvent e) {
+                botonFournier.setIcon(ICONO_BOTON_FOURNIER_HOVER);
+            }
+
+            public void mouseExited(MouseEvent e) {
+                botonFournier.setIcon(ICONO_BOTON_FOURNIER);
+            }
+
+            public void mousePressed(MouseEvent e) {
+                botonFournier.setLocation(botonFournier.getLocation().x, botonFournier.getLocation().y + HUNDIMIENTO_BOTON);
+            }
+
+            public void mouseReleased(MouseEvent e) {
+                botonFournier.setLocation(botonFournier.getLocation().x, botonFournier.getLocation().y - HUNDIMIENTO_BOTON);
+            }
+        });
     }
 
     //Metodo que añade elementos a la vista general del juego.
@@ -276,10 +343,13 @@ public abstract class VistaJuego extends JFrame{
         this.setJMenuBar(this.menuBar);
         //Panel Nombres
         this.panelNombresJugadores.add(this.jugadoresTitulo);
+        this.panelNombresJugadores.add(this.fondoPanelNombres);
         //Panel penalizaciones
         this.panelPenalizaciones.add(this.penalizacionesTitulo);
-        //Panel DadoGrafico
+        this.panelPenalizaciones.add(this.fondoPanelPenalizaciones);
+        //Panel DadoGrafico y fondo
         this.panelDadoCubilete.add(this.dadoGrafico);
+        this.panelDadoCubilete.add(this.fondoPanelDado);
         //Paneles al frame
         this.add(this.panelNombresJugadores);
         this.add(this.panelPenalizaciones);
@@ -287,12 +357,17 @@ public abstract class VistaJuego extends JFrame{
         this.add(this.panelDadoCubilete);
         //Boton lanzar dado al frame
         this.add(this.botonLanzarDado);
+        //Label Instrucciones.
+        this.add(this.labelInstrucciones);
+        //Boton fournier al frame.
+        this.add(this.botonFournier);
     }
 
     //Metodo que añade el escuchador necesario a ciertos elemento.
     protected void anadirEscuchadores() {
         this.addWindowListener(this.controlador);
         this.botonLanzarDado.addActionListener(this.controlador);
+        this.botonFournier.addActionListener(this.controlador);
     }
 
     //Metodo que devuelve el resultado booleano de impulso tirar dado, 
@@ -351,7 +426,7 @@ public abstract class VistaJuego extends JFrame{
         return this.IDIOMA;
     }
    
-    
+    //Metodo que lanza el frame en el medio de la pantalla del usuario al iniciarse la VistaJuego
     private void ponerMedioPantalla(Frame ventana) {
         
         int width, height;
