@@ -41,8 +41,6 @@ public abstract class VistaJuego extends JFrame{
     
     private final Color COLOR_MENU_BAR = new Color(237,134,253); //Color para el MenuBar.
     
-    private final ImageIcon ICONO_PANEL_PENALIZACIONES = new ImageIcon(Constantes.PATH_ICONO_PANEL_PENALIZACIONES); //icono del fondo Panel de penalizaciones.
-    
     private final ImageIcon ICONO_BOTON_TIRAR = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR); //icono del boton de tirar dado
     private final ImageIcon ICONO_BOTON_TIRAR_HOVER = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_HOVER); //icono del boton de tirar dado imagen acion 
     private final ImageIcon ICONO_BOTON_TIRAR_DISABLE = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_DISABLE); //icono del boton de tirar dado cuando está desactivado
@@ -50,8 +48,7 @@ public abstract class VistaJuego extends JFrame{
     private final ImageIcon ICONO_PANEL_DADO = new ImageIcon(Constantes.PATH_ICONO_PANEL_DADO); //panel del dado(bordes)
     private final ImageIcon ICONO_BOTON_FOURNIER_HOVER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER_HOVER);
     private final ImageIcon ICONO_BOTON_FOURNIER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER); //icono del boton de Fournier.
-    
-    private final int TABLERO_X=320, TABLERO_Y=0; //Posicion del tablero.
+
     private final int FRAME_WIDTH = 1450, FRAME_HEIGHT = 860; //Medidas del frame.
     
     private final int PANEL_NOMBRE__X=50, PANEL_NOMBRE_Y=50; //Posicion del panel Nombre.
@@ -65,6 +62,8 @@ public abstract class VistaJuego extends JFrame{
     
     private final int TITULO_PENALIZACIONES_X=0, TITULO_PENALIZACIONES_Y=5; //Posicion del label Penalizaciones.
     private final int TITULO_PENALIZACIONES_WIDTH = 220, TITULO_PENALIZACIONES_HEIGHT = 50; //Medidas del label Penalizaciones.
+    
+    private final int TABLERO_X=320, TABLERO_Y=0; //Posicion del tablero.
 
     private final int PANEL_DADO_X=1160, PANEL_DADO_Y=50; //Posicion del panel del Dado.
     private final int PANEL_DADO_WIDTH = 250, PANEL_DADO_HEIGHT = 450; //Medidas del panel del Dado.
@@ -119,9 +118,7 @@ public abstract class VistaJuego extends JFrame{
     
     private int numeroFinalDado; //Numero que saldrá en la tirada del dado.
     
-    
-    
-    
+
     //Constructor.
     public VistaJuego(ControladorJuego control){
         this.controlador = control;

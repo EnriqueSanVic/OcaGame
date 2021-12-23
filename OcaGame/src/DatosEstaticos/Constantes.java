@@ -19,6 +19,8 @@ public class Constantes {
     public static final String PATH_ICONO_FICHAJ1 = "./img/fichas/ficha1Chica.png";
     public static final String PATH_ICONO_FICHAJ2 = "./img/fichas/ficha2Chica.png";
     
+    public static final String PATH_ICONO_INSTRUCCIONES = "./img/rotulos/fondo_instrucciones.png";
+    
     public static final String PATH_ICONO_PANEL_NOMBRES = "./img/rotulos/fondo_Panel_Nombres.png";
     public static final String PATH_ICONO_PANEL_PENALIZACIONES = "./img/rotulos/fondo_Panel_Penalizaciones.png";
     
