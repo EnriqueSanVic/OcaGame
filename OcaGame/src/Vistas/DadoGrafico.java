@@ -196,10 +196,7 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     }
 
     //Metodo que hace rebotar al dado, cambiando su direcion y velocidad aleatoriamente cuando llega a un limite.
-    private void rebotar() {
-        
-        
-        
+    private void rebotar() { 
         int anterior=direccionDado;
         int opuesta = getDireccionOpuesta();
         //Choca arriba.
@@ -240,7 +237,7 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         do{
            numeroDadoCambiado = (int)(Math.random()*6)+1;  
         }while(numeroDadoCambiado==this.numeroDadoActual); //Para que no se repita la cara que estaba.
-
+        this.numeroDadoActual = numeroDadoCambiado;
         this.imagenDadoCambiante = new ImageIcon("./img/dados/DADO_"+numeroDadoCambiado+".png");
         this.dado.setIcon(imagenDadoCambiante);
         this.dado.repaint();
