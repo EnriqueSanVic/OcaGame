@@ -222,7 +222,7 @@ public abstract class VistaJuego extends JFrame{
         this.jugadoresTitulo.setForeground(Color.BLACK);
         this.jugadoresTitulo.setBounds(this.TITULO_JUGADORES_X, this.TITULO_JUGADORES_Y, this.TITULO_JUGADORES_WIDTH, this.TITULO_JUGADORES_HEIGHT);
         //Panel de Penalizaciones/Cuenta atrás.
-        this.panelPenalizaciones.setBorder(blackline);
+        this.panelPenalizaciones.setBorder(this.blackline);
         this.panelPenalizaciones.setBounds(this.PANEL_PENALIZACIONES_X, this.PANEL_PENALIZACIONES_Y, this.PANEL_PENALIZACIONES_WIDTH, this.PANEL_PENALIZACIONES_HEIGHT);
         this.panelPenalizaciones.setLayout(null);
         //Titulo Penalizaciones.
@@ -230,6 +230,7 @@ public abstract class VistaJuego extends JFrame{
         this.penalizacionesTitulo.setForeground(Color.BLACK);
         this.penalizacionesTitulo.setBounds(this.TITULO_PENALIZACIONES_X, this.TITULO_PENALIZACIONES_Y, this.TITULO_PENALIZACIONES_WIDTH, this.TITULO_PENALIZACIONES_HEIGHT);
         //Tablero Oca. (el propio tablero se ajusta solo).
+        this.tablero.setBorder(this.blackline);
         this.tablero.setLocation(this.TABLERO_X, this.TABLERO_Y);
         //Panel dado y cubilete.
         //this.panelDadoCubilete.setBackground(Color.MAGENTA);

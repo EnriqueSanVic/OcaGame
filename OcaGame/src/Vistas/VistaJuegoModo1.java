@@ -114,6 +114,7 @@ public class VistaJuegoModo1 extends VistaJuego{
         this.labelSegundosPenalizacion.setBounds(this.LABEL_SEC_PENALIZACION_X, this.LABEL_SEC_PENALIZACION_Y, this.LABEL_SEC_PENALIZACION_WIDTH, this.LABEL_SEC_PENALIZACION_HEIGHT);
         //Label cuenta atras.
         this.cuentaAtrasLabel.setFont(super.FUENTE_1);
+        this.cuentaAtrasLabel.setForeground(Color.BLACK);
         this.cuentaAtrasLabel.setBounds(this.LABEL_CUENTAATRAS_X, this.LABEL_CUENTAATRAS_Y, this.LABEL_CUENTAATRAS_WIDTH, this.LABEL_CUENTAATRAS_HEIGHT);
         //Panel del temporizador .       
         this.panelTemporizador.setBorder(super.getBlackBorder());
