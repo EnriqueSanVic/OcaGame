@@ -19,10 +19,7 @@ public class Tablero extends JPanel{
     
     private final String IMAGE_PATH = "./img/tablero/tablero.png";
     
-    
-    
-    
-    
+
     private BufferedImage imagenTablero;
     protected final int HEIGHT = 800;
     protected final int WIDTH = 800;
@@ -53,8 +50,6 @@ public class Tablero extends JPanel{
         
 
     }
-
-    
 
     //se pinta el componente con la imagen del tablero
     @Override

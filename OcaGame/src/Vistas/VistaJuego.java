@@ -6,17 +6,15 @@ import Controladores.ControladorJuego;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Frame;
-import java.awt.Graphics;
-import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -43,7 +41,6 @@ public abstract class VistaJuego extends JFrame{
     
     private final Color COLOR_MENU_BAR = new Color(237,134,253); //Color para el MenuBar.
     
-    private final ImageIcon ICONO_PANEL_NOMBRES = new ImageIcon(Constantes.PATH_ICONO_PANEL_NOMBRES); //icono del fondo Panel de nombres
     private final ImageIcon ICONO_PANEL_PENALIZACIONES = new ImageIcon(Constantes.PATH_ICONO_PANEL_PENALIZACIONES); //icono del fondo Panel de penalizaciones.
     
     private final ImageIcon ICONO_BOTON_TIRAR = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR); //icono del boton de tirar dado
@@ -98,12 +95,11 @@ public abstract class VistaJuego extends JFrame{
     
     private JMenuItem menuLanzarDado;
     
-    private JPanel panelNombresJugadores;
-    private JLabel fondoPanelNombres;
+    private PanelNombres panelNombresJugadores;
     private JLabel jugadoresTitulo;
     
-    private JPanel panelPenalizaciones;
-    private JLabel fondoPanelPenalizaciones;
+    private PanelPenalizaciones panelPenalizaciones;
+    private BufferedImage imagenFondoPenalizaciones;
     private JLabel penalizacionesTitulo;
     
     private Tablero tablero;
@@ -122,6 +118,8 @@ public abstract class VistaJuego extends JFrame{
     private boolean impulsoTirarDado; //Impulso de tirada de dado. 0= no hay; 1= si hay;
     
     private int numeroFinalDado; //Numero que saldrá en la tirada del dado.
+    
+    
     
     
     //Constructor.
@@ -164,12 +162,10 @@ public abstract class VistaJuego extends JFrame{
         //MenuBar.
         this.menuBar = new JMenuBar();
         //Panel nombres.
-        this.panelNombresJugadores = new JPanel();
-        this.fondoPanelNombres = new JLabel();
+        this.panelNombresJugadores = new PanelNombres();
         this.jugadoresTitulo = new JLabel(TextosJuego.TITULO_JUGADORES[this.IDIOMA], JLabel.CENTER);
         //Panel penalizacion.
-        this.panelPenalizaciones = new JPanel();
-        this.fondoPanelPenalizaciones = new JLabel();
+        this.panelPenalizaciones = new PanelPenalizaciones();
         this.penalizacionesTitulo = new JLabel(TextosJuego.LABEL_PENALIZACIONES[this.IDIOMA], JLabel.CENTER);
         //Tablero Oca.
         this.tablero = new Tablero();
@@ -219,24 +215,16 @@ public abstract class VistaJuego extends JFrame{
         //Panel de nombres.
         this.blackline = BorderFactory.createLineBorder(Color.BLACK);
         this.panelNombresJugadores.setBorder(this.blackline);
-        this.panelNombresJugadores.setBackground(Color.CYAN);
         this.panelNombresJugadores.setBounds(this.PANEL_NOMBRE__X, this.PANEL_NOMBRE_Y, this.PANEL_NOMBRE_WIDTH, this.PANEL_NOMBRE_HEIGHT);
         this.panelNombresJugadores.setLayout(null);
-        //JLabel Fondo Panel Nombres.
-        this.fondoPanelNombres.setIcon(this.ICONO_PANEL_NOMBRES);
-        this.fondoPanelNombres.setBounds(0, 0, this.PANEL_NOMBRE_WIDTH, this.PANEL_NOMBRE_HEIGHT);
         //Titulo Jugadores.
         this.jugadoresTitulo.setFont(this.FUENTE_1);
         this.jugadoresTitulo.setForeground(Color.BLACK);
         this.jugadoresTitulo.setBounds(this.TITULO_JUGADORES_X, this.TITULO_JUGADORES_Y, this.TITULO_JUGADORES_WIDTH, this.TITULO_JUGADORES_HEIGHT);
         //Panel de Penalizaciones/Cuenta atrás.
         this.panelPenalizaciones.setBorder(blackline);
-        this.panelPenalizaciones.setBackground(Color.PINK);
         this.panelPenalizaciones.setBounds(this.PANEL_PENALIZACIONES_X, this.PANEL_PENALIZACIONES_Y, this.PANEL_PENALIZACIONES_WIDTH, this.PANEL_PENALIZACIONES_HEIGHT);
         this.panelPenalizaciones.setLayout(null);
-        //JLabel Fondo Panel Nombres.
-        this.fondoPanelPenalizaciones.setIcon(this.ICONO_PANEL_PENALIZACIONES);
-        this.fondoPanelPenalizaciones.setBounds(0, 0, this.PANEL_PENALIZACIONES_WIDTH, this.PANEL_PENALIZACIONES_HEIGHT);
         //Titulo Penalizaciones.
         this.penalizacionesTitulo.setFont(this.FUENTE_1);
         this.penalizacionesTitulo.setForeground(Color.BLACK);
@@ -273,21 +261,25 @@ public abstract class VistaJuego extends JFrame{
         this.botonLanzarDado.addMouseListener(new MouseAdapter() {
             private final int HUNDIMIENTO_BOTON = 5;
 
+            @Override
             public void mouseEntered(MouseEvent e) {
                 botonLanzarDado.setIcon(ICONO_BOTON_TIRAR_HOVER);
                 botonLanzarDado.setForeground(Color.WHITE);
             }
 
+            @Override
             public void mouseExited(MouseEvent e) {
                 botonLanzarDado.setIcon(ICONO_BOTON_TIRAR);
                 botonLanzarDado.setForeground(Color.BLACK);
             }
 
+            @Override
             public void mousePressed(MouseEvent e) {
                 botonLanzarDado.setForeground(Color.GREEN);
                 botonLanzarDado.setLocation(botonLanzarDado.getLocation().x, botonLanzarDado.getLocation().y + HUNDIMIENTO_BOTON);
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 botonLanzarDado.setForeground(Color.BLACK);
                 botonLanzarDado.setLocation(botonLanzarDado.getLocation().x, botonLanzarDado.getLocation().y - HUNDIMIENTO_BOTON);
@@ -312,18 +304,22 @@ public abstract class VistaJuego extends JFrame{
         this.botonFournier.addMouseListener(new MouseAdapter() {
             private final int HUNDIMIENTO_BOTON = 5;
 
+            @Override
             public void mouseEntered(MouseEvent e) {
                 botonFournier.setIcon(ICONO_BOTON_FOURNIER_HOVER);
             }
 
+            @Override
             public void mouseExited(MouseEvent e) {
                 botonFournier.setIcon(ICONO_BOTON_FOURNIER);
             }
 
+            @Override
             public void mousePressed(MouseEvent e) {
                 botonFournier.setLocation(botonFournier.getLocation().x, botonFournier.getLocation().y + HUNDIMIENTO_BOTON);
             }
 
+            @Override
             public void mouseReleased(MouseEvent e) {
                 botonFournier.setLocation(botonFournier.getLocation().x, botonFournier.getLocation().y - HUNDIMIENTO_BOTON);
             }
@@ -344,10 +340,8 @@ public abstract class VistaJuego extends JFrame{
         this.setJMenuBar(this.menuBar);
         //Panel Nombres
         this.panelNombresJugadores.add(this.jugadoresTitulo);
-        this.panelNombresJugadores.add(this.fondoPanelNombres);
         //Panel penalizaciones
         this.panelPenalizaciones.add(this.penalizacionesTitulo);
-        this.panelPenalizaciones.add(this.fondoPanelPenalizaciones);
         //Panel DadoGrafico y fondo
         this.panelDadoCubilete.add(this.dadoGrafico);
         this.panelDadoCubilete.add(this.fondoPanelDado);
@@ -449,5 +443,5 @@ public abstract class VistaJuego extends JFrame{
     public void eliminarPuntero(){
         tablero.eliminarPuntero();
     }
-    
+   
 }
