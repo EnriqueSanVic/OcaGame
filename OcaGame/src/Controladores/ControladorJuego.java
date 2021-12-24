@@ -2,17 +2,16 @@
 
 package Controladores;
 
+import DatosEstaticos.Constantes;
+import DatosEstaticos.TextosJuego;
 import Hilos.Hilo;
 import Logicas.LogicaJuegoModo1;
-import Vistas.FrameInstrucciones;
+import Vistas.VistaInstrucciones;
 import Vistas.TableroSystem.PunteroGrafico;
 import Vistas.VistaJuego;
-import Vistas.VistaJuegoModo1;
 import Vistas.VistaJuegoModo2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
@@ -29,7 +28,7 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
     private LogicaJuegoModo1 logica1;
     
     private VistaJuego vista;
-    private FrameInstrucciones instrucciones;
+    private VistaInstrucciones instrucciones;
     
     private List<Hilo> hilos;
     
@@ -83,11 +82,10 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
     @Override
     public void actionPerformed(ActionEvent ae) {
             switch (ae.getActionCommand()) {
-                //case "DROP DICE":   
-                case "LANZAR DADO":
+                case Constantes.LANZAR_DADO_COMMAND:
                     //Pido tirar el dado y que me de la cara/numero final.
                     int numeroFinal = logica1.tirarDado();
-                    System.out.println("HA SALIDO EL: "+numeroFinal);
+                    //System.out.println("HA SALIDO EL: "+numeroFinal);
                     //Digo a la vista que hay un impulso
                     this.vista.setImpulsoTirarDado(true);
                     this.vista.setNumeroFinalDado(numeroFinal);
@@ -96,8 +94,8 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
                 //BOTON FOURNIER.
                 case "INSTRUCCIONES:":
                     //Lanzar Frame Instrucciones.
-                    System.out.println("Lanzar Frame Instrucciones.");
-                    this.instrucciones = new FrameInstrucciones();
+                    //System.out.println("Lanzar Frame Instrucciones.");
+                    this.instrucciones = new VistaInstrucciones(vista);
                 break;
             default:
                 break;
@@ -147,6 +145,7 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
     @Override
     public void mouseExited(MouseEvent me) {
     }
+    
 }
     
     
