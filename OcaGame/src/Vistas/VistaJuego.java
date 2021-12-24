@@ -98,7 +98,6 @@ public abstract class VistaJuego extends JFrame{
     private JLabel jugadoresTitulo;
     
     private PanelPenalizaciones panelPenalizaciones;
-    private BufferedImage imagenFondoPenalizaciones;
     private JLabel penalizacionesTitulo;
     
     private Tablero tablero;
