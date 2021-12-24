@@ -39,4 +39,5 @@ public class Constantes {
     //comandos de acciones
     
     public static final String LANZAR_DADO_COMMAND = "DaDo_.CommanD";
+    public static final String ABRIR_INSTRUCCIONES_COMMAND = "AbriR_-InstruCiOneS";
 }

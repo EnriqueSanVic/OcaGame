@@ -4,9 +4,9 @@ package Vistas;
 import Controladores.ControladorJuego;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
+import Vistas.TableroSystem.ManejadorFicha;
+import Vistas.TableroSystem.Tablero;
 import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -66,7 +66,6 @@ public class VistaJuegoModo1 extends VistaJuego{
     public VistaJuegoModo1(ControladorJuego control) {
         super(control);
         //solo iniciarTemporizador es un metodo del propio del constructor de esta clase
-        iniciarTemporizador();
     }
     
     //Metodo que inicializa elementos de la vista modo 1
@@ -74,6 +73,9 @@ public class VistaJuegoModo1 extends VistaJuego{
     protected void crearObjetos() {
         
         super.crearObjetos();
+        
+        //Tablero Oca.
+        this.tablero = new Tablero(1, controlador);
         
         //Icono y nombre J1.
         this.iconoFichaJ1 = new ImageIcon(Constantes.PATH_ICONO_FICHA_GRANDEJ1);
@@ -151,21 +153,7 @@ public class VistaJuegoModo1 extends VistaJuego{
     }
     
     //Metodo que inicia la cuenta atras del temporizador hasta que llega a 0.
-    private void iniciarTemporizador() {
-        //Se repite a cada segundo.
-        this.timer = new Timer(1000, new ActionListener() {
-            int numeroActual = Integer.valueOf(getSegundosTemporizador());
-            @Override
-            public void actionPerformed(ActionEvent ae) {
-                if(numeroActual>0){
-                    numeroActual-=1; //Resto un segundo en el label
-                    setSegundosTemporizador(String.valueOf(numeroActual));                   
-                    numeroActual = Integer.valueOf(getSegundosTemporizador());
-                }
-            }
-        });
-        this.timer.start(); //Iniciamos el temporizador
-    }
+    
 
     //Getter que devuelve el nombre del J1 actual.
     public String getNombreJugador1() {
@@ -187,14 +175,14 @@ public class VistaJuegoModo1 extends VistaJuego{
         this.numeroPenalizacionLabel.setText(penalizacionLabel);
     }
 
-    //Getter texto label penalizacion (200seg)
-    public String getSegundosTemporizador() {
-        return segundosTemporizador.getText();
-    }
 
     //Setter texto label penalizacion (200seg)
     public void setSegundosTemporizador(String segundosTemporizador) {
         this.segundosTemporizador.setText(segundosTemporizador);
+    }
+    
+    public void iniciarJugadorSalida(){
+        ManejadorFicha.iniciarEnCasilla(0, tablero.getFicha1(), tablero.getCasillas());
     }
 
 }

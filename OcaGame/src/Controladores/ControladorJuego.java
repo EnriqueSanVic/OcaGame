@@ -3,17 +3,13 @@
 package Controladores;
 
 import DatosEstaticos.Constantes;
-import DatosEstaticos.TextosJuego;
 import Hilos.Hilo;
-import Logicas.LogicaJuegoModo1;
+import Logicas.LogicaJuego;
+import Vistas.TableroSystem.NotificableTablero;
 import Vistas.VistaInstrucciones;
-import Vistas.TableroSystem.PunteroGrafico;
 import Vistas.VistaJuego;
-import Vistas.VistaJuegoModo2;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -23,27 +19,19 @@ import java.util.List;
  *
  * @author Enrique Sánchez 
  */
-public class ControladorJuego extends WindowAdapter implements ActionListener, MouseListener{
+public abstract class ControladorJuego extends WindowAdapter implements ActionListener, NotificableTablero{
 
-    private LogicaJuegoModo1 logica1;
+    protected LogicaJuego logica;
     
-    private VistaJuego vista;
-    private VistaInstrucciones instrucciones;
+    protected VistaJuego vista;
     
-    private List<Hilo> hilos;
+    protected List<Hilo> hilos;
+    
+    protected int ultimoNumeroDado;
     
     public ControladorJuego(){
         this.hilos = new ArrayList<Hilo>(); 
-        this.vista = new VistaJuegoModo2(this); //Cambiado para testing
-        this.logica1 = new LogicaJuegoModo1();
-      
-        
-        
-        
-        vista.crearPuntero(20, this);
 
-        vista.initEscena();
-        
     }
     
     
@@ -70,8 +58,6 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
         
     }
     
-    
-    
     //metodo para matar todos los hilos del programa
     private void matarHilos(){
         for (Hilo i:hilos) {
@@ -83,19 +69,12 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
     public void actionPerformed(ActionEvent ae) {
             switch (ae.getActionCommand()) {
                 case Constantes.LANZAR_DADO_COMMAND:
-                    //Pido tirar el dado y que me de la cara/numero final.
-                    int numeroFinal = logica1.tirarDado();
-                    //System.out.println("HA SALIDO EL: "+numeroFinal);
-                    //Digo a la vista que hay un impulso
-                    this.vista.setImpulsoTirarDado(true);
-                    this.vista.setNumeroFinalDado(numeroFinal);
-                    this.vista.notificarTiradaDado();
+                    lanzarDado();
                 break;
                 //BOTON FOURNIER.
-                case "INSTRUCCIONES:":
-                    //Lanzar Frame Instrucciones.
-                    //System.out.println("Lanzar Frame Instrucciones.");
-                    this.instrucciones = new VistaInstrucciones(vista);
+                case Constantes.ABRIR_INSTRUCCIONES_COMMAND:
+                    //Lanza la vista Instrucciones.
+                    new VistaInstrucciones(vista);
                 break;
             default:
                 break;
@@ -103,48 +82,37 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
             
     }
 
-    public void eventoFinalizacionDado() {
-        System.out.println("Evento animacion de dado finalizado.");
-    }
-
     
-    
-    
-
-    @Override
-    public void mouseClicked(MouseEvent me) {
+    private void lanzarDado() {
         
-        String id = me.getComponent().getName();
-
-        switch(id){
-            
-            case PunteroGrafico.ID:
-                
-                //evento de movimiento cumplido
-                
-                vista.eliminarPuntero();
-                
-                break;
-            
+        if(sePuedeTirarDado()){
+        
+            //Pido tirar el dado y que me de la cara/numero final.
+            ultimoNumeroDado = logica.tirarDado();
+            //System.out.println("HA SALIDO EL: "+numeroFinal);
+            //Digo a la vista que hay un impulso
+            this.vista.setImpulsoTirarDado(true);
+            this.vista.setNumeroFinalDado(ultimoNumeroDado);
+            this.vista.notificarTiradaDado();
+        
         }
         
+        
+        
     }
+    
+    protected abstract boolean sePuedeTirarDado();
+    
+    protected abstract void iniciarPartida();
 
-    @Override
-    public void mousePressed(MouseEvent me) {
-    }
+    public abstract void eventoFinalizacionDado();
 
-    @Override
-    public void mouseReleased(MouseEvent me) {
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent me) {
-    }
-
-    @Override
-    public void mouseExited(MouseEvent me) {
-    }
+    public abstract void eventoToquePuntero();
+    
+    public abstract void eventoFinalMovimientoFicha();
+    
+ 
+    
     
 }
     

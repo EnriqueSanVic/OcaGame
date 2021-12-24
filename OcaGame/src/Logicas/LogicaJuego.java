@@ -14,7 +14,7 @@ public abstract class LogicaJuego {
     private Random random;
     
     //array con las posiciones de los jugadores
-    private int[] posicionJugador;
+    protected int[] posicionJugador;
     
     
     private CasillaLogica[] tablero;
@@ -107,12 +107,7 @@ public abstract class LogicaJuego {
         
         tirarOtraVez = tablero[posicionJugador[jugador]].tirarOtraVez;
                         
-        //si hay una consecuencia de avance se mueve al jugador
-        if(avance != 0){
-            
-            mover(jugador, avance);
-            
-        }
+        
         
         return  new DirectivasEvaluacion(avance, tiempo, tirarOtraVez);
         
@@ -131,7 +126,7 @@ public abstract class LogicaJuego {
     //el retorno es el numero de casillas de avance o retroceso que se debe usar
     public int mover (int jugador, int casillasDesplazamiento){
         
-        
+        System.out.println("movido jugador " + jugador  + " en " + casillasDesplazamiento);
         //si se sobrepasa de el limite de casillas se hace el rebote de la ficha
         if(posicionJugador[jugador] + casillasDesplazamiento > tablero.length){
             
@@ -159,12 +154,14 @@ public abstract class LogicaJuego {
         return false;
     }
 
-    public int[] getPosicionJugador() {
-        return posicionJugador;
+    public int getPosicionJugador(int jugador) {
+        return posicionJugador[jugador];
     }
+    
+ 
 
-    public CasillaLogica[] getTablero() {
-        return tablero;
+    public CasillaLogica getTablero(int posicion) {
+        return tablero[posicion];
     }
     
     

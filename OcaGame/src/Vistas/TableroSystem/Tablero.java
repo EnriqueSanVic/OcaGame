@@ -3,7 +3,6 @@ package Vistas.TableroSystem;
 
 import DatosEstaticos.Constantes;
 import java.awt.Graphics;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,6 +22,8 @@ public class Tablero extends JPanel{
     private BufferedImage imagenTablero;
     protected final int HEIGHT = 800;
     protected final int WIDTH = 800;
+    
+    private NotificableTablero notificable;
 
     protected Ficha ficha1, ficha2;
     
@@ -30,7 +31,9 @@ public class Tablero extends JPanel{
     
     private CasillaGrafica[] casillas;
     
-    public Tablero() {
+    public Tablero(int jugadores, NotificableTablero notificable) {
+        
+        this.notificable = notificable;
 
         //se carga la imagen del tablero
         try {
@@ -45,7 +48,7 @@ public class Tablero extends JPanel{
         this.setLayout(null);
         
         
-        initFichas();
+        initFichas(jugadores);
         initCasillas();
         
 
@@ -58,15 +61,26 @@ public class Tablero extends JPanel{
         grphcs.drawImage(imagenTablero, 0, 0, this);
     }
 
-    private void initFichas() {
+    private void initFichas(int jugadores) {
         
-        ficha1 = new Ficha(0, Constantes.JUGADOR_1, 90, 700);
         
-        this.add(ficha1);
+        if (jugadores == 1) {
+            
+            ficha1 = new Ficha(0, Constantes.JUGADOR_1, 90, 700);
+
+            this.add(ficha1);
+            
+        } else if (jugadores == 2) {
+            
+            ficha1 = new Ficha(0, Constantes.JUGADOR_1, 90, 700);
+
+            this.add(ficha1);
+
+            ficha2 = new Ficha(0, Constantes.JUGADOR_2, 90, 700);
+
+            this.add(ficha2);
+        }
         
-        ficha2 = new Ficha(0, Constantes.JUGADOR_2, 90, 700);
-        
-        this.add(ficha2);
         
     }
 
@@ -209,7 +223,7 @@ public class Tablero extends JPanel{
 
     }
     
-    public void crearPuntero(int nCasilla, MouseListener escuchadorPuntero){
+    public void crearPuntero(int nCasilla, NotificableTablero escuchadorPuntero){
         
         //si existe un puntero por que no se ha controlado la destrucción, se destruye antes de crear otro
         if(puntero != null){
@@ -217,7 +231,7 @@ public class Tablero extends JPanel{
             puntero = null;
         }
         
-        puntero = new PunteroGrafico(casillas[nCasilla].getCentroAbsoluto(), escuchadorPuntero);
+        puntero = new PunteroGrafico(casillas[nCasilla].getCentroAbsoluto(), escuchadorPuntero, this);
         
         this.add(puntero);
         
@@ -241,29 +255,36 @@ public class Tablero extends JPanel{
     
     
 
-    public void initEscena() {
+   
+    
+    
+    public void mover(int jugador, int destino){
         
+        Ficha ficha = null;
         
-        
-        //se inicializa la ficha en la casilla
-        ManejadorFicha.iniciarEnCasilla(0, ficha1, casillas);
-        ManejadorFicha.iniciarEnCasilla(0, ficha2, casillas);
-        
-        ManejadorFicha manejador = new ManejadorFicha(15, ficha1, casillas);
-        manejador.start();
-        
-        try {
-            Thread.sleep(7000);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Tablero.class.getName()).log(Level.SEVERE, null, ex);
+        if(jugador == Constantes.JUGADOR_1){
+            ficha = ficha1;
+        }else if(jugador == Constantes.JUGADOR_2){
+            ficha = ficha2;
         }
         
-        manejador = new ManejadorFicha(15, ficha2, casillas);
-        manejador.start();
-        
-        
+        new ManejadorFicha(destino, ficha, casillas, notificable).start();
         
     }
+
+    public Ficha getFicha1() {
+        return ficha1;
+    }
+
+    public Ficha getFicha2() {
+        return ficha2;
+    }
+
+    public CasillaGrafica[] getCasillas() {
+        return casillas;
+    }
+    
+    
     
     
     

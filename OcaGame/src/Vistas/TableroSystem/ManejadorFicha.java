@@ -23,12 +23,15 @@ public class ManejadorFicha extends Thread implements Hilo{
     private int casillaDestino;
     
     private CasillaGrafica[] casillas;
+    
+    private NotificableTablero notificable;
 
-    public ManejadorFicha(int casillaDestino, Ficha ficha, CasillaGrafica[] casillas) {
+    public ManejadorFicha(int casillaDestino, Ficha ficha, CasillaGrafica[] casillas, NotificableTablero notificable) {
         
         this.casillaDestino = casillaDestino;
         this.ficha = ficha;
         this.casillas = casillas;
+        this.notificable = notificable;
         
         this.setPriority(Thread.MAX_PRIORITY);
     }
@@ -68,7 +71,7 @@ public class ManejadorFicha extends Thread implements Hilo{
         
         ManejadorFicha.iniciarEnCasilla(casillaDestino, ficha, casillas);
         
-
+        notificable.eventoFinalMovimientoFicha();
         
     }
     
@@ -84,6 +87,8 @@ public class ManejadorFicha extends Thread implements Hilo{
         
         ManejadorFicha.iniciarEnCasilla(casillaDestino, ficha, casillas);
         
+        notificable.eventoFinalMovimientoFicha();
+
     }
     
     private void moverACasilla(Ficha ficha, CasillaGrafica casilla) {
@@ -122,6 +127,10 @@ public class ManejadorFicha extends Thread implements Hilo{
         }
         
         
+        
+    }
+    
+    public void notificarFinMovimiento(){
         
     }
     
@@ -203,13 +212,6 @@ public class ManejadorFicha extends Thread implements Hilo{
         
     }
 
-    private void esperar() {
-        try {
-            wait();
-        } catch (InterruptedException ex) {
-            
-        }
-    }
 
     private void eliminarFichaDelSlot() {
         
