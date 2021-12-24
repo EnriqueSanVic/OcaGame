@@ -6,15 +6,12 @@ import Controladores.ControladorJuego;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import Utilidades.UtilidadesGraficas;
+import Vistas.TableroSystem.NotificableTablero;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -81,7 +78,7 @@ public abstract class VistaJuego extends JFrame{
     private final int IDIOMA = 1; //Idioma. 0=español 1=ingles;
     
     //Atributos de la clase.
-    private ControladorJuego controlador;
+    protected ControladorJuego controlador;
     
     private JMenuBar menuBar;
     
@@ -101,7 +98,7 @@ public abstract class VistaJuego extends JFrame{
     private PanelPenalizaciones panelPenalizaciones;
     private JLabel penalizacionesTitulo;
     
-    private Tablero tablero;
+    protected Tablero tablero;
     
     private JLabel fondoPanelDado;
     
@@ -135,9 +132,7 @@ public abstract class VistaJuego extends JFrame{
         this.setVisible(true);
     }
     
-    public void initEscena(){
-        tablero.initEscena();
-    }
+    
 
     //Metodo que inicializa elementos de la vista general del juego.
     protected void crearObjetos() {
@@ -164,8 +159,7 @@ public abstract class VistaJuego extends JFrame{
         //Panel penalizacion.
         this.panelPenalizaciones = new PanelPenalizaciones();
         this.penalizacionesTitulo = new JLabel(TextosJuego.LABEL_PENALIZACIONES[this.IDIOMA], JLabel.CENTER);
-        //Tablero Oca.
-        this.tablero = new Tablero();
+        
         //Panel dado.
         this.panelDadoCubilete = new JPanel();
         this.dadoGrafico = new DadoGrafico(this);
@@ -291,7 +285,7 @@ public abstract class VistaJuego extends JFrame{
         //Boton Fournier.
         this.botonFournier.setBounds(this.BOTON_FOURNIER_X, this.BOTON_FOURNIER_Y, this.BOTON_FOURNIER_WIDTH, this.BOTON_FOURNIER_HEIGHT);
         this.botonFournier.setBorder(this.blackline);
-        this.botonFournier.setActionCommand(TextosJuego.LABEL_INSTRUCCCIONES[0]);
+        this.botonFournier.setActionCommand(Constantes.ABRIR_INSTRUCCIONES_COMMAND);
         this.botonFournier.setIcon(ICONO_BOTON_FOURNIER);
         
         /*
@@ -420,8 +414,12 @@ public abstract class VistaJuego extends JFrame{
     }
    
     
-    public void crearPuntero(int nCasilla, MouseListener escuchador){
+    public void crearPuntero(int nCasilla, NotificableTablero escuchador){
         tablero.crearPuntero(nCasilla, escuchador);
+    }
+    
+    public void mover(int jugador, int destino){
+        tablero.mover(jugador, destino);
     }
     
     public void eliminarPuntero(){

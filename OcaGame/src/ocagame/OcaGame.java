@@ -2,6 +2,7 @@
 package ocagame;
 
 import Controladores.ControladorJuego;
+import Controladores.ControladorJuegoModo1;
 
 /**
  *
@@ -10,7 +11,7 @@ import Controladores.ControladorJuego;
 public class OcaGame {
 
     public static void main(String[] args) {
-        ControladorJuego controlador = new ControladorJuego();
+        ControladorJuego controlador = new ControladorJuegoModo1();
     }
     
 }

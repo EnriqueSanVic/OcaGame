@@ -11,6 +11,17 @@ public class LogicaJuegoModo2 extends LogicaJuego{
     //array con los turnos de bloqueo del os jugadores
     private int[] turnosBloqueo;
 
+    public LogicaJuegoModo2() {
+        super();
+        
+        turnosBloqueo = new int[2];
+        
+        turnosBloqueo[0] = 0;
+        turnosBloqueo[1] = 0;
+    }
+    
+    
+
     @Override
     public boolean evaluarTurnoInicio(int jugador) {
         
@@ -34,7 +45,7 @@ public class LogicaJuegoModo2 extends LogicaJuego{
             turnosBloqueo[jugador] = directivas.penalizacion;
         }
         
-        return new DirectivasEvaluacion(super.getPosicionJugador()[jugador],directivas.penalizacion, directivas.tirarOtraVez);
+        return new DirectivasEvaluacion(super.getPosicionJugador(jugador),directivas.penalizacion, directivas.tirarOtraVez);
     
     }
 

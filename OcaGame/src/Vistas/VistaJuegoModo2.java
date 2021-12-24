@@ -4,6 +4,7 @@ package Vistas;
 import Controladores.ControladorJuego;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
+import Vistas.TableroSystem.Tablero;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -81,6 +82,10 @@ public class VistaJuegoModo2 extends VistaJuego{
     protected void crearObjetos() {
         
         super.crearObjetos();
+        
+        //Tablero Oca.
+        this.tablero = new Tablero(2, controlador);
+        
         //Iconos.
         this.iconoFicha1 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ1);
         this.iconoFicha2 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ2);
