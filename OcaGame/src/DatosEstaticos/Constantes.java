@@ -23,6 +23,8 @@ public class Constantes {
     public static final String PATH_ICONO_FICHAJ1 = "./img/fichas/ficha1Chica.png";
     public static final String PATH_ICONO_FICHAJ2 = "./img/fichas/ficha2Chica.png";
     
+    public static final String PATH_ICONO_FONDO_VISTAJUEGO = "./img/rotulos/fondo_VistaJuego.png";
+    
     public static final String PATH_ICONO_INSTRUCCIONES_MODO1_ESP = "./img/instrucciones/fondo_InstruccionesModo1_ESP.png";
     public static final String PATH_ICONO_INSTRUCCIONES_MODO2_ESP = "./img/instrucciones/fondo_InstruccionesModo2_ESP.png";
     public static final String PATH_ICONO_INSTRUCCIONES_MODO1_ING = "./img/instrucciones/fondo_InstruccionesModo1_ING.png";

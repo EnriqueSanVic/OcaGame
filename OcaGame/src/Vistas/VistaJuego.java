@@ -12,7 +12,6 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -80,6 +79,8 @@ public abstract class VistaJuego extends JFrame{
     //Atributos de la clase.
     protected ControladorJuego controlador;
     
+    private PanelFondo fondoVistaJuego;
+    
     private JMenuBar menuBar;
     
     private JMenu menuPartida;
@@ -123,7 +124,7 @@ public abstract class VistaJuego extends JFrame{
     }
 
     //Metodo que crea la vista del juego.
-    private void iniciarVista() { 
+    private void iniciarVista() {
         crearObjetos();
         disenoObjetos();
         anadirObjetos();
@@ -131,11 +132,11 @@ public abstract class VistaJuego extends JFrame{
 
         this.setVisible(true);
     }
-    
-    
 
     //Metodo que inicializa elementos de la vista general del juego.
     protected void crearObjetos() {
+        //Fondo vista Juego
+        this.fondoVistaJuego = new PanelFondo(this);
         //MenuItems Partida.
         this.menuNuevaPartida = new JMenuItem(TextosJuego.MENU_NUEVA_PARTIDA[this.IDIOMA]);
         this.menuNuevaPartida.setMnemonic(KeyEvent.VK_N);
@@ -184,6 +185,9 @@ public abstract class VistaJuego extends JFrame{
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setResizable(false);
         UtilidadesGraficas.ponerMedioPantalla(this);
+        //Fondo Vista Juego
+        this.fondoVistaJuego.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        this.fondoVistaJuego.setLayout(null);
         //Menu bar
         this.menuBar.setBackground(COLOR_MENU_BAR);
         this.menuBar.setBorderPainted(false);
@@ -320,6 +324,7 @@ public abstract class VistaJuego extends JFrame{
 
     //Metodo que añade elementos a la vista general del juego.
     protected void anadirObjetos() {
+        
         //Menus.
         this.menuPartida.add(this.menuNuevaPartida);
         this.menuPartida.add(this.menuGuardarPartida);
@@ -338,16 +343,18 @@ public abstract class VistaJuego extends JFrame{
         this.panelDadoCubilete.add(this.dadoGrafico);
         this.panelDadoCubilete.add(this.fondoPanelDado);
         //Paneles al frame
-        this.add(this.panelNombresJugadores);
-        this.add(this.panelPenalizaciones);
-        this.add(this.tablero);
-        this.add(this.panelDadoCubilete);
+        this.fondoVistaJuego.add(this.panelNombresJugadores);
+        this.fondoVistaJuego.add(this.panelPenalizaciones);
+        this.fondoVistaJuego.add(this.tablero);
+        this.fondoVistaJuego.add(this.panelDadoCubilete);
         //Boton lanzar dado al frame
-        this.add(this.botonLanzarDado);
+        this.fondoVistaJuego.add(this.botonLanzarDado);
         //Label Instrucciones.
-        this.add(this.labelInstrucciones);
+        this.fondoVistaJuego.add(this.labelInstrucciones);
         //Boton fournier al frame.
-        this.add(this.botonFournier);
+        this.fondoVistaJuego.add(this.botonFournier);
+        //Fondo vistaJuego.
+        this.add(this.fondoVistaJuego);
     }
 
     //Metodo que añade el escuchador necesario a ciertos elemento.
