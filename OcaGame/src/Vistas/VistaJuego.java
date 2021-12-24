@@ -5,6 +5,7 @@ import Vistas.TableroSystem.Tablero;
 import Controladores.ControladorJuego;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
+import Utilidades.UtilidadesGraficas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -188,7 +189,7 @@ public abstract class VistaJuego extends JFrame{
         this.getContentPane().setBackground(Color.orange);
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setResizable(false);
-        ponerMedioPantalla(this);
+        UtilidadesGraficas.ponerMedioPantalla(this);
         //Menu bar
         this.menuBar.setBackground(COLOR_MENU_BAR);
         this.menuBar.setBorderPainted(false);
@@ -241,7 +242,7 @@ public abstract class VistaJuego extends JFrame{
         this.botonLanzarDado.setForeground(Color.BLACK);
         this.botonLanzarDado.setText(TextosJuego.BOTON_LANZAR_DADO[this.IDIOMA]);
         this.botonLanzarDado.setHorizontalTextPosition(SwingConstants.CENTER);
-        this.botonLanzarDado.setActionCommand(TextosJuego.BOTON_LANZAR_DADO[0]);
+        this.botonLanzarDado.setActionCommand(Constantes.LANZAR_DADO_COMMAND);
         this.botonLanzarDado.setIcon(ICONO_BOTON_TIRAR);
         this.botonLanzarDado.setDisabledIcon(ICONO_BOTON_TIRAR_DISABLE);
         this.botonLanzarDado.setOpaque(false);
@@ -418,20 +419,6 @@ public abstract class VistaJuego extends JFrame{
         return this.IDIOMA;
     }
    
-    //Metodo que lanza el frame en el medio de la pantalla del usuario al iniciarse la VistaJuego
-    private void ponerMedioPantalla(Frame ventana) {
-        
-        int width, height;
-        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        width = (pantalla.width/2) - (ventana.getSize().width/2);
-        
-        height = (pantalla.height/2) - (ventana.getSize().height/2);
-        
-        ventana.setLocation(width, height);
-
-        
-    }
     
     public void crearPuntero(int nCasilla, MouseListener escuchador){
         tablero.crearPuntero(nCasilla, escuchador);

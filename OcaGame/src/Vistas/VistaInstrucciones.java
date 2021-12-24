@@ -2,25 +2,31 @@
 package Vistas;
 
 import DatosEstaticos.Constantes;
+import Utilidades.UtilidadesGraficas;
 import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Toolkit;
+import java.awt.Window;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 /**
  * @autor: Alvaro
  */
-public class FrameInstrucciones extends JFrame{
+public class VistaInstrucciones extends JDialog{
     
     private final int FRAME_INSTRUCCIONES_WIDHT = 750, FRAME_INSTRUCCIONES_HEIGHT = 600;    
     private BufferedImage imagenFondoInstrucciones;
     
-    public FrameInstrucciones(){
+    public VistaInstrucciones(Frame vistaPadre){
+        
+        super(vistaPadre, true);
+        
         //Imagen Fondo Panel Nombres.
         try {
             this.imagenFondoInstrucciones = ImageIO.read(new File(Constantes.PATH_ICONO_INSTRUCCIONES));
@@ -28,7 +34,7 @@ public class FrameInstrucciones extends JFrame{
             System.out.println("Error de carga de imagen fondo nombres");
         }
         this.setSize(this.FRAME_INSTRUCCIONES_WIDHT, this.FRAME_INSTRUCCIONES_HEIGHT);
-        ponerMedioPantalla(this);
+        UtilidadesGraficas.ponerMedioPantalla(this);
         this.setResizable(false);
         this.setVisible(true);
     }
@@ -39,19 +45,7 @@ public class FrameInstrucciones extends JFrame{
         grphcs.drawImage(this.imagenFondoInstrucciones, 0, 0, this);
     }
 
-    //Metodo que lanza el frame en el medio de la pantalla del usuario al iniciarse la VistaJuego
-    private void ponerMedioPantalla(Frame ventana) {
-        
-        int width, height;
-        Dimension pantalla = Toolkit.getDefaultToolkit().getScreenSize();
-        
-        width = (pantalla.width/2) - (ventana.getSize().width/2);
-        
-        height = (pantalla.height/2) - (ventana.getSize().height/2);
-        
-        ventana.setLocation(width, height);
-
-        
-    }
+    
+    
 
 }
