@@ -4,6 +4,7 @@ package Controladores;
 
 import Hilos.Hilo;
 import Logicas.LogicaJuegoModo1;
+import Vistas.FrameInstrucciones;
 import Vistas.TableroSystem.PunteroGrafico;
 import Vistas.VistaJuego;
 import Vistas.VistaJuegoModo1;
@@ -28,12 +29,13 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
     private LogicaJuegoModo1 logica1;
     
     private VistaJuego vista;
+    private FrameInstrucciones instrucciones;
     
     private List<Hilo> hilos;
     
     public ControladorJuego(){
         this.hilos = new ArrayList<Hilo>(); 
-        this.vista = new VistaJuegoModo1(this); //Cambiado para testing
+        this.vista = new VistaJuegoModo2(this); //Cambiado para testing
         this.logica1 = new LogicaJuegoModo1();
       
         
@@ -81,7 +83,7 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
     @Override
     public void actionPerformed(ActionEvent ae) {
             switch (ae.getActionCommand()) {
-                case "DROP DICE":   
+                //case "DROP DICE":   
                 case "LANZAR DADO":
                     //Pido tirar el dado y que me de la cara/numero final.
                     int numeroFinal = logica1.tirarDado();
@@ -90,6 +92,12 @@ public class ControladorJuego extends WindowAdapter implements ActionListener, M
                     this.vista.setImpulsoTirarDado(true);
                     this.vista.setNumeroFinalDado(numeroFinal);
                     this.vista.notificarTiradaDado();
+                break;
+                //BOTON FOURNIER.
+                case "INSTRUCCIONES:":
+                    //Lanzar Frame Instrucciones.
+                    System.out.println("Lanzar Frame Instrucciones.");
+                    this.instrucciones = new FrameInstrucciones();
                 break;
             default:
                 break;

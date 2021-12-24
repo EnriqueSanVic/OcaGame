@@ -1,10 +1,16 @@
 
 package Vistas;
 
+import DatosEstaticos.Constantes;
 import Hilos.Hilo;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +21,8 @@ import javax.swing.JPanel;
 public class DadoGrafico extends JPanel implements Runnable, Hilo{
     
     //Constantes de configuracion.
+    
+    
     private final int NUMERO_INICIAL_DADO = 3; //Numero de la cara inicial del dado al iniciarse la vista.
     
     private final int POSICION_PANEL_X = 20, POSICION_PANEL_Y = 20; //Posiciones del Panel cubilete.
@@ -30,6 +38,7 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     //Atributos de la clase.
     private VistaJuego vistaJuego;
     
+    private BufferedImage imagenFondoTerciopelo;    
     private ImageIcon imagenDadoInicial;
     private ImageIcon imagenDadoCambiante;
     private JLabel dado;
@@ -110,10 +119,24 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     
     //Metodo que crea el cubilete graficamente.
     private void crearCubilete() {
+        //se carga la imagen del fondo del cubilete
+        try {
+            this.imagenFondoTerciopelo = ImageIO.read(new File(Constantes.IMAGEN_FONDO_TERCIOPELO));
+        } catch (IOException ex) {
+            System.out.println("Error de carga de imagen fondo dado");
+        }
         this.setBounds(POSICION_PANEL_X, POSICION_PANEL_Y, ANCHURA_CUBILETE, ALTURA_CUBILETE);
-        this.setBackground(Color.DARK_GRAY);
+        //this.setBackground(Color.DARK_GRAY);
         this.setLayout(null);
     }
+    
+    //se pinta el componente con la imagen del tablero
+    @Override
+    protected void paintComponent(Graphics grphcs) {
+        super.paintComponent(grphcs);
+        grphcs.drawImage(imagenFondoTerciopelo, 0, 0, this);
+    }
+    
     //Metodo que crea el dado inicial graficamente.
     private void crearDado(){
         this.imagenDadoInicial = new ImageIcon("./img/dados/DADO_3.png");
@@ -173,10 +196,7 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     }
 
     //Metodo que hace rebotar al dado, cambiando su direcion y velocidad aleatoriamente cuando llega a un limite.
-    private void rebotar() {
-        
-        
-        
+    private void rebotar() { 
         int anterior=direccionDado;
         int opuesta = getDireccionOpuesta();
         //Choca arriba.
@@ -217,7 +237,7 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         do{
            numeroDadoCambiado = (int)(Math.random()*6)+1;  
         }while(numeroDadoCambiado==this.numeroDadoActual); //Para que no se repita la cara que estaba.
-
+        this.numeroDadoActual = numeroDadoCambiado;
         this.imagenDadoCambiante = new ImageIcon("./img/dados/DADO_"+numeroDadoCambiado+".png");
         this.dado.setIcon(imagenDadoCambiante);
         this.dado.repaint();

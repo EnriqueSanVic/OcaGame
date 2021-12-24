@@ -30,7 +30,8 @@ public class TextosJuego {
     ///Temporizador
     public static String[] LABEL_CUENTA_ATRAS_TEMPORIZADOR = {"CUENTA ATRÁS:", "COUNT DOWN:"};
     public static String[] LABEL_SEGUNDOS_TEMPORIZADOR = {"segundos", "seconds"};
-    
+    //Instrucciones.
+    public static String[] LABEL_INSTRUCCCIONES = {"INSTRUCCIONES:", "INSTRUCTIONS:"};
     //Constructor.
     public TextosJuego(){
     }
