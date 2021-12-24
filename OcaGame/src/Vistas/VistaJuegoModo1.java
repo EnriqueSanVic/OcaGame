@@ -84,7 +84,7 @@ public class VistaJuegoModo1 extends VistaJuego{
         //Penalizaciones.
         this.panelPenalizacion = new JPanel();
         this.cuentaAtrasLabel = new JLabel(TextosJuego.LABEL_CUENTA_ATRAS_TEMPORIZADOR[super.getIdioma()], JLabel.CENTER);
-        this.numeroPenalizacionLabel = new JLabel("-10", JLabel.CENTER); //VIene desde la logica/controlador la penalizacion.
+        this.numeroPenalizacionLabel = new JLabel("0", JLabel.CENTER); //VIene desde la logica/controlador la penalizacion.
         this.labelSegundosPenalizacion = new JLabel(TextosJuego.LABEL_SEGUNDOS_TEMPORIZADOR[super.getIdioma()], JLabel.CENTER);
         //Temporizador.
         this.panelTemporizador = new JPanel();

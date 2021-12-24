@@ -16,13 +16,15 @@ import javax.swing.Timer;
  */
 public class ControladorJuegoModo1 extends ControladorJuego{
 
+    private final int SEGUNDOS_INICIO = 150;
+    
     private Timer timer;
 
     private int segundos;
     
-    private int casillaDestino;
+    private int casillaDestino, avanceAuto;
     
-    private boolean iniciarTurno;
+    private boolean iniciarTurno, controlAutomatico;
     
     public ControladorJuegoModo1() {
         super();
@@ -30,7 +32,10 @@ public class ControladorJuegoModo1 extends ControladorJuego{
         this.vista = new VistaJuegoModo1(this);
         this.logica = new LogicaJuegoModo1();
         
+        segundos = SEGUNDOS_INICIO;
+        
         iniciarTurno = true;
+        controlAutomatico = false;
         
         iniciarPartida();
     }
@@ -56,20 +61,23 @@ public class ControladorJuegoModo1 extends ControladorJuego{
 
         //solo se tira el dado si se puede tirar
         if (((LogicaJuegoModo1) logica).evaluarTurnoInicio(Constantes.JUGADOR_1)
-                && iniciarTurno) {
+                && iniciarTurno 
+                && !controlAutomatico) {
 
             iniciarTurno = false;
             
             casillaDestino = logica.getPosicionJugador(Constantes.JUGADOR_1) + this.ultimoNumeroDado;
            
-            //System.out.println("Ultimo Numero " + this.ultimoNumeroDado);
+            //si es un tiro sin rebote por sobrepasamiento 
+            if(casillaDestino <= 63){
+                vista.crearPuntero(casillaDestino, this);
+                
+                //si es un tiro sobrepasao
+            }else{
             
-            System.out.println("Posicion Logica " + logica.getPosicionJugador(Constantes.JUGADOR_1));
-            
-            //System.out.println("destino " + casillaDestino);
-
-            //se crea el puntero en el tablero
-            vista.crearPuntero(casillaDestino, this);
+                
+                
+            }
 
         }
 
@@ -85,17 +93,25 @@ public class ControladorJuegoModo1 extends ControladorJuego{
     @Override
     public void eventoFinalMovimientoFicha() {
         
-        //ystem.out.println("evento final movimiento grafico");
-        
-        //se mueve lógicamente el jugador hasta la casilla
-        logica.mover(Constantes.JUGADOR_1, ultimoNumeroDado);
-        
-        System.out.println("Posicion logica jugador " + logica.getPosicionJugador(Constantes.JUGADOR_1));
+        if (controlAutomatico) {
+            
+            controlAutomatico = false;
+            
+            logica.mover(Constantes.JUGADOR_1, avanceAuto);
+            
+            iniciarTurno = true;
+            
+        } else {
+            //se mueve lógicamente el jugador hasta la casilla
+            logica.mover(Constantes.JUGADOR_1, ultimoNumeroDado);
 
-        //falta evaluar la tirada que contiene este objeto
-        DirectivasEvaluacion directivas = ((LogicaJuegoModo1)logica).evaluarTurnoFinal(Constantes.JUGADOR_1);
-        
-        iniciarTurno = true;
+            //falta evaluar la tirada que contiene este objeto
+            DirectivasEvaluacion directivas = ((LogicaJuegoModo1) logica).evaluarTurnoFinal(Constantes.JUGADOR_1);
+
+            iniciarTurno = evaluardirectivas(directivas);
+
+        }
+       
     }
 
     private void iniciarTemporizador() {
@@ -103,6 +119,8 @@ public class ControladorJuegoModo1 extends ControladorJuego{
         this.timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent ae) {
+                
+                
                 if(segundos>0){
                     segundos-=1; //Resto un segundo en el label
                     ((VistaJuegoModo1)vista).setSegundosTemporizador(String.valueOf(segundos));                   
@@ -118,6 +136,42 @@ public class ControladorJuegoModo1 extends ControladorJuego{
     private void finalizarPartida(){
         timer.stop();
         
+        
+    }
+
+    //retorna si se ha terminado el turno actual o no
+    private boolean evaluardirectivas(DirectivasEvaluacion directivas) {
+        
+        //en el modo un jugador no se evalua el tira otra vez por que siempre tira otra vez
+        
+        if(directivas.getPosicion() != 0){
+            
+            System.out.println("Movimiento auto de " + directivas.getPosicion());
+            
+            controlAutomatico = true;
+            
+            avanceAuto = directivas.getPosicion();
+            
+            System.out.println("Avance auto " + avanceAuto);
+            
+            vista.mover(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1) + avanceAuto);
+
+            return false;
+            
+        }else if(directivas.getPenalizacion() != 0){
+            
+            int penalizacion = directivas.getPenalizacion() * 10;
+            
+            segundos -= penalizacion;
+                    
+             
+            int valorPenalizacionesTotales = Integer.valueOf(((VistaJuegoModo1)vista).getPenalizacionLabel());
+            
+            ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(valorPenalizacionesTotales - penalizacion));
+            
+        }
+        
+        return true;
         
     }
 
