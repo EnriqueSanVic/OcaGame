@@ -26,6 +26,20 @@ public class DirectivasEvaluacion {
         this.penalizacion = penalizacion;
         this.tirarOtraVez = tirarOtraVez;
     }
+
+    public int getPosicion() {
+        return posicion;
+    }
+
+    public int getPenalizacion() {
+        return penalizacion;
+    }
+
+    public boolean isTirarOtraVez() {
+        return tirarOtraVez;
+    }
+    
+    
     
     
     

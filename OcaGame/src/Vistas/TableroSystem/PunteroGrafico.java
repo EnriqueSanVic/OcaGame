@@ -97,12 +97,12 @@ public class PunteroGrafico extends JLabel implements MouseListener{
 
     @Override
     public void mouseClicked(MouseEvent me) {
-        notificable.eventoToquePuntero();
-        tablero.eliminarPuntero();
     }
 
     @Override
     public void mousePressed(MouseEvent me) {
+        notificable.eventoToquePuntero();
+        tablero.eliminarPuntero();
     }
 
     @Override

@@ -32,11 +32,11 @@ public class LogicaJuegoModo1 extends LogicaJuego{
     @Override
     public DirectivasEvaluacion evaluarTurnoFinal(int jugador) {
         
-        DirectivasEvaluacion directivas = super.evaluarTurnoFinal(jugador);
+      
         
         //en el modo 1 no se actua con la penalizacion, se le retorna al controlador para que el actue
         
-        return new DirectivasEvaluacion(super.getPosicionJugador(jugador),directivas.penalizacion, directivas.tirarOtraVez);
+        return super.evaluarTurnoFinal(jugador);
        
     }
 

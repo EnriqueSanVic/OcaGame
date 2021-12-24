@@ -126,7 +126,7 @@ public abstract class LogicaJuego {
     //el retorno es el numero de casillas de avance o retroceso que se debe usar
     public int mover (int jugador, int casillasDesplazamiento){
         
-        System.out.println("movido jugador " + jugador  + " en " + casillasDesplazamiento);
+        System.out.println("movido logicamente jugador " + jugador  + " en " + casillasDesplazamiento);
         //si se sobrepasa de el limite de casillas se hace el rebote de la ficha
         if(posicionJugador[jugador] + casillasDesplazamiento > tablero.length){
             
@@ -138,6 +138,8 @@ public abstract class LogicaJuego {
         }else{
             posicionJugador[jugador] += casillasDesplazamiento;
         }
+        
+        System.out.println("Quedando logicamente en " + posicionJugador[jugador]);
         
         return posicionJugador[jugador];
         
