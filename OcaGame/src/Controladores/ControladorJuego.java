@@ -68,6 +68,7 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     @Override
     public void actionPerformed(ActionEvent ae) {
             switch (ae.getActionCommand()) {
+                //BOTON LANZAR DADO
                 case Constantes.LANZAR_DADO_COMMAND:
                     lanzarDado();
                 break;
