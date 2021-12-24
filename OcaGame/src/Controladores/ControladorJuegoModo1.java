@@ -78,8 +78,6 @@ public class ControladorJuegoModo1 extends ControladorJuego{
                 
                 
             }
-            
-            
 
         }
 
@@ -161,8 +159,16 @@ public class ControladorJuegoModo1 extends ControladorJuego{
             return false;
             
         }else if(directivas.getPenalizacion() != 0){
-            segundos -= directivas.getPenalizacion() * 10;
-            System.out.println("Penalizacion de " + directivas.getPenalizacion() * 10);
+            
+            int penalizacion = directivas.getPenalizacion() * 10;
+            
+            segundos -= penalizacion;
+                    
+             
+            int valorPenalizacionesTotales = Integer.valueOf(((VistaJuegoModo1)vista).getPenalizacionLabel());
+            
+            ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(valorPenalizacionesTotales - penalizacion));
+            
         }
         
         return true;
