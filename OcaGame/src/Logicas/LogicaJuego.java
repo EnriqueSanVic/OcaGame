@@ -166,6 +166,14 @@ public abstract class LogicaJuego {
         return tablero[posicion];
     }
     
+    public boolean isGanador(int jugador){
+        if(posicionJugador[jugador] == tablero.length - 1){
+            return true;
+        }
+        return false;
+    }
+    
+    
     
     
     

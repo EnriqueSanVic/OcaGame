@@ -28,8 +28,8 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     protected List<Hilo> hilos;
     
     protected int ultimoNumeroDado;
-    
-    public ControladorJuego(){
+        
+    public ControladorJuego(int idioma, String jugador1, String jugador2){
         this.hilos = new ArrayList<Hilo>(); 
 
     }
@@ -84,7 +84,7 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     }
 
     
-    private void lanzarDado() {
+    protected void lanzarDado() {
         
         if(sePuedeTirarDado()){
         
@@ -112,7 +112,10 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     
     public abstract void eventoFinalMovimientoFicha();
     
- 
+    protected void volverMenuInicio(){
+        
+        System.out.println("Menu inicio");
+    }
     
     
 }

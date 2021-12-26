@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -74,7 +75,7 @@ public abstract class VistaJuego extends JFrame{
     private final int BOTON_FOURNIER_X=1175, BOTON_FOURNIER_Y=690; //Posicion del panel del Boton Fournier que despliega las instrucciones de cada casilla.
     private final int BOTON_FOURNIER_WIDTH = 220, BOTON_FOURNIER_HEIGHT =65; //Medidas del Boton Fournier que despliega las instrucciones de cada casilla.
     
-    private final int IDIOMA = 1; //Idioma. 0=español 1=ingles;
+    private final int idioma; //Idioma. 0=español 1=ingles;
     
     //Atributos de la clase.
     protected ControladorJuego controlador;
@@ -116,10 +117,14 @@ public abstract class VistaJuego extends JFrame{
     
     private int numeroFinalDado; //Numero que saldrá en la tirada del dado.
     
+    protected final String[] nombresJugadores;
+    
 
     //Constructor.
-    public VistaJuego(ControladorJuego control){
+    public VistaJuego(ControladorJuego control, int idioma, String jugador1, String jugador2){
         this.controlador = control;
+        this.idioma = idioma;
+        this.nombresJugadores = new String[]{jugador1, jugador2};
         iniciarVista();
     }
 
@@ -138,28 +143,28 @@ public abstract class VistaJuego extends JFrame{
         //Fondo vista Juego
         this.fondoVistaJuego = new PanelFondo(this);
         //MenuItems Partida.
-        this.menuNuevaPartida = new JMenuItem(TextosJuego.MENU_NUEVA_PARTIDA[this.IDIOMA]);
+        this.menuNuevaPartida = new JMenuItem(TextosJuego.MENU_NUEVA_PARTIDA[this.idioma]);
         this.menuNuevaPartida.setMnemonic(KeyEvent.VK_N);
-        this.menuGuardarPartida = new JMenuItem(TextosJuego.MENU_GUARDAR_PARTIDA[this.IDIOMA]);
+        this.menuGuardarPartida = new JMenuItem(TextosJuego.MENU_GUARDAR_PARTIDA[this.idioma]);
         this.menuGuardarPartida.setMnemonic(KeyEvent.VK_G);
-        this.menuCargarPartida = new JMenuItem(TextosJuego.MENU_CARGAR_PARTIDA[this.IDIOMA]);
+        this.menuCargarPartida = new JMenuItem(TextosJuego.MENU_CARGAR_PARTIDA[this.idioma]);
         this.menuCargarPartida.setMnemonic(KeyEvent.VK_C);
-        this.menuSalir = new JMenuItem(TextosJuego.MENU_SALIR[this.IDIOMA]);
+        this.menuSalir = new JMenuItem(TextosJuego.MENU_SALIR[this.idioma]);
         this.menuSalir.setMnemonic(KeyEvent.VK_S); 
         //MenuItems Acciones.
-        this.menuLanzarDado = new JMenuItem(TextosJuego.MENU_LANZAR_DADO[this.IDIOMA]);
+        this.menuLanzarDado = new JMenuItem(TextosJuego.MENU_LANZAR_DADO[this.idioma]);
         this.menuLanzarDado.setMnemonic(KeyEvent.VK_D);
         //Menus.
-        this.menuPartida = new JMenu(TextosJuego.MENU_PARTIDA[this.IDIOMA]);
-        this.menuAcciones = new JMenu(TextosJuego.MENU_ACCIONES[this.IDIOMA]);
+        this.menuPartida = new JMenu(TextosJuego.MENU_PARTIDA[this.idioma]);
+        this.menuAcciones = new JMenu(TextosJuego.MENU_ACCIONES[this.idioma]);
         //MenuBar.
         this.menuBar = new JMenuBar();
         //Panel nombres.
         this.panelNombresJugadores = new PanelNombres();
-        this.jugadoresTitulo = new JLabel(TextosJuego.TITULO_JUGADORES[this.IDIOMA], JLabel.CENTER);
+        this.jugadoresTitulo = new JLabel(TextosJuego.TITULO_JUGADORES[this.idioma], JLabel.CENTER);
         //Panel penalizacion.
         this.panelPenalizaciones = new PanelPenalizaciones();
-        this.penalizacionesTitulo = new JLabel(TextosJuego.LABEL_PENALIZACIONES[this.IDIOMA], JLabel.CENTER);
+        this.penalizacionesTitulo = new JLabel(TextosJuego.LABEL_PENALIZACIONES[this.idioma], JLabel.CENTER);
         
         //Panel dado.
         this.panelDadoCubilete = new JPanel();
@@ -171,7 +176,7 @@ public abstract class VistaJuego extends JFrame{
         //Boton dado.
         this.botonLanzarDado = new JButton();
         //Label Instrucciones.
-        this.labelInstrucciones = new JLabel(TextosJuego.LABEL_INSTRUCCCIONES[this.IDIOMA], JLabel.CENTER);
+        this.labelInstrucciones = new JLabel(TextosJuego.LABEL_INSTRUCCCIONES[this.idioma], JLabel.CENTER);
         //Boton Fournier.
         this.botonFournier = new JButton();
         
@@ -238,7 +243,7 @@ public abstract class VistaJuego extends JFrame{
         //Boton Lanzar Dado.
         this.botonLanzarDado.setFont(this.FUENTE_2);
         this.botonLanzarDado.setForeground(Color.BLACK);
-        this.botonLanzarDado.setText(TextosJuego.BOTON_LANZAR_DADO[this.IDIOMA]);
+        this.botonLanzarDado.setText(TextosJuego.BOTON_LANZAR_DADO[this.idioma]);
         this.botonLanzarDado.setHorizontalTextPosition(SwingConstants.CENTER);
         this.botonLanzarDado.setActionCommand(Constantes.LANZAR_DADO_COMMAND);
         this.botonLanzarDado.setIcon(ICONO_BOTON_TIRAR);
@@ -417,7 +422,7 @@ public abstract class VistaJuego extends JFrame{
 
     //Metodo que devuelve el idioma escogido por el usuario.
     public int getIdioma() {
-        return this.IDIOMA;
+        return this.idioma;
     }
    
     
@@ -431,6 +436,25 @@ public abstract class VistaJuego extends JFrame{
     
     public void eliminarPuntero(){
         tablero.eliminarPuntero();
+    }
+    
+    //retorna true si el jugador quiere salir al menu o false si no quiere
+    public boolean mensajeFinPartida(int jugador, boolean victoria){
+        
+        String mensaje = TextosJuego.MENSAJE_JUGADOR_INICIO[idioma] + this.nombresJugadores[jugador];
+        
+        mensaje += victoria ? TextosJuego.MENSAJE_VICTORIA[idioma]:TextosJuego.MENSAJE_DERROTA[idioma]; 
+        
+        mensaje += "\n" + TextosJuego.MENSAEJ_PREGUNTA_VOLVER_MENU[idioma];
+        
+        int opcion =  JOptionPane.showConfirmDialog(this, mensaje);
+        
+        if(opcion == JOptionPane.YES_OPTION){
+            return true;
+        }
+        
+        return false;
+        
     }
    
 }

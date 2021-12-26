@@ -11,7 +11,7 @@ import Controladores.ControladorJuegoModo1;
 public class OcaGame {
 
     public static void main(String[] args) {
-        ControladorJuego controlador = new ControladorJuegoModo1();
+        ControladorJuego controlador = new ControladorJuegoModo1(0, "kike", "alvaro");
     }
     
 }

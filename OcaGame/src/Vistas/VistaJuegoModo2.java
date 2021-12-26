@@ -73,8 +73,8 @@ public class VistaJuegoModo2 extends VistaJuego{
     private ImageIcon iconoFicha2;
     
     //Constructor.
-    public VistaJuegoModo2(ControladorJuego control) {
-        super(control);
+    public VistaJuegoModo2(ControladorJuego control, int idioma, String jugador1, String jugador2) {
+        super(control, idioma, jugador1, jugador2);
     }
 
     //Metodo que instancia los atributos necesarios de la clase.
@@ -92,10 +92,10 @@ public class VistaJuegoModo2 extends VistaJuego{
         
         //Panel nombres Jugadores. 
         this.fichaNombreJ1 = new JLabel();
-        this.nombreJugador1 = new JLabel("Alvaro", JLabel.LEFT);
+        this.nombreJugador1 = new JLabel(super.nombresJugadores[0], JLabel.LEFT);
         
         this.fichaNombreJ2 = new JLabel();
-        this.nombreJugador2 = new JLabel("Enrique", JLabel.LEFT);
+        this.nombreJugador2 = new JLabel(super.nombresJugadores[1], JLabel.LEFT);
         
         //Panel penalizacion J1.
         this.panelPenalizacionJ1 = new JPanel();

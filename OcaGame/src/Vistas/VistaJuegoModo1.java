@@ -46,7 +46,10 @@ public class VistaJuegoModo1 extends VistaJuego{
     
     private final int LABEL_SEC_TEMPORIZADOR_X=0, LABEL_SEC_TEMPORIZADOR_Y=60; //Posicion del Label con el titulo seg/sec del Temporizador.
     private final int LABEL_SEC_TEMPORIZADOR_WIDTH = 200, LABEL_SEC_TEMPORIZADOR_HEIGHT = 50; //Medidas del Label con el titulo seg/sec del Temporizador.
-    //Atributos de la clase.
+    
+    private final Color COLOR_PELIGRO = Color.RED;
+    
+//Atributos de la clase.
     private ImageIcon iconoFichaJ1;
     private JLabel fichaNombreJ1;
     private JLabel nombreJugador1;
@@ -59,12 +62,10 @@ public class VistaJuegoModo1 extends VistaJuego{
     private JPanel panelTemporizador;
     private JLabel segundosTemporizador; 
     private JLabel labelSegundosTemporizador;
- 
-    private Timer timer;
-    
+     
     //Constructor.
-    public VistaJuegoModo1(ControladorJuego control) {
-        super(control);
+    public VistaJuegoModo1(ControladorJuego control, int idioma,String jugador1, String jugador2) {
+        super(control, idioma, jugador1, jugador2);
         //solo iniciarTemporizador es un metodo del propio del constructor de esta clase
     }
     
@@ -80,7 +81,7 @@ public class VistaJuegoModo1 extends VistaJuego{
         //Icono y nombre J1.
         this.iconoFichaJ1 = new ImageIcon(Constantes.PATH_ICONO_FICHA_GRANDEJ1);
         this.fichaNombreJ1 = new JLabel();
-        this.nombreJugador1 = new JLabel("Alvaro", JLabel.CENTER); //Viene desde vista inicio la cadena
+        this.nombreJugador1 = new JLabel(super.nombresJugadores[0], JLabel.CENTER); //Viene desde vista inicio la cadena
         //Penalizaciones.
         this.panelPenalizacion = new JPanel();
         this.cuentaAtrasLabel = new JLabel(TextosJuego.LABEL_CUENTA_ATRAS_TEMPORIZADOR[super.getIdioma()], JLabel.CENTER);
@@ -88,7 +89,7 @@ public class VistaJuegoModo1 extends VistaJuego{
         this.labelSegundosPenalizacion = new JLabel(TextosJuego.LABEL_SEGUNDOS_TEMPORIZADOR[super.getIdioma()], JLabel.CENTER);
         //Temporizador.
         this.panelTemporizador = new JPanel();
-        this.segundosTemporizador = new JLabel("200", JLabel.CENTER);
+        this.segundosTemporizador = new JLabel("", JLabel.CENTER);
         this.labelSegundosTemporizador = new JLabel(TextosJuego.LABEL_SEGUNDOS_TEMPORIZADOR[super.getIdioma()], JLabel.CENTER);
     }
     
@@ -179,6 +180,10 @@ public class VistaJuegoModo1 extends VistaJuego{
     //Setter texto label penalizacion (200seg)
     public void setSegundosTemporizador(String segundosTemporizador) {
         this.segundosTemporizador.setText(segundosTemporizador);
+    }
+    
+    public void cambiarColorFinTemporizador(){
+        segundosTemporizador.setForeground(COLOR_PELIGRO);
     }
     
     public void iniciarJugadorSalida(){

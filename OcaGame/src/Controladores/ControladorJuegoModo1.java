@@ -22,20 +22,24 @@ public class ControladorJuegoModo1 extends ControladorJuego{
 
     private int segundos;
     
-    private int casillaDestino, avanceAuto;
+    private int casillaDestino, avanceAuto, retrocesoAcumuladoCasillaFin;
     
-    private boolean iniciarTurno, controlAutomatico;
+    private boolean iniciarTurno, controlAutomatico, reevaluarDespuesDeAuto, enJuego, victoria;
     
-    public ControladorJuegoModo1() {
-        super();
+    public ControladorJuegoModo1(int idioma, String jugador1, String jugador2) {
         
-        this.vista = new VistaJuegoModo1(this);
+        super(idioma,jugador1, jugador2);
+        
+        this.vista = new VistaJuegoModo1(this, idioma, jugador1, jugador2);
         this.logica = new LogicaJuegoModo1();
         
         segundos = SEGUNDOS_INICIO;
         
+        retrocesoAcumuladoCasillaFin = 0;
+        
         iniciarTurno = true;
         controlAutomatico = false;
+        victoria = false;
         
         iniciarPartida();
     }
@@ -47,6 +51,7 @@ public class ControladorJuegoModo1 extends ControladorJuego{
         
         ((VistaJuegoModo1)vista).iniciarJugadorSalida();
         
+        enJuego = true;
         
     }
     
@@ -68,13 +73,22 @@ public class ControladorJuegoModo1 extends ControladorJuego{
             
             casillaDestino = logica.getPosicionJugador(Constantes.JUGADOR_1) + this.ultimoNumeroDado;
            
+            
             //si es un tiro sin rebote por sobrepasamiento 
-            if(casillaDestino <= 63){
+            if(casillaDestino < 62){
                 vista.crearPuntero(casillaDestino, this);
                 
                 //si es un tiro sobrepasao
             }else{
+                
+                //vamos a hacer que llege hasta el final y retroceda las acumuladas
+                
+                
+                retrocesoAcumuladoCasillaFin = -(casillaDestino - 62);
+                        
+                casillaDestino = 62;
             
+                vista.crearPuntero(62, this);
                 
                 
             }
@@ -93,14 +107,47 @@ public class ControladorJuegoModo1 extends ControladorJuego{
     @Override
     public void eventoFinalMovimientoFicha() {
         
-        if (controlAutomatico) {
+        //si es un tiro con retroceso 
+        if(retrocesoAcumuladoCasillaFin != 0){
+            
+            /*Cuando el tiro es con retorceso nunca se pone logicamente en la ultima 
+            casilla si no que solo se realiza el movimiento gráficamente*/
+            casillaDestino += retrocesoAcumuladoCasillaFin;
+            
+            avanceAuto =   (62 + retrocesoAcumuladoCasillaFin) - logica.getPosicionJugador(Constantes.JUGADOR_1);
+            
+            retrocesoAcumuladoCasillaFin = 0;
+            
+            controlAutomatico = true;
+            
+            reevaluarDespuesDeAuto = true;
+ 
+            vista.mover(Constantes.JUGADOR_1, casillaDestino);
+
+            
+        //si es un tiro con control automático
+        }else if (controlAutomatico) {
             
             controlAutomatico = false;
             
             logica.mover(Constantes.JUGADOR_1, avanceAuto);
             
-            iniciarTurno = true;
             
+            if(reevaluarDespuesDeAuto){
+            
+                reevaluarDespuesDeAuto = false;
+                
+                DirectivasEvaluacion directivas = ((LogicaJuegoModo1) logica).evaluarTurnoFinal(Constantes.JUGADOR_1);
+
+                iniciarTurno = evaluardirectivas(directivas);
+                
+                
+            }else{
+                iniciarTurno = true;
+            }
+            
+            
+        //si es un tiro normal
         } else {
             //se mueve lógicamente el jugador hasta la casilla
             logica.mover(Constantes.JUGADOR_1, ultimoNumeroDado);
@@ -111,48 +158,57 @@ public class ControladorJuegoModo1 extends ControladorJuego{
             iniciarTurno = evaluardirectivas(directivas);
 
         }
+        
+        
+        
+        if(logica.isGanador(Constantes.JUGADOR_1)){
+             finalizarPartidaPorMeta();
+        }
        
     }
 
     private void iniciarTemporizador() {
         //Se repite a cada segundo.
         this.timer = new Timer(1000, new ActionListener() {
+            
+            private boolean cambioColor = false;
+            
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
                 
+                
                 if(segundos>0){
                     segundos-=1; //Resto un segundo en el label
-                    ((VistaJuegoModo1)vista).setSegundosTemporizador(String.valueOf(segundos));                   
+                    ((VistaJuegoModo1)vista).setSegundosTemporizador(String.valueOf(segundos));        
+                    
+                    if(!cambioColor && segundos < 10){
+                        ((VistaJuegoModo1)vista).cambiarColorFinTemporizador();
+                        cambioColor = true;
+                    }
+                    
                 }else{
-                    finalizarPartida();
+                    
+                    finalizarPartidaPorTiempo();
                 }
             }
         });
         this.timer.start(); //Iniciamos el temporizador
     }
     
-    //accion de fin de partida ya sea por tiempo o por ganar
-    private void finalizarPartida(){
-        timer.stop();
-        
-        
-    }
+    
 
     //retorna si se ha terminado el turno actual o no
     private boolean evaluardirectivas(DirectivasEvaluacion directivas) {
+        
         
         //en el modo un jugador no se evalua el tira otra vez por que siempre tira otra vez
         
         if(directivas.getPosicion() != 0){
             
-            System.out.println("Movimiento auto de " + directivas.getPosicion());
-            
             controlAutomatico = true;
             
             avanceAuto = directivas.getPosicion();
-            
-            System.out.println("Avance auto " + avanceAuto);
             
             vista.mover(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1) + avanceAuto);
 
@@ -172,6 +228,57 @@ public class ControladorJuegoModo1 extends ControladorJuego{
         }
         
         return true;
+        
+    }
+
+    //accion de fin de partida ya sea por tiempo o por ganar
+    private void finalizarPartidaPorTiempo(){
+        
+        rutinaFinPartida();
+        
+        enJuego = false;
+        
+        victoria = false;
+        
+        evaluarFinal();
+        
+        
+    }
+    
+    private void finalizarPartidaPorMeta(){
+    
+        //si se llega a la meta todavía tiene que haber segundos en el contador
+        
+        rutinaFinPartida();
+        
+        if(segundos > 0){
+            
+            enJuego = false;
+            
+            victoria = true;
+            
+        }
+        
+        evaluarFinal();
+        
+    }
+     
+    private void rutinaFinPartida(){
+        
+        timer.stop();
+        
+        vista.bloquearBoton(false);
+        
+        iniciarTurno = false;
+
+    }
+    
+    private void evaluarFinal() {
+        
+        if(vista.mensajeFinPartida(Constantes.JUGADOR_1, victoria)){
+            super.volverMenuInicio();
+        }
+        
         
     }
 
