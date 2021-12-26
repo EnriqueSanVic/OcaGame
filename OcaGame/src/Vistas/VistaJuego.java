@@ -3,12 +3,14 @@ package Vistas;
 
 import Vistas.TableroSystem.Tablero;
 import Controladores.ControladorJuego;
+import Controladores.ControladorMenu;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import Utilidades.UtilidadesGraficas;
 import Vistas.TableroSystem.NotificableTablero;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -22,6 +24,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
@@ -77,8 +80,13 @@ public abstract class VistaJuego extends JFrame{
     
     private final int idioma; //Idioma. 0=español 1=ingles;
     
+    
+
+    
     //Atributos de la clase.
     protected ControladorJuego controlador;
+    
+    protected ControladorMenu controladorMenu;
     
     private PanelFondo fondoVistaJuego;
     
@@ -123,6 +131,7 @@ public abstract class VistaJuego extends JFrame{
     //Constructor.
     public VistaJuego(ControladorJuego control, int idioma, String jugador1, String jugador2){
         this.controlador = control;
+        this.controladorMenu = new ControladorMenu(controlador);
         this.idioma = idioma;
         this.nombresJugadores = new String[]{jugador1, jugador2};
         iniciarVista();
@@ -204,14 +213,29 @@ public abstract class VistaJuego extends JFrame{
         //MenuItems
         this.menuNuevaPartida.setFont(this.FUENTE_1);
         this.menuNuevaPartida.setBackground(COLOR_MENU_BAR);
+        this.menuNuevaPartida.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+        this.menuNuevaPartida.setActionCommand(Constantes.NUEVA_PARTIDA_COMMAND);
+        
         this.menuGuardarPartida.setFont(this.FUENTE_1);
         this.menuGuardarPartida.setBackground(COLOR_MENU_BAR);
+        this.menuGuardarPartida.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_G, ActionEvent.CTRL_MASK));
+        this.menuGuardarPartida.setActionCommand(Constantes.GUARDAR_PARTIDA_COMMAND);
+        
         this.menuCargarPartida.setFont(this.FUENTE_1);
         this.menuCargarPartida.setBackground(COLOR_MENU_BAR);
+        this.menuCargarPartida.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+        this.menuCargarPartida.setActionCommand(Constantes.CARGAR_PARTIDA_COMMAND);
+        
         this.menuSalir.setFont(this.FUENTE_1);
         this.menuSalir.setBackground(COLOR_MENU_BAR);
+        this.menuSalir.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, ActionEvent.CTRL_MASK));
+        this.menuSalir.setActionCommand(Constantes.SALIR_PARTIDA_COMMAND);
+        
         this.menuLanzarDado.setFont(this.FUENTE_1);
         this.menuLanzarDado.setBackground(COLOR_MENU_BAR);
+        this.menuLanzarDado.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+        this.menuLanzarDado.setActionCommand(Constantes.LANZAR_DADO_COMMAND);
+        
         //Panel de nombres.
         this.blackline = BorderFactory.createLineBorder(Color.BLACK);
         this.panelNombresJugadores.setBorder(this.blackline);
@@ -303,6 +327,7 @@ public abstract class VistaJuego extends JFrame{
             acciones del juego
         */
         this.botonFournier.addMouseListener(new MouseAdapter() {
+            
             private final int HUNDIMIENTO_BOTON = 5;
 
             @Override
@@ -364,7 +389,17 @@ public abstract class VistaJuego extends JFrame{
 
     //Metodo que añade el escuchador necesario a ciertos elemento.
     protected void anadirEscuchadores() {
+        
+        this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(this.controlador);
+        
+        this.menuNuevaPartida.addActionListener(controladorMenu);
+        this.menuGuardarPartida.addActionListener(controladorMenu);
+        this.menuCargarPartida.addActionListener(controladorMenu);
+        this.menuSalir.addActionListener(controladorMenu);
+        this.menuLanzarDado.addActionListener(controladorMenu);
+
+
         this.botonLanzarDado.addActionListener(this.controlador);
         this.botonFournier.addActionListener(this.controlador);
     }
@@ -448,6 +483,19 @@ public abstract class VistaJuego extends JFrame{
         mensaje += "\n" + TextosJuego.MENSAEJ_PREGUNTA_VOLVER_MENU[idioma];
         
         int opcion =  JOptionPane.showConfirmDialog(this, mensaje);
+        
+        if(opcion == JOptionPane.YES_OPTION){
+            return true;
+        }
+        
+        return false;
+        
+    }
+    
+    //retorna true si el jugador quiere salir al menu o false si no quiere
+    public boolean mensajeSalirPartida(){
+
+        int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_SALIR_PARTIDA[idioma]);
         
         if(opcion == JOptionPane.YES_OPTION){
             return true;

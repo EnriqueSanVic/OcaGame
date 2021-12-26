@@ -39,6 +39,8 @@ public class TextosJuego {
     public static final String[] MENSAJE_DERROTA= {" ha perdido.", " has lost."};
     public static final String[] MENSAEJ_PREGUNTA_VOLVER_MENU= {"¿Deseas volver a menú de inicio?.", "Do you want to return to the start menu?."};
     
+    public static final String[] MENSAJE_SALIR_PARTIDA = {"¿Seguro/a que quieres terminar la partida?.", "Are you sure you want to finish the game?."};
+
     
     //Constructor.
     public TextosJuego(){

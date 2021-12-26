@@ -59,7 +59,6 @@ public class ManejadorFicha extends Thread implements Hilo{
     
     private void moverAlante(){
         
-        System.out.println("Alante");
         
         while(ficha.getCasillaActual() <  casillaDestino){
              

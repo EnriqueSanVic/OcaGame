@@ -118,7 +118,18 @@ public abstract class LogicaJuego {
 
     //retorna numero de 1 al 6 como un dado clasico
     public int tirarDado(){
-        return random.nextInt(6) + 1;
+        
+        int numero;
+        
+        //hay un 5% de probavilidades de que salga una tirada de 7
+        if(random.nextInt(100) > 95){
+            numero = 7;
+        }else{
+            numero = random.nextInt(6) + 1;
+        }
+
+        return numero;
+        
     }
     
     
@@ -126,7 +137,6 @@ public abstract class LogicaJuego {
     //el retorno es el numero de casillas de avance o retroceso que se debe usar
     public int mover (int jugador, int casillasDesplazamiento){
         
-        System.out.println("movido logicamente jugador " + jugador  + " en " + casillasDesplazamiento);
         //si se sobrepasa de el limite de casillas se hace el rebote de la ficha
         if(posicionJugador[jugador] + casillasDesplazamiento > tablero.length){
             
@@ -139,7 +149,6 @@ public abstract class LogicaJuego {
             posicionJugador[jugador] += casillasDesplazamiento;
         }
         
-        System.out.println("Quedando logicamente en " + posicionJugador[jugador]);
         
         return posicionJugador[jugador];
         

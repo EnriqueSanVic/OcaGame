@@ -176,11 +176,10 @@ public class ControladorJuegoModo1 extends ControladorJuego{
             @Override
             public void actionPerformed(ActionEvent ae) {
                 
-                
-                
+                ((VistaJuegoModo1)vista).setSegundosTemporizador(String.valueOf(segundos));        
+
                 if(segundos>0){
                     segundos-=1; //Resto un segundo en el label
-                    ((VistaJuegoModo1)vista).setSegundosTemporizador(String.valueOf(segundos));        
                     
                     if(!cambioColor && segundos < 10){
                         ((VistaJuegoModo1)vista).cambiarColorFinTemporizador();
@@ -188,7 +187,6 @@ public class ControladorJuegoModo1 extends ControladorJuego{
                     }
                     
                 }else{
-                    
                     finalizarPartidaPorTiempo();
                 }
             }
@@ -279,6 +277,21 @@ public class ControladorJuegoModo1 extends ControladorJuego{
             super.volverMenuInicio();
         }
         
+        
+    }
+
+    @Override
+    public void nuevaPartida() {
+        
+    }
+
+    @Override
+    public void guardarPartida() {
+        
+    }
+
+    @Override
+    public void cargarPartida() {
         
     }
 

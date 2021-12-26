@@ -30,13 +30,17 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     protected int ultimoNumeroDado;
         
     public ControladorJuego(int idioma, String jugador1, String jugador2){
-        this.hilos = new ArrayList<Hilo>(); 
+        this.hilos = new ArrayList<Hilo>();
 
     }
     
     
     public void aniadirHilo(Hilo hilo){
         this.hilos.add(hilo);
+    }
+    
+    public void eliminarHilo(Hilo hilo){
+        this.hilos.remove(hilo);
     }
     
     
@@ -52,9 +56,13 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     //protocolo de cierre de todos los hilos
     public void protocoloCierre(){
         
-       matarHilos();
-       
-       System.exit(0);
+       if(vista.mensajeSalirPartida()){
+           
+           matarHilos();
+           System.exit(0);
+           
+       }
+ 
         
     }
     
@@ -105,12 +113,23 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     protected abstract boolean sePuedeTirarDado();
     
     protected abstract void iniciarPartida();
+    
+    //eventos del flujo de ejecución del turno
 
     public abstract void eventoFinalizacionDado();
 
     public abstract void eventoToquePuntero();
     
     public abstract void eventoFinalMovimientoFicha();
+    
+    //acciones 
+    
+    public abstract void nuevaPartida();
+    
+    public abstract void guardarPartida();
+    
+    public abstract void cargarPartida();
+
     
     protected void volverMenuInicio(){
         

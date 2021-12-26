@@ -45,4 +45,13 @@ public class Constantes {
     
     public static final String LANZAR_DADO_COMMAND = "DaDo_.CommanD";
     public static final String ABRIR_INSTRUCCIONES_COMMAND = "AbriR_-InstruCiOneS";
+    public static final String NUEVA_PARTIDA_COMMAND = "Nue$-va_Partida";
+    public static final String GUARDAR_PARTIDA_COMMAND = "G.uarDar_Partida";
+    public static final String CARGAR_PARTIDA_COMMAND = "Ca%gar_Partida";
+    public static final String SALIR_PARTIDA_COMMAND = "$alIr_Partida";
+
+
+
+
+    
 }
