@@ -76,7 +76,7 @@ public class VistaJuegoModo1 extends VistaJuego{
         super.crearObjetos();
         
         //Tablero Oca.
-        this.tablero = new Tablero(1, controlador);
+        this.tablero = new Tablero(1, controlador, controlador);
         
         //Icono y nombre J1.
         this.iconoFichaJ1 = new ImageIcon(Constantes.PATH_ICONO_FICHA_GRANDEJ1);

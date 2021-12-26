@@ -4,6 +4,7 @@ package Controladores;
 
 import DatosEstaticos.Constantes;
 import Hilos.Hilo;
+import Hilos.RegistradorHilos;
 import Logicas.LogicaJuego;
 import Vistas.TableroSystem.NotificableTablero;
 import Vistas.VistaInstrucciones;
@@ -14,12 +15,13 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Timer;
 
 /**
  *
  * @author Enrique Sánchez 
  */
-public abstract class ControladorJuego extends WindowAdapter implements ActionListener, NotificableTablero{
+public abstract class ControladorJuego extends WindowAdapter implements ActionListener, NotificableTablero, RegistradorHilos{
 
     protected LogicaJuego logica;
     
@@ -31,7 +33,29 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
         
     public ControladorJuego(int idioma, String jugador1, String jugador2){
         this.hilos = new ArrayList<Hilo>();
-
+        
+        //Si se quieren monitorizar los hilos activos en cada momento llamar a esta función
+        //debugearHilos();
+                
+    }
+    
+    private void debugearHilos(){
+        
+        Timer pr= new Timer(500, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                
+                for(Hilo i:hilos){
+                    System.out.println("hilo - " + i);
+                }
+                
+                System.out.print("\n");
+                
+            }
+        });
+        
+        pr.start();
+        
     }
     
     
@@ -67,7 +91,7 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     }
     
     //metodo para matar todos los hilos del programa
-    private void matarHilos(){
+    protected void matarHilos(){
         for (Hilo i:hilos) {
             i.matar();
         }

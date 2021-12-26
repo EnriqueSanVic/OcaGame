@@ -9,8 +9,9 @@ package Hilos;
  *
  * @author Enrique Sánchez
  */
-public interface Hilo {
+public interface RegistradorHilos {
     
-    void matar();
-
+    void aniadirHilo(Hilo hilo);
+    void eliminarHilo(Hilo hilo);
+    
 }

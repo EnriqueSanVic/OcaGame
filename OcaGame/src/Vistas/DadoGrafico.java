@@ -303,6 +303,12 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     public void setPosicionDado_Y(int posicionY) {
         this.posicion_Dado_Y = posicionY;
     }
+
+    @Override
+    public String toString() {
+        return "DadoGrafico";
+    }
    
+    
 
 }

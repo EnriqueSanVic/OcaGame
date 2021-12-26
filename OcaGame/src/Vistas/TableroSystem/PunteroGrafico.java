@@ -2,6 +2,8 @@
 
 package Vistas.TableroSystem;
 
+import Hilos.Hilo;
+import Hilos.RegistradorHilos;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,7 +17,7 @@ import javax.swing.Timer;
  *
  * @author Enrique Sánchez 
  */
-public class PunteroGrafico extends JLabel implements MouseListener{
+public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
     
     public static final String ID = "puntero";
     
@@ -32,15 +34,18 @@ public class PunteroGrafico extends JLabel implements MouseListener{
     
     private NotificableTablero notificable;
     
+    private RegistradorHilos registrador;
+    
     private boolean estadoImagen;
     
     private Tablero tablero;
             
 
-    public PunteroGrafico(Point centro, NotificableTablero notificable, Tablero tablero) {
+    public PunteroGrafico(Point centro, NotificableTablero notificable, RegistradorHilos registrador, Tablero tablero) {
         super();
         
         this.notificable = notificable;
+        this.registrador = registrador;
         this.tablero = tablero;
         
         imagenClara = new ImageIcon(PUNTERO_IMAGE_PATH);
@@ -93,6 +98,7 @@ public class PunteroGrafico extends JLabel implements MouseListener{
     
     public void parar(){
         hiloGUI.stop();
+        registrador.eliminarHilo(this);
     }
 
     @Override
@@ -115,6 +121,16 @@ public class PunteroGrafico extends JLabel implements MouseListener{
 
     @Override
     public void mouseExited(MouseEvent me) {
+    }
+
+    @Override
+    public void matar() {
+        parar();
+    }
+    
+    @Override
+    public String toString() {
+        return "PunteroGrafico";
     }
     
     

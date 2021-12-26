@@ -45,6 +45,14 @@ public class ControladorJuegoModo1 extends ControladorJuego{
     }
 
     @Override
+    protected void matarHilos() {
+        super.matarHilos();
+        timer.stop();
+    }
+    
+    
+
+    @Override
     protected void iniciarPartida() {
         
         iniciarTemporizador();

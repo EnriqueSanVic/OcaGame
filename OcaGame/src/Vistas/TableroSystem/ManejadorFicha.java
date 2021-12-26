@@ -4,6 +4,7 @@ package Vistas.TableroSystem;
 
 import Vistas.TableroSystem.Ficha;
 import Hilos.Hilo;
+import Hilos.RegistradorHilos;
 import java.awt.Point;
 
 
@@ -13,8 +14,6 @@ import java.awt.Point;
  * @author Enrique Sánchez 
  */
 public class ManejadorFicha extends Thread implements Hilo{
-
-    private boolean activado, corriendo;
     
     private Ficha ficha;
     
@@ -25,13 +24,16 @@ public class ManejadorFicha extends Thread implements Hilo{
     private CasillaGrafica[] casillas;
     
     private NotificableTablero notificable;
+    
+    private RegistradorHilos registrador;
 
-    public ManejadorFicha(int casillaDestino, Ficha ficha, CasillaGrafica[] casillas, NotificableTablero notificable) {
+    public ManejadorFicha(int casillaDestino, Ficha ficha, CasillaGrafica[] casillas, NotificableTablero notificable, RegistradorHilos registrador) {
         
         this.casillaDestino = casillaDestino;
         this.ficha = ficha;
         this.casillas = casillas;
         this.notificable = notificable;
+        this.registrador = registrador;
         
         this.setPriority(Thread.MAX_PRIORITY);
     }
@@ -52,6 +54,8 @@ public class ManejadorFicha extends Thread implements Hilo{
             moverAtras();
             
         }
+        
+        registrador.eliminarHilo(this);
         
         
     }
@@ -133,13 +137,10 @@ public class ManejadorFicha extends Thread implements Hilo{
         
     }
     
-    public void iniciar(){
-        activado = true;
-    }
-
+    
     @Override
     public void matar() {
-        activado = false;
+        //es un hilo que no tiene un bule de ejecución por lo que simepre podemos asegurar que se destruye solo eventualmente
     }
 
     public void setFicha(Ficha ficha) {
@@ -226,6 +227,11 @@ public class ManejadorFicha extends Thread implements Hilo{
         
         
         
+    }
+    
+    @Override
+    public String toString() {
+        return "ManejadorFicha";
     }
 
     

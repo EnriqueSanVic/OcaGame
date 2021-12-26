@@ -2,6 +2,7 @@
 package Vistas.TableroSystem;
 
 import DatosEstaticos.Constantes;
+import Hilos.RegistradorHilos;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -22,6 +23,8 @@ public class Tablero extends JPanel{
     protected final int WIDTH = 800;
     
     private NotificableTablero notificable;
+    
+    private RegistradorHilos registradorHilos;
 
     protected Ficha ficha1, ficha2;
     
@@ -29,9 +32,15 @@ public class Tablero extends JPanel{
     
     private CasillaGrafica[] casillas;
     
-    public Tablero(int jugadores, NotificableTablero notificable) {
+    public Tablero(int jugadores, NotificableTablero notificable, RegistradorHilos registradorHilos) {
         
+        /*
+            Aunque en el sistema el notificable y el registradorHilos sean el mismo objeto controlador, 
+            los he querido dividir en dos parametros para hacer la clase tablero más reutilizable por si 
+            se quisieran dividir en dos instancias de objetos distintos en otra ocasión.
+        */
         this.notificable = notificable;
+        this.registradorHilos = registradorHilos;
 
         //se carga la imagen del tablero
         try {
@@ -229,7 +238,9 @@ public class Tablero extends JPanel{
             puntero = null;
         }
         
-        puntero = new PunteroGrafico(casillas[nCasilla].getCentroAbsoluto(), escuchadorPuntero, this);
+        puntero = new PunteroGrafico(casillas[nCasilla].getCentroAbsoluto(), escuchadorPuntero, registradorHilos, this);
+        
+        registradorHilos.aniadirHilo(puntero);
         
         this.add(puntero);
         
@@ -266,7 +277,11 @@ public class Tablero extends JPanel{
             ficha = ficha2;
         }
         
-        new ManejadorFicha(destino, ficha, casillas, notificable).start();
+        ManejadorFicha manejador = new ManejadorFicha(destino, ficha, casillas, notificable, registradorHilos);
+        
+        registradorHilos.aniadirHilo(manejador);
+        
+        manejador.start();
         
     }
 
