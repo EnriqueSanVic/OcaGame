@@ -3,7 +3,6 @@ package Vistas;
 
 import DatosEstaticos.Constantes;
 import Utilidades.UtilidadesGraficas;
-import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;

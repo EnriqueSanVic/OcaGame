@@ -444,7 +444,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.add(this.fondoVistaJuego);
     }
 
-    //Metodo que añade el escuchador necesario a ciertos elemento.
+    //Metodo que añade el escuchador necesario a ciertos elementos.
     protected void anadirEscuchadores() {
         
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

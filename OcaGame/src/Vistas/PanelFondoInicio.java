@@ -12,26 +12,25 @@ import javax.swing.JPanel;
 /**
  * @autor: Alvaro
  */
-public class PanelFondo extends JPanel{
+public class PanelFondoInicio extends JPanel{
     
-    private BufferedImage imagenFondoVistaJuego;
-    private VistaJuego vistaPadre;
+    private BufferedImage imagenFondoInicio;
+    private VistaInicio vistaPadre;
     
-    public PanelFondo(VistaJuego vistaPadre) {
+    public PanelFondoInicio(VistaInicio vistaPadre) {
         super();
         this.vistaPadre = vistaPadre;
-        //Imagen Fondo Juego.
+        //Imagen Fondo Inicio.
         try {
-            this.imagenFondoVistaJuego = ImageIO.read(new File(Constantes.PATH_ICONO_FONDO_VISTAJUEGO));
+            this.imagenFondoInicio = ImageIO.read(new File(Constantes.PATH_ICONO_FONDO_INICIO));
         } catch (IOException ex) {
-            System.out.println("Error de carga de imagen fondo vistaJuego");
+            System.out.println("Error de carga de imagen fondo inicio");
         }
     }
 
     @Override
     public void paintComponent(Graphics grphcs) {
         super.paintComponent(grphcs); 
-        grphcs.drawImage(imagenFondoVistaJuego, 0, 0, this);
+        grphcs.drawImage(imagenFondoInicio, 0, 0, this);
     }
-
 }
