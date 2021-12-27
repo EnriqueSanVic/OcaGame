@@ -38,7 +38,7 @@ public class ReproductorSonido extends Thread implements Hilo{
 
                 clip.open(inputStream);
 
-                clip.loop(Clip.LOOP_CONTINUOUSLY);
+                clip.loop(Clip.LOOP_CONTINUOUSLY); //Para que se repita la cancion infinitamente mientras el juego este abierto.
 
                 clip.start();
 
