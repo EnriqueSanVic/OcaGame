@@ -14,6 +14,9 @@ import Vistas.TableroSystem.NotificableTablero;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -22,6 +25,8 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowStateListener;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -214,6 +219,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         this.setResizable(true);
         this.setMinimumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
+        this.setIconImage(this.getIconImage());
         UtilidadesGraficas.ponerMedioPantalla(this);
         
         //Fondo Vista Juego
@@ -375,6 +381,14 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
             }
         });
     }
+    
+    //Metodo sobreescrito para cambiar el icono del juego.
+    @Override
+    public Image getIconImage() {
+        Image iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA);
+        return iconoJuego;
+    }
+    
 
     //Metodo que añade elementos a la vista general del juego.
     protected void anadirObjetos() {
