@@ -118,6 +118,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     private JMenuItem menuSalir;
     
     private JMenuItem menuLanzarDado;
+    private JMenuItem menuPantallaCompleta;
     
     private PanelNombres panelNombresJugadores;
     private JLabel jugadoresTitulo;
@@ -136,6 +137,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     private JLabel labelInstrucciones;
     private JButton botonFournier;
     
+    private boolean pantallaCompleta;
     
     private boolean impulsoTirarDado; //Impulso de tirada de dado. 0= no hay; 1= si hay;
     
@@ -150,6 +152,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.controladorMenu = new ControladorMenu(controlador);
         this.idioma = idioma;
         this.nombresJugadores = new String[]{jugador1, jugador2};
+        this.pantallaCompleta = false;
         iniciarVista();
     }
 
@@ -169,16 +172,12 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.fondoVistaJuego = new PanelFondo(this);
         //MenuItems Partida.
         this.menuNuevaPartida = new JMenuItem(TextosJuego.MENU_NUEVA_PARTIDA[this.idioma]);
-        this.menuNuevaPartida.setMnemonic(KeyEvent.VK_N);
         this.menuGuardarPartida = new JMenuItem(TextosJuego.MENU_GUARDAR_PARTIDA[this.idioma]);
-        this.menuGuardarPartida.setMnemonic(KeyEvent.VK_G);
         this.menuCargarPartida = new JMenuItem(TextosJuego.MENU_CARGAR_PARTIDA[this.idioma]);
-        this.menuCargarPartida.setMnemonic(KeyEvent.VK_C);
         this.menuSalir = new JMenuItem(TextosJuego.MENU_SALIR[this.idioma]);
-        this.menuSalir.setMnemonic(KeyEvent.VK_S); 
         //MenuItems Acciones.
         this.menuLanzarDado = new JMenuItem(TextosJuego.MENU_LANZAR_DADO[this.idioma]);
-        this.menuLanzarDado.setMnemonic(KeyEvent.VK_D);
+        this.menuPantallaCompleta = new JMenuItem(TextosJuego.MENU_PANTALLA_COMPLETA[this.idioma]);
         //Menus.
         this.menuPartida = new JMenu(TextosJuego.MENU_PARTIDA[this.idioma]);
         this.menuAcciones = new JMenu(TextosJuego.MENU_ACCIONES[this.idioma]);
@@ -254,6 +253,11 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.menuLanzarDado.setBackground(COLOR_MENU_BAR);
         this.menuLanzarDado.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
         this.menuLanzarDado.setActionCommand(Constantes.LANZAR_DADO_COMMAND);
+        
+        this.menuPantallaCompleta.setFont(this.FUENTE_1);
+        this.menuPantallaCompleta.setBackground(COLOR_MENU_BAR);
+        this.menuPantallaCompleta.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F11, ActionEvent.CTRL_MASK));
+        this.menuPantallaCompleta.setActionCommand(Constantes.PANTALLA_COMPLETA_COMMAND);
         
         //Panel de nombres.
         this.panelNombresJugadores.setBorder(this.blackline);
@@ -380,7 +384,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.menuPartida.add(this.menuGuardarPartida);
         this.menuPartida.add(this.menuCargarPartida);
         this.menuPartida.add(this.menuSalir);
+        this.menuAcciones.add(this.menuPantallaCompleta);
         this.menuAcciones.add(this.menuLanzarDado);
+        
         //MenuBar.
         this.menuBar.add(this.menuPartida);
         this.menuBar.add(this.menuAcciones);
@@ -432,6 +438,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.menuCargarPartida.addActionListener(controladorMenu);
         this.menuSalir.addActionListener(controladorMenu);
         this.menuLanzarDado.addActionListener(controladorMenu);
+        this.menuPantallaCompleta.addActionListener(controladorMenu);
 
 
         this.botonLanzarDado.addActionListener(this.controlador);
@@ -564,6 +571,17 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     public int getCorreccionHeight(){
         return CORRECCION_FRAME_HEIGHT;
     }
+
+    @Override
+    public boolean isPantallaCompleta() {
+        return pantallaCompleta;
+    }
+
+    @Override
+    public void setPantallaCompleta(boolean isPantallaCompleta) {
+        pantallaCompleta = isPantallaCompleta;
+    }
+    
     
    
    

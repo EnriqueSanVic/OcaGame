@@ -7,12 +7,19 @@ package Utilidades;
 
 import java.awt.Dimension;
 
+
 /**
  *
  * @author Enrique Sánchez
  */
 public interface VentanaConCorrecion {
+    
     int getCorreccionWidth();
     int getCorreccionHeight();
     Dimension getSize();
+    
+    boolean isPantallaCompleta();
+    void setPantallaCompleta(boolean isPantallaCompleta);
+    
+
 }

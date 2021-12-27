@@ -46,6 +46,28 @@ public class UtilidadesGraficas {
 
     }
     
+    public static void pantallaCompleta(VentanaConCorrecion ventana) {
+        
+        
+        if(!ventana.isPantallaCompleta()){
+            ((JFrame)ventana).dispose();
+            ((JFrame)ventana).setUndecorated(true);
+            ((JFrame)ventana).setVisible(true);
+            ((JFrame)ventana).setResizable(false);
+            ((JFrame)ventana).setLocation(0,0);
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            ((JFrame)ventana).setSize((int) screenSize.getWidth(), (int) screenSize.getHeight());
+            ventana.setPantallaCompleta(true);
+        }else{
+            ((JFrame)ventana).dispose();
+            ((JFrame)ventana).setUndecorated(false);
+            ((JFrame)ventana).setResizable(true);
+            ((JFrame)ventana).setVisible(true);
+            ventana.setPantallaCompleta(false);
+        }
+        
+    }
+    
     
     
     

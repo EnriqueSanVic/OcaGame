@@ -20,6 +20,7 @@ public class TextosJuego {
     public static final String[] MENU_CARGAR_PARTIDA = {"Cargar partida", "Load game"};
     public static final String[] MENU_SALIR = {"Salir", "Exit"};
     public static final String[] MENU_LANZAR_DADO = {"Lanzar Dado", "Drop Dice"};
+    public static final String[] MENU_PANTALLA_COMPLETA = {"Modo pantalla completa", "Full screen mode"};
     //Dado
     public static final String[] BOTON_LANZAR_DADO = {"LANZAR DADO", "DROP DICE"};
     //Jugadores

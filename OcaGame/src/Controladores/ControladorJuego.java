@@ -7,6 +7,8 @@ import Hilos.Hilo;
 import Hilos.RegistradorHilos;
 import Logicas.LogicaJuego;
 import ReproductorSonido.ReproductorSonido;
+import Utilidades.UtilidadesGraficas;
+import Utilidades.VentanaConCorrecion;
 import Vistas.TableroSystem.NotificableTablero;
 import Vistas.VistaInstrucciones;
 import Vistas.VistaJuego;
@@ -194,6 +196,10 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
             Logger.getLogger(ControladorJuego.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+    
+    public void accionPantallaCompleta(){
+        UtilidadesGraficas.pantallaCompleta((VentanaConCorrecion)vista);
     }
     
 }

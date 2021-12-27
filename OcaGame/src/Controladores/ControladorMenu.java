@@ -44,6 +44,10 @@ public class ControladorMenu implements ActionListener{
             case Constantes.LANZAR_DADO_COMMAND:
                 controladorJuego.lanzarDado();
                 break;
+            
+            case Constantes.PANTALLA_COMPLETA_COMMAND:
+                controladorJuego.accionPantallaCompleta();
+                break;
         }
         
     }
