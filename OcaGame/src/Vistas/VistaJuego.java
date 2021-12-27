@@ -50,7 +50,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     protected final Font FUENTE_3 = new Font("Broadway", 1, 50); //Numero penalizacion
     
     private final Color COLOR_MENU_BAR = new Color(237,134,253); //Color para el MenuBar.
-    private final Color COLOR_BORDES = new Color(5,5,5);
+    private final Color COLOR_BORDES = new Color(110,7,92);
     
     private final ImageIcon ICONO_BOTON_TIRAR = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR); //icono del boton de tirar dado
     private final ImageIcon ICONO_BOTON_TIRAR_HOVER = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_HOVER); //icono del boton de tirar dado imagen acion 
@@ -100,7 +100,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     
     private final Border blacklineTablero = new MatteBorder(3,2,3,2, COLOR_BORDES );
     
-//Atributos de la clase.
+    //Atributos de la clase.
     protected ControladorJuego controlador;
     
     protected ControladorMenu controladorMenu;
@@ -135,7 +135,6 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     
     private JLabel labelInstrucciones;
     private JButton botonFournier;
-    
     
     
     private boolean impulsoTirarDado; //Impulso de tirada de dado. 0= no hay; 1= si hay;
@@ -303,7 +302,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
             acciones del juego
         */
         this.botonLanzarDado.addMouseListener(new MouseAdapter() {
+            
             private final int HUNDIMIENTO_BOTON = 5;
+            private final Color HUNDIMIENTO_COLOR = new Color(95,196,92);
 
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -319,7 +320,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
 
             @Override
             public void mousePressed(MouseEvent e) {
-                botonLanzarDado.setForeground(Color.GREEN);
+                botonLanzarDado.setForeground(HUNDIMIENTO_COLOR);
                 botonLanzarDado.setLocation(botonLanzarDado.getLocation().x, botonLanzarDado.getLocation().y + HUNDIMIENTO_BOTON);
             }
 
