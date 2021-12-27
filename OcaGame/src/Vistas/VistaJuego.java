@@ -386,16 +386,16 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     @Override
     public Image getIconImage() {
         //System.getProperties();
-        String sistemaOperativo = System.getProperty("os.name");
+        String sistemaOperativo = System.getProperty("os.name").toLowerCase();
         System.out.println(sistemaOperativo);
         Image iconoJuego = null;
         switch(sistemaOperativo.charAt(0)){
             //Windows
-            case 'W':
+            case 'w':
                 iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_WINDOWS);
                 break;
             //MacOs    
-            case 'M':
+            case 'm':
                 iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_MAC);
                 break;
             //UNIX    
