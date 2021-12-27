@@ -50,7 +50,9 @@ public class Constantes {
     
     public static final String PATH_HILO_MUSICAL_PRINCIPAL = "./sounds/Arkansas-Traveler.aiff";
     
-    public static String PATH_ICONO_JUEGO_OCA = "./img/rotulos/icono_juego_oca.png";
+    public static String PATH_ICONO_JUEGO_OCA_WINDOWS = "./img/rotulos/icono_juego_oca.ico";
+    public static String PATH_ICONO_JUEGO_OCA_MAC = "./img/rotulos/icono_juego_oca.icns";
+    public static String PATH_ICONO_JUEGO_OCA_LINUX = "./img/rotulos/icono_juego_oca.png";
     
     //comandos de acciones
     
@@ -63,7 +65,6 @@ public class Constantes {
 
     public static final String LANZAR_DADO_COMMAND = "DaDo_.CommanD";
     public static final String PANTALLA_COMPLETA_COMMAND = "PaNTa..a-ComPleTa";
-    
 
     
 }

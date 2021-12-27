@@ -385,7 +385,24 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     //Metodo sobreescrito para cambiar el icono del juego.
     @Override
     public Image getIconImage() {
-        Image iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA);
+        //System.getProperties();
+        String sistemaOperativo = System.getProperty("os.name");
+        System.out.println(sistemaOperativo);
+        Image iconoJuego = null;
+        switch(sistemaOperativo.charAt(0)){
+            //Windows
+            case 'W':
+                iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_WINDOWS);
+                break;
+            //MacOs    
+            case 'M':
+                iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_MAC);
+                break;
+            //UNIX    
+            default:
+                iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_LINUX);
+                break;
+        }
         return iconoJuego;
     }
     
