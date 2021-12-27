@@ -215,6 +215,19 @@ public class ManejadorFicha extends Thread implements Hilo{
 
     private void eliminarFichaDelSlot() {
         
+        
+                
+        if(casillas[ficha.casillaActual].slot1 == ficha){
+            
+            casillas[ficha.casillaActual].slot1 = null;
+            
+        }else if(casillas[ficha.casillaActual].slot2 == ficha){
+            
+            casillas[ficha.casillaActual].slot2 = null;
+            
+        }
+        
+        
         if(casillas[casillaDestino].slot1 == ficha){
             
             casillas[casillaDestino].slot1 = null;

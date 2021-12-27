@@ -7,6 +7,8 @@ import Controladores.ControladorMenu;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import Utilidades.UtilidadesGraficas;
+import Vistas.TableroSystem.Ficha;
+import Vistas.TableroSystem.ManejadorFicha;
 import Vistas.TableroSystem.NotificableTablero;
 import java.awt.Color;
 import java.awt.Font;
@@ -471,6 +473,19 @@ public abstract class VistaJuego extends JFrame{
     
     public void eliminarPuntero(){
         tablero.eliminarPuntero();
+    }
+    
+    public void iniciarJugadorSalida(int jugador, int casillaSalida){
+        
+        Ficha ficha = null;
+        
+        if(jugador == Constantes.JUGADOR_1){
+            ficha = tablero.getFicha1();
+        }else if(jugador == Constantes.JUGADOR_2){
+            ficha = tablero.getFicha2();
+        }
+        
+        ManejadorFicha.iniciarEnCasilla(casillaSalida, ficha, tablero.getCasillas());
     }
     
     //retorna true si el jugador quiere salir al menu o false si no quiere

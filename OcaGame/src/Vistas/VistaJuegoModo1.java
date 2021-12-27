@@ -4,13 +4,11 @@ package Vistas;
 import Controladores.ControladorJuego;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
-import Vistas.TableroSystem.ManejadorFicha;
 import Vistas.TableroSystem.Tablero;
 import java.awt.Color;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 /**
  * @autor: Alvaro
@@ -186,8 +184,6 @@ public class VistaJuegoModo1 extends VistaJuego{
         segundosTemporizador.setForeground(COLOR_PELIGRO);
     }
     
-    public void iniciarJugadorSalida(){
-        ManejadorFicha.iniciarEnCasilla(0, tablero.getFicha1(), tablero.getCasillas());
-    }
+    
 
 }

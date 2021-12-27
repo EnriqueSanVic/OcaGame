@@ -17,10 +17,10 @@ public class VistaJuegoModo2 extends VistaJuego{
     
     //Constantes de configuracion.
   
-    private final int FICHAJ1_X=10, FICHAJ1_Y=50; //Posicion de la ficha J1.
+    private final int FICHAJ1_X=10, FICHAJ1_Y=65; //Posicion de la ficha J1.
     private final int FICHAJ1_WIDTH = 50, FICHAJ1_HEIGHT = 50; //Medidas de la ficha J1.
     
-    private final int NOMBREJ1_X=70, NOMBREJ1_Y=50; //Posicion del nombre de J1.
+    private final int NOMBREJ1_X=70, NOMBREJ1_Y=65; //Posicion del nombre de J1.
     private final int NOMBREJ1_WIDTH = 160, NOMBREJ1_HEIGHT = 50; //Medidas del nombre de J1.
     
     private final int FICHAJ2_X=10, FICHAJ2_Y=150; //Posicion de la ficha J2.
@@ -52,6 +52,9 @@ public class VistaJuegoModo2 extends VistaJuego{
     
     private final int LABEL_TURNOSJ2_PENALIZACION_X=0, LABEL_TURNOSJ2_PENALIZACION_Y=80; //Posicion del label con el titulo 'turnos' de penalizacion J2.
     private final int LABEL_TURNOSJ2_PENALIZACION_WIDTH = 200, LABEL_TURNOSJ2_PENALIZACION_HEIGHT = 50; //Medidas del label con el titulo 'turnos' de penalizacion J2.
+    
+    private final Color COLOR_ENFASIS_TURNO = new Color(250, 250,124);
+    private final Color COLOR_NORMAL_TURNO = new Color(0,0,0);
     
     //Atributos de la clase.
     private JLabel fichaNombreJ1;
@@ -100,13 +103,13 @@ public class VistaJuegoModo2 extends VistaJuego{
         //Panel penalizacion J1.
         this.panelPenalizacionJ1 = new JPanel();
         this.fichaPenalizacionJ1 = new JLabel();
-        this.numeroTurnosPenalizadoJ1 = new JLabel("-2", JLabel.CENTER);
+        this.numeroTurnosPenalizadoJ1 = new JLabel("-", JLabel.CENTER);
         this.labelTurnosJ1 = new JLabel(TextosJuego.LABEL_TURNOS[super.getIdioma()], JLabel.CENTER);
         
         //Panel penalizacion J2. 
         this.panelPenalizacionJ2 = new JPanel();
         this.fichaPenalizacionJ2 = new JLabel();
-        this.numeroTurnosPenalizadoJ2 = new JLabel("0", JLabel.CENTER);
+        this.numeroTurnosPenalizadoJ2 = new JLabel("-", JLabel.CENTER);
         this.labelTurnosJ2 = new JLabel(TextosJuego.LABEL_TURNOS[super.getIdioma()], JLabel.CENTER); 
     }
 
@@ -223,6 +226,42 @@ public class VistaJuegoModo2 extends VistaJuego{
     //Metodo que modifica el String actual del numero de turnos penalizados del Jugador 2.
     public void setPenalizacionTurnosJ2(String penalizacionTurnosJ2) {
         this.numeroTurnosPenalizadoJ2.setText(penalizacionTurnosJ2);
+    }
+    
+    public void enfatizarNombreTurno(int jugador){
+        
+        if(jugador == Constantes.JUGADOR_1){
+            
+            normalizarNombresTurno(Constantes.JUGADOR_2);
+            nombreJugador1.setForeground(COLOR_ENFASIS_TURNO);
+            
+        } if(jugador == Constantes.JUGADOR_2){
+            
+            normalizarNombresTurno(Constantes.JUGADOR_1);
+            nombreJugador2.setForeground(COLOR_ENFASIS_TURNO);
+            
+        }
+    
+    }
+    
+    private void normalizarNombresTurno(int jugador){
+        
+        if(jugador == Constantes.JUGADOR_1){
+            nombreJugador1.setForeground(COLOR_NORMAL_TURNO);
+        } if(jugador == Constantes.JUGADOR_2){
+            nombreJugador2.setForeground(COLOR_NORMAL_TURNO);
+        }
+
+    }
+    
+    public void actualizarPenalizacionesJugador(int jugador, int turnos){
+        
+        if(jugador == Constantes.JUGADOR_1){
+            numeroTurnosPenalizadoJ1.setText(String.valueOf(turnos));
+        } if(jugador == Constantes.JUGADOR_2){
+            numeroTurnosPenalizadoJ2.setText(String.valueOf(turnos));
+        }
+        
     }
 
 }

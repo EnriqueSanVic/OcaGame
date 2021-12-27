@@ -41,12 +41,16 @@ public class LogicaJuegoModo2 extends LogicaJuego{
         DirectivasEvaluacion directivas = super.evaluarTurnoFinal(jugador);
         
         //si en las directivas de la casilla en la que se ha caido  no hay cambios de posicion y  hay turnos de bloqueo en la casilla en la que se ha caido
-        if(directivas.posicion == 0 && directivas.penalizacion > 0){
-            turnosBloqueo[jugador] = directivas.penalizacion;
+        if(directivas.penalizacion > 0){
+            turnosBloqueo[jugador] += directivas.penalizacion;
         }
         
-        return new DirectivasEvaluacion(super.getPosicionJugador(jugador),directivas.penalizacion, directivas.tirarOtraVez);
+        return new DirectivasEvaluacion(directivas.posicion, directivas.penalizacion, directivas.tirarOtraVez);
     
+    }
+    
+    public int getTurnosBloqueo(int jugador){
+        return turnosBloqueo[jugador];
     }
 
 }

@@ -14,7 +14,7 @@ import javax.swing.Timer;
  *
  * @author Enrique Sánchez 
  */
-public class ControladorJuegoModo1 extends ControladorJuego{
+public final class ControladorJuegoModo1 extends ControladorJuego{
 
     private final int SEGUNDOS_INICIO = 150;
     
@@ -37,7 +37,6 @@ public class ControladorJuegoModo1 extends ControladorJuego{
         
         retrocesoAcumuladoCasillaFin = 0;
         
-        iniciarTurno = true;
         controlAutomatico = false;
         victoria = false;
         
@@ -57,9 +56,12 @@ public class ControladorJuegoModo1 extends ControladorJuego{
         
         iniciarTemporizador();
         
-        ((VistaJuegoModo1)vista).iniciarJugadorSalida();
+        //se inicia el jugador en la posicion que tiene la lógica en este momento
+        (vista).iniciarJugadorSalida(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1));
         
         enJuego = true;
+        iniciarTurno = true;
+
         
     }
     
