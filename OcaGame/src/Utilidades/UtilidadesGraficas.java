@@ -5,6 +5,8 @@ package Utilidades;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.Window;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -28,5 +30,23 @@ public class UtilidadesGraficas {
 
         
     }
+    
+    
+    public static void ponerPanelMedioFrame(JPanel panel, VentanaConCorrecion ventana) {
+        
+        int width, height;
+        Dimension dimensionesConstenedor = ventana.getSize();
+        
+        width = ((dimensionesConstenedor.width - ventana.getCorreccionWidth())/2) - (panel.getSize().width/2);
+        
+        height = ((dimensionesConstenedor.height - ventana.getCorreccionHeight())/2) - (panel.getSize().height/2);
+        
+        panel.setLocation(width, height);
+
+
+    }
+    
+    
+    
     
 }

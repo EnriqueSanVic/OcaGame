@@ -15,6 +15,8 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Timer;
 
 /**
@@ -23,6 +25,8 @@ import javax.swing.Timer;
  */
 public abstract class ControladorJuego extends WindowAdapter implements ActionListener, NotificableTablero, RegistradorHilos{
 
+    private final int TIEMPO_DELAY_COMIENZO_MOVIMIENTO_AUTO = 400;
+    
     protected LogicaJuego logica;
     
     protected VistaJuego vista;
@@ -92,9 +96,21 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     
     //metodo para matar todos los hilos del programa
     protected void matarHilos(){
-        for (Hilo i:hilos) {
-            i.matar();
+        
+        /*
+            Es necesario hacer la iteracion de la lista de hiloas en de manera sincrona para evista una excepcion
+            java.util.ConcurrentModificationException debido a que es una array de hilos que algunos de ellos manejan o son directamente
+            hilos usados por la librería grafica swing como el hilo de la clase Runnable Puntegografico
+        */
+        
+        synchronized(hilos){
+            for (Hilo i:hilos) {
+                i.matar();
+            }
         }
+        
+        
+
     }
 
     @Override
@@ -160,6 +176,16 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
         System.out.println("Menu inicio");
     }
     
+    
+    protected void esperarDelayAntesDeAccionAuto(){
+        
+        try {
+            Thread.sleep(this.TIEMPO_DELAY_COMIENZO_MOVIMIENTO_AUTO);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ControladorJuego.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
     
 }
     

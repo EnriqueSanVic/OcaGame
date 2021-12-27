@@ -125,7 +125,7 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
 
     @Override
     public void matar() {
-        parar();
+        hiloGUI.stop();
     }
     
     @Override

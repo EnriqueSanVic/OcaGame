@@ -222,7 +222,7 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
             
             avanceAuto = directivas.getPosicion();
             
-            
+            super.esperarDelayAntesDeAccionAuto();
             
             vista.mover(jugadorTurnoActual, logica.getPosicionJugador(jugadorTurnoActual) + avanceAuto);
 

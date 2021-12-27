@@ -15,6 +15,11 @@ public class Constantes {
     public static final int JUGADOR_1 = 0;
     public static final int JUGADOR_2 = 1;
     
+    //id idiomas
+    
+    public static final int IDIOMA_ESPANOL = 0;
+    public static final int IDIOMA_INGLES= 1;
+    
     //rutas
     
     public static final String IMAGEN_FONDO_TERCIOPELO = "./img/rotulos/fondo_terciopelo.png";

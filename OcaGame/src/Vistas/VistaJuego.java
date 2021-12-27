@@ -7,15 +7,21 @@ import Controladores.ControladorMenu;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import Utilidades.UtilidadesGraficas;
+import Utilidades.VentanaConCorrecion;
 import Vistas.TableroSystem.Ficha;
 import Vistas.TableroSystem.ManejadorFicha;
 import Vistas.TableroSystem.NotificableTablero;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowStateListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -34,7 +40,7 @@ import javax.swing.border.Border;
  *
  * @author Enrique Sánchez 
  */
-public abstract class VistaJuego extends JFrame{
+public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     
     //Constantes de configuracion. 
     //Broadway/Arial
@@ -43,6 +49,7 @@ public abstract class VistaJuego extends JFrame{
     protected final Font FUENTE_3 = new Font("Broadway", 1, 50); //Numero penalizacion
     
     private final Color COLOR_MENU_BAR = new Color(237,134,253); //Color para el MenuBar.
+    private final Color COLOR_BORDES = new Color(5,5,5);
     
     private final ImageIcon ICONO_BOTON_TIRAR = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR); //icono del boton de tirar dado
     private final ImageIcon ICONO_BOTON_TIRAR_HOVER = new ImageIcon(Constantes.PATH_ICONO_BTN_TIRAR_HOVER); //icono del boton de tirar dado imagen acion 
@@ -52,7 +59,11 @@ public abstract class VistaJuego extends JFrame{
     private final ImageIcon ICONO_BOTON_FOURNIER_HOVER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER_HOVER);
     private final ImageIcon ICONO_BOTON_FOURNIER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER); //icono del boton de Fournier.
 
-    private final int FRAME_WIDTH = 1450, FRAME_HEIGHT = 860; //Medidas del frame.
+    private final int FRAME_WIDTH_ORIGINAL = 1450, FRAME_HEIGHT_ORIGINAL = 800; //Medidas del frame.
+    
+    private final int CORRECCION_FRAME_WIDTH = 18, CORRECCION_FRAME_HEIGHT = 72;
+    
+    private final int FRAME_WIDTH = FRAME_WIDTH_ORIGINAL + CORRECCION_FRAME_WIDTH, FRAME_HEIGHT = FRAME_HEIGHT_ORIGINAL + CORRECCION_FRAME_HEIGHT;
     
     private final int PANEL_NOMBRE__X=50, PANEL_NOMBRE_Y=50; //Posicion del panel Nombre.
     private final int PANEL_NOMBRE_WIDTH = 220, PANEL_NOMBRE_HEIGHT = 250; //Medidas del panel Nombre.
@@ -82,10 +93,11 @@ public abstract class VistaJuego extends JFrame{
     
     private final int idioma; //Idioma. 0=español 1=ingles;
     
-    
+    private final Border bordePanel= BorderFactory.createLineBorder(COLOR_BORDES, 4);
 
+    private final Border blackline = BorderFactory.createLineBorder(COLOR_BORDES, 3);; //Linea negra para el borde de ciertos elementos.
     
-    //Atributos de la clase.
+//Atributos de la clase.
     protected ControladorJuego controlador;
     
     protected ControladorMenu controladorMenu;
@@ -121,7 +133,7 @@ public abstract class VistaJuego extends JFrame{
     private JLabel labelInstrucciones;
     private JButton botonFournier;
     
-    private Border blackline; //Linea negra para el borde de ciertos elementos.
+    
     
     private boolean impulsoTirarDado; //Impulso de tirada de dado. 0= no hay; 1= si hay;
     
@@ -199,10 +211,13 @@ public abstract class VistaJuego extends JFrame{
         this.setLayout(null);
         this.getContentPane().setBackground(Color.orange);
         this.setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        this.setResizable(false);
+        this.setResizable(true);
+        this.setMinimumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
         UtilidadesGraficas.ponerMedioPantalla(this);
+        
         //Fondo Vista Juego
-        this.fondoVistaJuego.setBounds(0, 0, FRAME_WIDTH, FRAME_HEIGHT);
+        this.fondoVistaJuego.setBounds(0, 0, FRAME_WIDTH_ORIGINAL, FRAME_HEIGHT_ORIGINAL);
+        this.fondoVistaJuego.setBorder(bordePanel);
         this.fondoVistaJuego.setLayout(null);
         //Menu bar
         this.menuBar.setBackground(COLOR_MENU_BAR);
@@ -239,7 +254,6 @@ public abstract class VistaJuego extends JFrame{
         this.menuLanzarDado.setActionCommand(Constantes.LANZAR_DADO_COMMAND);
         
         //Panel de nombres.
-        this.blackline = BorderFactory.createLineBorder(Color.BLACK);
         this.panelNombresJugadores.setBorder(this.blackline);
         this.panelNombresJugadores.setBounds(this.PANEL_NOMBRE__X, this.PANEL_NOMBRE_Y, this.PANEL_NOMBRE_WIDTH, this.PANEL_NOMBRE_HEIGHT);
         this.panelNombresJugadores.setLayout(null);
@@ -395,6 +409,20 @@ public abstract class VistaJuego extends JFrame{
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         this.addWindowListener(this.controlador);
         
+        this.addWindowStateListener(new WindowStateListener() {
+            @Override
+            public void windowStateChanged(WindowEvent we) {
+                centrarEnVentana();
+            }
+        });
+        
+        this.addComponentListener(new ComponentAdapter(){  
+        public void componentResized(ComponentEvent evt) {
+            centrarEnVentana();
+        }
+        });
+        
+        
         this.menuNuevaPartida.addActionListener(controladorMenu);
         this.menuGuardarPartida.addActionListener(controladorMenu);
         this.menuCargarPartida.addActionListener(controladorMenu);
@@ -519,5 +547,20 @@ public abstract class VistaJuego extends JFrame{
         return false;
         
     }
+    
+    private void centrarEnVentana(){
+        UtilidadesGraficas.ponerPanelMedioFrame(fondoVistaJuego, this);
+        this.repaint();
+    }
+    
+    public int getCorreccionWidth(){
+        return CORRECCION_FRAME_WIDTH;
+    }
+    
+    public int getCorreccionHeight(){
+        return CORRECCION_FRAME_HEIGHT;
+    }
+    
+   
    
 }

@@ -218,6 +218,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
             
             avanceAuto = directivas.getPosicion();
             
+            super.esperarDelayAntesDeAccionAuto();
+            
             vista.mover(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1) + avanceAuto);
 
             return false;
