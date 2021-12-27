@@ -46,6 +46,10 @@ public class Constantes {
     public static final String PATH_ICONO_BOTON_FOURNIER = "./img/botones/boton_Fournier.png";
     public static final String PATH_ICONO_BOTON_FOURNIER_HOVER = "./img/botones/boton_Fournier_Hover.png";
     
+    public static final String PATH_MARCO_ENFASIS_NOMBRE = "./img/rotulos/enfasis_nombre.png";
+    
+    public static final String PATH_HILO_MUSICAL_PRINCIPAL = "./sounds/Arkansas-Traveler.aiff";
+    
     //comandos de acciones
     
     public static final String LANZAR_DADO_COMMAND = "DaDo_.CommanD";

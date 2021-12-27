@@ -53,12 +53,15 @@ public class VistaJuegoModo2 extends VistaJuego{
     private final int LABEL_TURNOSJ2_PENALIZACION_X=0, LABEL_TURNOSJ2_PENALIZACION_Y=80; //Posicion del label con el titulo 'turnos' de penalizacion J2.
     private final int LABEL_TURNOSJ2_PENALIZACION_WIDTH = 200, LABEL_TURNOSJ2_PENALIZACION_HEIGHT = 50; //Medidas del label con el titulo 'turnos' de penalizacion J2.
     
-    private final Color COLOR_ENFASIS_TURNO = new Color(250, 250,124);
-    private final Color COLOR_NORMAL_TURNO = new Color(0,0,0);
+    private final Color COLOR_ENFASIS_TURNO = new Color(228, 253,0);
+    private final Color COLOR_NORMAL_TURNO = new Color(134,115,129);
     
     //Atributos de la clase.
+    
+    private JLabel marco_enfasis_nombreJ1;
     private JLabel fichaNombreJ1;
     private JLabel nombreJugador1;
+    private JLabel marco_enfasis_nombreJ2;
     private JLabel fichaNombreJ2;
     private JLabel nombreJugador2; 
     
@@ -89,14 +92,18 @@ public class VistaJuegoModo2 extends VistaJuego{
         //Tablero Oca.
         this.tablero = new Tablero(2, controlador, controlador);
         
+        
+        
         //Iconos.
         this.iconoFicha1 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ1);
         this.iconoFicha2 = new ImageIcon(Constantes.PATH_ICONO_FICHAJ2);
         
         //Panel nombres Jugadores. 
+        this.marco_enfasis_nombreJ1 = new JLabel();
         this.fichaNombreJ1 = new JLabel();
         this.nombreJugador1 = new JLabel(super.nombresJugadores[0], JLabel.LEFT);
         
+        this.marco_enfasis_nombreJ2 = new JLabel();
         this.fichaNombreJ2 = new JLabel();
         this.nombreJugador2 = new JLabel(super.nombresJugadores[1], JLabel.LEFT);
         
@@ -119,12 +126,21 @@ public class VistaJuegoModo2 extends VistaJuego{
         
         super.disenoObjetos();
         
+        //marco enfasis nombre J1
+        this.marco_enfasis_nombreJ1.setIcon(new ImageIcon(Constantes.PATH_MARCO_ENFASIS_NOMBRE));
+        this.marco_enfasis_nombreJ1.setSize(243, 70);
+        this.marco_enfasis_nombreJ1.setLocation(5, 55);
         //Ficha J1.
         this.fichaNombreJ1.setIcon(this.iconoFicha1);
         this.fichaNombreJ1.setBounds(this.FICHAJ1_X, this.FICHAJ1_Y, this.FICHAJ1_WIDTH, this.FICHAJ1_HEIGHT);
         //Nombre J1. 
         this.nombreJugador1.setFont(super.FUENTE_2);
         this.nombreJugador1.setBounds(this.NOMBREJ1_X, this.NOMBREJ1_Y, this.NOMBREJ1_WIDTH, this.NOMBREJ1_HEIGHT);
+        //marco enfasis nombre J2
+        this.marco_enfasis_nombreJ2.setIcon(new ImageIcon(Constantes.PATH_MARCO_ENFASIS_NOMBRE));
+        this.marco_enfasis_nombreJ2.setSize(243, 70);
+        this.marco_enfasis_nombreJ2.setLocation(5, 141);
+        this.marco_enfasis_nombreJ2.setVisible(false);
         //Ficha J2.
         this.fichaNombreJ2.setIcon(this.iconoFicha2);
         this.fichaNombreJ2.setBounds(this.FICHAJ2_X, this.FICHAJ2_Y, this.FICHAJ2_WIDTH, this.FICHAJ2_HEIGHT);
@@ -168,10 +184,13 @@ public class VistaJuegoModo2 extends VistaJuego{
         super.anadirObjetos();
         
         //Nombre y ficha J1.
+        
+        super.getPanelNombresJugadores().add(this.marco_enfasis_nombreJ1);
         super.getPanelNombresJugadores().add(this.fichaNombreJ1);
         super.getPanelNombresJugadores().add(this.nombreJugador1);
         
         //Nombre y ficha J2.
+        super.getPanelNombresJugadores().add(this.marco_enfasis_nombreJ2);
         super.getPanelNombresJugadores().add(this.fichaNombreJ2);
         super.getPanelNombresJugadores().add(this.nombreJugador2);
         
@@ -234,12 +253,14 @@ public class VistaJuegoModo2 extends VistaJuego{
             
             normalizarNombresTurno(Constantes.JUGADOR_2);
             nombreJugador1.setForeground(COLOR_ENFASIS_TURNO);
+            marco_enfasis_nombreJ1.setVisible(true);
             
         } if(jugador == Constantes.JUGADOR_2){
             
             normalizarNombresTurno(Constantes.JUGADOR_1);
             nombreJugador2.setForeground(COLOR_ENFASIS_TURNO);
-            
+            marco_enfasis_nombreJ2.setVisible(true);
+
         }
     
     }
@@ -248,8 +269,10 @@ public class VistaJuegoModo2 extends VistaJuego{
         
         if(jugador == Constantes.JUGADOR_1){
             nombreJugador1.setForeground(COLOR_NORMAL_TURNO);
+            marco_enfasis_nombreJ1.setVisible(false);
         } if(jugador == Constantes.JUGADOR_2){
             nombreJugador2.setForeground(COLOR_NORMAL_TURNO);
+            marco_enfasis_nombreJ2.setVisible(false);
         }
 
     }

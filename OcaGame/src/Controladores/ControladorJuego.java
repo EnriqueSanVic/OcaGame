@@ -6,6 +6,7 @@ import DatosEstaticos.Constantes;
 import Hilos.Hilo;
 import Hilos.RegistradorHilos;
 import Logicas.LogicaJuego;
+import ReproductorSonido.ReproductorSonido;
 import Vistas.TableroSystem.NotificableTablero;
 import Vistas.VistaInstrucciones;
 import Vistas.VistaJuego;
@@ -33,6 +34,8 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     
     protected List<Hilo> hilos;
     
+    private ReproductorSonido hiloMusical;
+    
     protected int ultimoNumeroDado;
         
     public ControladorJuego(int idioma, String jugador1, String jugador2){
@@ -40,6 +43,12 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
         
         //Si se quieren monitorizar los hilos activos en cada momento llamar a esta función
         //debugearHilos();
+        
+        hiloMusical = new ReproductorSonido(Constantes.PATH_HILO_MUSICAL_PRINCIPAL);
+        
+        hilos.add(hiloMusical);
+        
+        hiloMusical.start();
                 
     }
     
