@@ -35,6 +35,7 @@ import javax.swing.JPanel;
 import javax.swing.KeyStroke;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.MatteBorder;
 
 /**
  *
@@ -95,7 +96,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     
     private final Border bordePanel= BorderFactory.createLineBorder(COLOR_BORDES, 4);
 
-    private final Border blackline = BorderFactory.createLineBorder(COLOR_BORDES, 3);; //Linea negra para el borde de ciertos elementos.
+    private final Border blackline = BorderFactory.createLineBorder(COLOR_BORDES, 3); //Linea negra para el borde de ciertos elementos.
+    
+    private final Border blacklineTablero = new MatteBorder(3,2,3,2, COLOR_BORDES );
     
 //Atributos de la clase.
     protected ControladorJuego controlador;
@@ -270,7 +273,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.penalizacionesTitulo.setForeground(Color.BLACK);
         this.penalizacionesTitulo.setBounds(this.TITULO_PENALIZACIONES_X, this.TITULO_PENALIZACIONES_Y, this.TITULO_PENALIZACIONES_WIDTH, this.TITULO_PENALIZACIONES_HEIGHT);
         //Tablero Oca. (el propio tablero se ajusta solo).
-        this.tablero.setBorder(this.blackline);
+        this.tablero.setBorder(this.blacklineTablero);
         this.tablero.setLocation(this.TABLERO_X, this.TABLERO_Y);
         //Panel dado y cubilete.
         //this.panelDadoCubilete.setBackground(Color.MAGENTA);
