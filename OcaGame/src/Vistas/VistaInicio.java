@@ -26,7 +26,7 @@ public class VistaInicio extends JFrame{
     
     //Constantes de configuracion.    
     protected final Font FUENTE_1 = new Font("Broadway", 1, 22); //Textos.
-    protected final Font FUENTE_2 = new Font("Broadway", 1, 30); //Botones.
+    protected final Font FUENTE_2 = new Font("Broadway", 1, 25); //Botones.
     
     private final Border blackline = BorderFactory.createLineBorder(Color.BLACK, 3); //Linea negra para el borde de ciertos elementos.
     

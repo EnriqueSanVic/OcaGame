@@ -45,8 +45,8 @@ public class TextosJuego {
     //Vista Inicio
     public static final String[] AUTORES = {"Autores:", "Authors:"};
     public static final String[] JUGAR = {"JUGAR", "PLAY"};
-    public static final String[] MODO_1 = {"MODO 1", "MODE 1"};
-    public static final String[] MODO_2 = {"MODO 2", "MODE 2"};
+    public static final String[] MODO_1 = {"INDIVIDUAL", "INDIVIDUAL"};
+    public static final String[] MODO_2 = {"2 JUGADORES", "2 PLAYERS"};
     public static final String[] NOMBRE_J1 = {"Nombre del Jugador 1:", "Player 1´s name:"};
     public static final String[] NOMBRE_J2= {"Nombre del Jugador 2:", "Player 2´s name:"};
     
