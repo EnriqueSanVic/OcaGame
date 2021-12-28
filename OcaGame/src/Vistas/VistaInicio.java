@@ -162,6 +162,7 @@ public class VistaInicio extends JFrame{
     //Metodo que da un diseño a los elementos de la vista inicio.
     private void disenoObjetos() {
         //Frame.
+        this.setResizable(false);
         this.setLayout(null);
         this.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
         UtilidadesGraficas.ponerMedioPantalla(this);
@@ -460,5 +461,6 @@ public class VistaInicio extends JFrame{
     private void anadirEscuchadores() {
         
     }
+    
     
 }
