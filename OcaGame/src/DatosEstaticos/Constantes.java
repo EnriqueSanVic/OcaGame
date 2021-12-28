@@ -28,6 +28,8 @@ public class Constantes {
     public static final String PATH_ICONO_FICHAJ1 = "./img/fichas/ficha1Chica.png";
     public static final String PATH_ICONO_FICHAJ2 = "./img/fichas/ficha2Chica.png";
     
+    public static String PATH_ICONO_FONDO_INICIO = "./img/rotulos/fondo_VistaInicio.png";
+    
     public static final String PATH_ICONO_FONDO_VISTAJUEGO = "./img/rotulos/fondo_VistaJuego.png";
     
     public static final String PATH_ICONO_INSTRUCCIONES_MODO1_ESP = "./img/instrucciones/fondo_InstruccionesModo1_ESP.png";
@@ -50,9 +52,25 @@ public class Constantes {
     
     public static final String PATH_HILO_MUSICAL_PRINCIPAL = "./sounds/Arkansas-Traveler.aiff";
     
+    public static String PATH_ICONO_JUEGO_OCA_WINDOWS = "./img/rotulos/icono_juego_oca.png"; //ico no se ve (?)
+    public static String PATH_ICONO_JUEGO_OCA_MAC = "./img/rotulos/icono_juego_oca.icns";
+    public static String PATH_ICONO_JUEGO_OCA_LINUX = "./img/rotulos/icono_juego_oca.png";
+    
+    //Vista Inicio
+    public static String PATH_ICONO_BOTON_MODO1 = "./img/botonesVistaInicio/botonModo1.png";
+    public static String PATH_ICONO_BOTON_MODO1_HOVER = "./img/botonesVistaInicio/botonModo1_Hover.png";
+    
+    public static String PATH_ICONO_BOTON_MODO2 = "./img/botonesVistaInicio/botonModo2.png";
+    public static String PATH_ICONO_BOTON_MODO2_HOVER = "./img/botonesVistaInicio/botonModo2_Hover.png";
+    
+    public static String PATH_ICONO_BOTON_JUGAR = "./img/botonesVistaInicio/botonJugar.png";
+    public static String PATH_ICONO_BOTON_JUGAR_HOVER = "./img/botonesVistaInicio/botonJugar_Hover.png";
+    
+    public static String PATH_ICONO_BOTON_IDIOMA_ESP = "./img/banderas/espana.png";
+    public static String PATH_ICONO_BOTON_IDIOMA_ING = "./img/banderas/reino-unido.png";
+    
     //comandos de acciones
-    
-    
+
     public static final String ABRIR_INSTRUCCIONES_COMMAND = "AbriR_-InstruCiOneS";
     public static final String NUEVA_PARTIDA_COMMAND = "Nue$-va_Partida";
     public static final String GUARDAR_PARTIDA_COMMAND = "G.uarDar_Partida";
@@ -61,6 +79,13 @@ public class Constantes {
 
     public static final String LANZAR_DADO_COMMAND = "DaDo_.CommanD";
     public static final String PANTALLA_COMPLETA_COMMAND = "PaNTa..a-ComPleTa";
-
+    
+    public static final String BOTON_MODO_1_COMMAND = "Modo1.Command";
+    public static final String BOTON_MODO_2_COMMAND = "Modo2.Command";
+    
+    public static final String BOTON_JUGAR_COMMAND = "Jugar.Command";
+    
+    public static String BOTON_IDIOMA_ESP_COMMAND = "IDIOMA.ESP.Command";
+    public static String BOTON_IDIOMA_ING_COMMAND = "IDIOMA.ING.Command";
     
 }
