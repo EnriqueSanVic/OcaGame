@@ -28,13 +28,13 @@ public class ControladorInicio implements ActionListener{
             switch (ae.getActionCommand()) {
                 //BOTON ESP
                 case Constantes.BOTON_IDIOMA_ESP_COMMAND:
-                    this.vistaInicio.dispose();
                     new VistaInicio(0);
+                    this.vistaInicio.dispose();
                     break;
                 //BOTON ING
                 case Constantes.BOTON_IDIOMA_ING_COMMAND:
-                    this.vistaInicio.dispose();
                     new VistaInicio(1);
+                    this.vistaInicio.dispose();
                     break;
                 //BOTON MODO 1
                 case Constantes.BOTON_MODO_1_COMMAND:
