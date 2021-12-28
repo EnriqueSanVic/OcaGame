@@ -15,13 +15,13 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  *
  * @author Enrique Sánchez 
  */
-public class ReproductorSonido extends Thread implements Hilo{
+public class ReproductorContinuo extends Thread implements Hilo{
 
     private File file;
     
     private Clip clip;
     
-    public ReproductorSonido(String path) {
+    public ReproductorContinuo(String path) {
         this.file = new File(path);
     }
 
