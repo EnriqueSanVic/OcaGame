@@ -15,10 +15,14 @@ import javax.swing.JDialog;
  */
 public class VistaInstrucciones extends JDialog{
     
-    private final int FRAME_INSTRUCCIONES_WIDHT = 750, FRAME_INSTRUCCIONES_HEIGHT = 600;    
+    //Constantes de configuracion.
+    private final int FRAME_INSTRUCCIONES_WIDHT = 750, FRAME_INSTRUCCIONES_HEIGHT = 600;  
+    
+    //Atributos de la clase.
     private BufferedImage imagenFondoInstrucciones;
     int idioma;
     
+    //Constructor.
     public VistaInstrucciones(VistaJuego vistaPadre){
         
         super(vistaPadre, true);
@@ -48,11 +52,11 @@ public class VistaInstrucciones extends JDialog{
         }
 
         
-        //Imagen Fondo Panel Nombres.
+        //Imagen Fondo Panel Instrucciones.
         try {
             this.imagenFondoInstrucciones = ImageIO.read(imagen);
         } catch (IOException ex) {
-            System.out.println("Error de carga de imagen fondo nombres");
+            System.out.println("Error de carga de imagen fondo instrucciones");
         }
         this.setSize(this.FRAME_INSTRUCCIONES_WIDHT, this.FRAME_INSTRUCCIONES_HEIGHT);
         UtilidadesGraficas.ponerMedioPantalla(this);
@@ -66,7 +70,5 @@ public class VistaInstrucciones extends JDialog{
         grphcs.drawImage(this.imagenFondoInstrucciones, 0, 0, this);
     }
 
-    
-    
 
 }

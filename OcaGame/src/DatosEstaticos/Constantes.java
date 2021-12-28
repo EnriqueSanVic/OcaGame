@@ -51,26 +51,31 @@ public class Constantes {
     public static final String PATH_MARCO_ENFASIS_NOMBRE = "./img/rotulos/enfasis_nombre.png";
     
     public static final String PATH_HILO_MUSICAL_PRINCIPAL = "./sounds/Arkansas-Traveler.aiff";
-    public static String PATH_SONIDO_GOLPE_DADO = "./sounds/kick_sound.aiff";
-    public static String PATH_SONIDO_TURNO_BLOQUEADO = "./sounds/fallo.aiff";
-    public static String PATH_SONIDO_PUNTERO_GRAFICO = "./sounds/oscilador.aiff";
+    public static final String PATH_SONIDO_GOLPE_DADO = "./sounds/kick_sound.aiff";
+    public static final String PATH_SONIDO_TURNO_BLOQUEADO = "./sounds/fallo.aiff";
+    public static final String PATH_SONIDO_PUNTERO_GRAFICO = "./sounds/oscilador.aiff";
     
-    public static String PATH_ICONO_JUEGO_OCA_WINDOWS = "./img/rotulos/icono_juego_oca.png"; //ico no se ve (?)
-    public static String PATH_ICONO_JUEGO_OCA_MAC = "./img/rotulos/icono_juego_oca.icns";
-    public static String PATH_ICONO_JUEGO_OCA_LINUX = "./img/rotulos/icono_juego_oca.png";
+    public static final String PATH_ICONO_JUEGO_OCA_WINDOWS = "./img/rotulos/icono_juego_oca.png"; //ico no se ve (?)
+    public static final String PATH_ICONO_JUEGO_OCA_MAC = "./img/rotulos/icono_juego_oca.icns";
+    public static final String PATH_ICONO_JUEGO_OCA_LINUX = "./img/rotulos/icono_juego_oca.png";
     
     //Vista Inicio
-    public static String PATH_ICONO_BOTON_MODO1 = "./img/botonesVistaInicio/botonModo1.png";
-    public static String PATH_ICONO_BOTON_MODO1_HOVER = "./img/botonesVistaInicio/botonModo1_Hover.png";
+    public static final String PATH_ICONO_BOTON_MODO1 = "./img/botonesVistaInicio/botonModo1.png";
+    public static final String PATH_ICONO_BOTON_MODO1_HOVER = "./img/botonesVistaInicio/botonModo1_Hover.png";
     
-    public static String PATH_ICONO_BOTON_MODO2 = "./img/botonesVistaInicio/botonModo2.png";
-    public static String PATH_ICONO_BOTON_MODO2_HOVER = "./img/botonesVistaInicio/botonModo2_Hover.png";
+    public static final String PATH_ICONO_BOTON_MODO2 = "./img/botonesVistaInicio/botonModo2.png";
+    public static final String PATH_ICONO_BOTON_MODO2_HOVER = "./img/botonesVistaInicio/botonModo2_Hover.png";
     
-    public static String PATH_ICONO_BOTON_JUGAR = "./img/botonesVistaInicio/botonJugar.png";
-    public static String PATH_ICONO_BOTON_JUGAR_HOVER = "./img/botonesVistaInicio/botonJugar_Hover.png";
+    public static final String PATH_ICONO_BOTON_JUGAR = "./img/botonesVistaInicio/botonJugar.png";
+    public static final String PATH_ICONO_BOTON_JUGAR_HOVER = "./img/botonesVistaInicio/botonJugar_Hover.png";
     
-    public static String PATH_ICONO_BOTON_IDIOMA_ESP = "./img/banderas/espana.png";
-    public static String PATH_ICONO_BOTON_IDIOMA_ING = "./img/banderas/reino-unido.png";
+    public static final String PATH_ICONO_BOTON_IDIOMA_ESP = "./img/banderas/espana.png";
+    public static final String PATH_ICONO_BOTON_IDIOMA_ING = "./img/banderas/reino-unido.png";
+    public static final String PATH_ICONO_BOTON_IDIOMA_ESP_SELECTED = "./img/banderas/espana_selected.png";
+    public static final String PATH_ICONO_BOTON_IDIOMA_ING_SELECTED = "./img/banderas/reino-unido_selected.png";
+    
+    public static final String PATH_FONDO_AUTORES_ESP = "./img/autores/fondo_autores_ESP.png";
+    public static final String PATH_FONDO_AUTORES_ING = "./img/autores/fondo_autores_ING.png";
     
    
     
@@ -90,7 +95,10 @@ public class Constantes {
     
     public static final String BOTON_JUGAR_COMMAND = "Jugar.Command";
     
-    public static String BOTON_IDIOMA_ESP_COMMAND = "IDIOMA.ESP.Command";
-    public static String BOTON_IDIOMA_ING_COMMAND = "IDIOMA.ING.Command";
+    public static final String BOTON_IDIOMA_ESP_COMMAND = "IDIOMA.ESP.Command";
+    public static final String BOTON_IDIOMA_ING_COMMAND = "IDIOMA.ING.Command";
+    
+    public static final String ABRIR_AUTORES_COMMAND = "Autores.Command";
+    
     
 }

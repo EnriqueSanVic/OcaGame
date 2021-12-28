@@ -1,6 +1,7 @@
 
 package Vistas;
 
+import Controladores.ControladorInicio;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import Utilidades.UtilidadesGraficas;
@@ -29,8 +30,11 @@ public class VistaInicio extends JFrame{
     
     private final Border blackline = BorderFactory.createLineBorder(Color.BLACK, 3); //Linea negra para el borde de ciertos elementos.
     
-    private final ImageIcon ICONO_BOTON_IDIOMA_ESP = new ImageIcon(Constantes.PATH_ICONO_BOTON_IDIOMA_ESP); //icono del boton de Fournier.
-    private final ImageIcon ICONO_BOTON_IDIOMA_ING = new ImageIcon(Constantes.PATH_ICONO_BOTON_IDIOMA_ING); //icono del boton de Fournier.
+    private final ImageIcon ICONO_BOTON_IDIOMA_ESP_SELECTED = new ImageIcon(Constantes.PATH_ICONO_BOTON_IDIOMA_ESP_SELECTED); //icono del boton de idioma ESP seleccionado.
+    private final ImageIcon ICONO_BOTON_IDIOMA_ING_SELECTED = new ImageIcon(Constantes.PATH_ICONO_BOTON_IDIOMA_ING_SELECTED); //icono del boton de idioma ING seleccionador.
+    
+    private final ImageIcon ICONO_BOTON_IDIOMA_ESP = new ImageIcon(Constantes.PATH_ICONO_BOTON_IDIOMA_ESP); //icono del boton de idioma ESP.
+    private final ImageIcon ICONO_BOTON_IDIOMA_ING = new ImageIcon(Constantes.PATH_ICONO_BOTON_IDIOMA_ING); //icono del boton de idioma ING.
     
     private final ImageIcon ICONO_BOTON_FOURNIER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER); //icono del boton de Fournier.
     private final ImageIcon ICONO_BOTON_FOURNIER_HOVER = new ImageIcon(Constantes.PATH_ICONO_BOTON_FOURNIER_HOVER); //icono del boton de Fournier Hover.
@@ -88,6 +92,9 @@ public class VistaInicio extends JFrame{
     private final int BOTON_FOURNIER_WIDTH = 220, BOTON_FOURNIER_HEIGHT =65; //Medidas del Boton Fournier.
     
     //Atributos de la clase.
+    
+    private ControladorInicio controladorInicio;
+    
     private PanelFondoInicio panelFondoInicio;
     
     private JButton botonESP;
@@ -112,8 +119,8 @@ public class VistaInicio extends JFrame{
     private int idioma;
 
     //Constructor.
-    public VistaInicio(){
-        this.idioma = 0; //Comienza en español.
+    public VistaInicio(int idioma){
+        this.idioma = idioma; //Comienza en español.
         this.iniciarVista();
     }
 
@@ -129,6 +136,8 @@ public class VistaInicio extends JFrame{
     
     //Metodo que inicializa elementos de la vista inicio.
     private void crearObjetos() {
+        //Controlador Inicio
+        this.controladorInicio = new ControladorInicio(this);
         //Fondo Vista Inicio.
         this.panelFondoInicio = new PanelFondoInicio(this);
         //Botones de idiomas.
@@ -139,7 +148,7 @@ public class VistaInicio extends JFrame{
         //Panel J1.
         this.panelJ1 = new JPanel();
         //Label J1.
-        this.labelJ1 = new JLabel(TextosJuego.NOMBRE_J1[idioma]);
+        this.labelJ1 = new JLabel(TextosJuego.NOMBRE_J1[idioma], JLabel.CENTER);
         //Textfield J1.
         this.textFieldJ1 = new JTextField(10);
         //Boton modo2.
@@ -147,7 +156,7 @@ public class VistaInicio extends JFrame{
         //Panel J2.
         this.panelJ2 = new JPanel();
         //Label J2.
-        this.labelJ2 = new JLabel(TextosJuego.NOMBRE_J2[idioma]);
+        this.labelJ2 = new JLabel(TextosJuego.NOMBRE_J2[idioma], JLabel.CENTER);
         //Textfield J2.
         this.textFieldJ2 = new JTextField(10);
         //Boton Jugar.
@@ -170,7 +179,16 @@ public class VistaInicio extends JFrame{
         this.panelFondoInicio.setBounds(0, 0, this.FRAME_WIDTH, this.FRAME_HEIGHT);
         //Boton idioma ESP.
         this.botonESP.setActionCommand(Constantes.BOTON_IDIOMA_ESP_COMMAND);
-        this.botonESP.setIcon(this.ICONO_BOTON_IDIOMA_ESP);
+        switch (idioma) {
+            case 0:
+                this.botonESP.setIcon(this.ICONO_BOTON_IDIOMA_ESP_SELECTED);
+                break;
+            case 1:
+                this.botonESP.setIcon(this.ICONO_BOTON_IDIOMA_ESP);
+                break;    
+            default:
+                break;
+        }
         this.botonESP.setOpaque(false);
         this.botonESP.setBorderPainted(false);
         this.botonESP.setFocusPainted(false);
@@ -206,7 +224,16 @@ public class VistaInicio extends JFrame{
         });
         //Boton idioma ING.
         this.botonING.setActionCommand(Constantes.BOTON_IDIOMA_ING_COMMAND);
-        this.botonING.setIcon(this.ICONO_BOTON_IDIOMA_ING);
+        switch (idioma) {
+            case 0:
+                this.botonING.setIcon(this.ICONO_BOTON_IDIOMA_ING);
+                break;
+            case 1:
+                this.botonING.setIcon(this.ICONO_BOTON_IDIOMA_ING_SELECTED);
+                break;    
+            default:
+                break;
+        }
         this.botonING.setBorder(this.blackline);
         this.botonING.setOpaque(false);
         this.botonING.setBorderPainted(false);
@@ -408,6 +435,7 @@ public class VistaInicio extends JFrame{
         this.botonFournier.setBorder(this.blackline);
         this.botonFournier.setIcon(this.ICONO_BOTON_FOURNIER);
         this.botonFournier.setBounds(this.BOTON_FOURNIER_X, this.BOTON_FOURNIER_Y, this.BOTON_FOURNIER_WIDTH, this.BOTON_FOURNIER_HEIGHT);
+        this.botonFournier.setActionCommand(Constantes.ABRIR_AUTORES_COMMAND);
         /*
             Definición de los métodos de escuchador para el boton de Fournier, está implementado como unca clase anonima
             debido a que es para aplicar unas funcionalidades puramente visuales que no tiene nada que ver con el resto de 
@@ -459,7 +487,18 @@ public class VistaInicio extends JFrame{
 
     //Metodo que añade el escuchador necesario a ciertos elementos.
     private void anadirEscuchadores() {
-        
+        this.botonESP.addActionListener(this.controladorInicio);
+        this.botonING.addActionListener(this.controladorInicio);
+        this.botonFournier.addActionListener(this.controladorInicio);
+    }
+
+    //Getter y Setter de idioma.
+    public int getIdioma() {
+        return idioma;
+    }
+
+    public void setIdioma(int idioma) {
+        this.idioma = idioma;
     }
     
     

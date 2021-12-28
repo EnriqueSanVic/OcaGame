@@ -15,8 +15,8 @@ public class OcaGame {
 
     public static void main(String[] args) {
         
-        //VistaInicio vistaInicio = new VistaInicio();
-        ControladorJuego controlador = new ControladorJuegoModo2(Constantes.IDIOMA_ESPANOL, "kike", "alvaro");
+        VistaInicio vistaInicio = new VistaInicio(0); //Comienza en español = 0;
+        //ControladorJuego controlador = new ControladorJuegoModo2(Constantes.IDIOMA_ESPANOL, "kike", "alvaro");
     }
     
 }
