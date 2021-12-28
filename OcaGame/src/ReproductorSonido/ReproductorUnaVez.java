@@ -3,13 +3,17 @@
 package ReproductorSonido;
 
 import Hilos.Hilo;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
+import Hilos.RegistradorHilos;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import sun.misc.IOUtils;
+
 
 /**
  *
@@ -17,48 +21,88 @@ import sun.misc.IOUtils;
  */
 public class ReproductorUnaVez extends Thread implements Hilo{
 
-    byte[] master_audio;
+    
+    private AudioInputStream audio;
+
     private long duracion;
     
+    private Clip reproductor;
     
-    public ReproductorUnaVez(String path) {
+    private RegistradorHilos registrador;
+    
+    public ReproductorUnaVez(String path, RegistradorHilos registrador) {
+        
+        this.registrador = registrador;
+        
+        this.registrador.aniadirHilo(this);
+        
+        this.setPriority(Thread.MAX_PRIORITY);
         
         try {
-
-                AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(path));
-                   
-                
-                
+            
+            audio = AudioSystem.getAudioInputStream(new File(path));
+            duracion = audio.getFrameLength();
+   
                 
         }catch(Exception ex){
-            System.out.println("Erro al cargar el archivo");
+            System.out.println("Error al cargar el archivo");
+            System.out.println(ex.getMessage());
         }
         
     }
-    
-    private AudioInputStream recuperarAudio(){
-        
-        ByteArrayInputStream b = new ByteArrayInputStream(master_audio);
-        
 
-        return null;
-        
-        
-    }
+    
 
     @Override
     public void run() {
         
-        Clip copia;
+        try {
+            
+            reproductor = AudioSystem.getClip();
+            
+            reproductor.open(audio);
+            
+            reproductor.start();
+            
+            Thread.sleep(duracion);
+            
+            reproductor.close();
+            
+            audio.close();
+            
+            
+        } catch (Exception ex) {
+            System.out.println("Error de carga de audio");
+        }
+        
+        reproductor = null;
+        audio= null;
+
+        registrador.eliminarHilo(this);
         
     }
     
-    
-    
+
+
 
     @Override
     public void matar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        try {
+            
+            reproductor.stop();
+            
+            reproductor.close();
+            
+            audio.close();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(ReproductorUnaVez.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        reproductor = null;
+        audio= null;
+        
     }
 
     

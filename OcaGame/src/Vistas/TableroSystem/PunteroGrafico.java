@@ -2,8 +2,11 @@
 
 package Vistas.TableroSystem;
 
+import DatosEstaticos.Constantes;
 import Hilos.Hilo;
 import Hilos.RegistradorHilos;
+import ReproductorSonido.ManejadorSonidos;
+import ReproductorSonido.ReproductorContinuo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,6 +41,8 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
     
     private boolean estadoImagen;
     
+    private ReproductorContinuo hiloSonido;
+    
     private Tablero tablero;
             
 
@@ -55,6 +60,8 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
         
         initGrafico(centro.x,centro.y);
         
+       
+        
         hiloGUI = new Timer(PERIODO_CAMBIO_IMAGEN, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
@@ -69,6 +76,12 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
                         
                     }
                 });
+        
+        
+        hiloSonido = ManejadorSonidos.hiloMusical(Constantes.PATH_SONIDO_PUNTERO_GRAFICO);
+        
+        registrador.aniadirHilo(this);
+        registrador.aniadirHilo(hiloSonido);
         
     }
 
@@ -94,11 +107,14 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
    
     public void iniciar() {
         hiloGUI.start();
+        hiloSonido.start();
     }
     
     public void parar(){
         hiloGUI.stop();
+        hiloSonido.matar();
         registrador.eliminarHilo(this);
+        registrador.eliminarHilo(hiloSonido);
     }
 
     @Override

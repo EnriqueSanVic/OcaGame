@@ -6,6 +6,7 @@ import Controladores.ControladorJuego;
 import Controladores.ControladorMenu;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
+import Hilos.Hilo;
 import Utilidades.UtilidadesGraficas;
 import Utilidades.VentanaConCorrecion;
 import Vistas.TableroSystem.Ficha;
@@ -197,7 +198,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         
         //Panel dado.
         this.panelDadoCubilete = new JPanel();
-        this.dadoGrafico = new DadoGrafico(this);
+        this.dadoGrafico = new DadoGrafico(this, controlador);
         this.controlador.aniadirHilo(this.dadoGrafico);
         new Thread(this.dadoGrafico).start();
         //Label fondo panel dado.
@@ -612,6 +613,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     public void setPantallaCompleta(boolean isPantallaCompleta) {
         pantallaCompleta = isPantallaCompleta;
     }
+    
     
     
    

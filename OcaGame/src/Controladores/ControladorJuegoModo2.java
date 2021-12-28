@@ -5,6 +5,7 @@ package Controladores;
 import DatosEstaticos.Constantes;
 import Logicas.DirectivasEvaluacion;
 import Logicas.LogicaJuegoModo2;
+import ReproductorSonido.ManejadorSonidos;
 import Vistas.VistaJuegoModo1;
 import Vistas.VistaJuegoModo2;
 
@@ -38,8 +39,11 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
     protected boolean sePuedeTirarDado() {
         
         if(((LogicaJuegoModo2) logica).getTurnosBloqueo(jugadorTurnoActual) == 0 && iniciarTurno){
+            
             return true;
+            
         }else{
+            
             eventoFinalizacionDado();
             return  false;
         }
@@ -132,6 +136,7 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
             }
 
         } else {
+            lanzarSonidoTurnoBloqueado();
             actualizarPenalizacionesJugadorVista();
             cambiarTurno();
         }
@@ -230,6 +235,7 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
             
         }else if(directivas.getPenalizacion() != 0){
             
+            lanzarSonidoTurnoBloqueado();
             actualizarPenalizacionesJugadorVista();
             
         }
@@ -263,6 +269,11 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
     }
     
     
+    private void lanzarSonidoTurnoBloqueado(){
+        
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_TURNO_BLOQUEADO, this).start();
+        
+    }
 
     
 

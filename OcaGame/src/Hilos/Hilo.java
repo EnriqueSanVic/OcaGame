@@ -11,6 +11,7 @@ package Hilos;
  */
 public interface Hilo {
     
+    
     void matar();
-
+    
 }

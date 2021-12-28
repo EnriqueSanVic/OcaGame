@@ -3,6 +3,9 @@ package Vistas;
 
 import DatosEstaticos.Constantes;
 import Hilos.Hilo;
+import Hilos.RegistradorHilos;
+import ReproductorSonido.ManejadorSonidos;
+import ReproductorSonido.ReproductorUnaVez;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -56,17 +59,23 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     
     private int numeroDadoActual;
 
+    private RegistradorHilos registrador;
+
     //Constructor.
-    public DadoGrafico(VistaJuego vistaJuego){
+    public DadoGrafico(VistaJuego vistaJuego, RegistradorHilos registrador){
         super();
         this.vistaJuego = vistaJuego;
+        this.registrador = registrador;
         this.vistaJuego.setImpulsoTirarDado(false);
         crearCubilete();
         crearDado();        
         configurarDado();
         this.dadoON = true; //Se inicia el hilo del dado.
+        
+        
+        
     }
-
+    
     @Override
     public void run() {  
         while(dadoON){
@@ -100,6 +109,8 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
                     Logger.getLogger(DadoGrafico.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            
+            sonar();
             //Desbloqueo el boton
             this.vistaJuego.bloquearBoton(true);
             posicionarDadoFinal(); //Muestro la cara del dado final escogida.
@@ -233,6 +244,9 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     
     //Metodo que cambia la imagen del dado de forma aleatoria para simular un rebote
     private void efectoReboteDado(){
+        
+        sonar();
+        
         int numeroDadoCambiado;
         do{
            numeroDadoCambiado = (int)(Math.random()*6)+1;  
@@ -286,6 +300,13 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         this.dado.setIcon(imagenDadoCambiante);      
     }
     
+    private void sonar(){
+        
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_GOLPE_DADO, registrador).start();
+
+        
+    }
+    
     //Getters de posicion del dado actuales(x, Y).
     public int getPosicionDado_X() {
         return this.posicion_Dado_X;
@@ -308,6 +329,8 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
     public String toString() {
         return "DadoGrafico";
     }
+
+    
    
     
 

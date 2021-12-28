@@ -51,6 +51,9 @@ public class Constantes {
     public static final String PATH_MARCO_ENFASIS_NOMBRE = "./img/rotulos/enfasis_nombre.png";
     
     public static final String PATH_HILO_MUSICAL_PRINCIPAL = "./sounds/Arkansas-Traveler.aiff";
+    public static String PATH_SONIDO_GOLPE_DADO = "./sounds/kick_sound.aiff";
+    public static String PATH_SONIDO_TURNO_BLOQUEADO = "./sounds/fallo.aiff";
+    public static String PATH_SONIDO_PUNTERO_GRAFICO = "./sounds/oscilador.aiff";
     
     public static String PATH_ICONO_JUEGO_OCA_WINDOWS = "./img/rotulos/icono_juego_oca.png"; //ico no se ve (?)
     public static String PATH_ICONO_JUEGO_OCA_MAC = "./img/rotulos/icono_juego_oca.icns";
@@ -68,6 +71,8 @@ public class Constantes {
     
     public static String PATH_ICONO_BOTON_IDIOMA_ESP = "./img/banderas/espana.png";
     public static String PATH_ICONO_BOTON_IDIOMA_ING = "./img/banderas/reino-unido.png";
+    
+   
     
     //comandos de acciones
 
