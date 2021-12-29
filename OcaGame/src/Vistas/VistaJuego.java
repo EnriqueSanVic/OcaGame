@@ -315,7 +315,7 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.botonLanzarDado.addMouseListener(new MouseAdapter() {
             
             private final int HUNDIMIENTO_BOTON = 5;
-            private final Color HUNDIMIENTO_COLOR = new Color(95,196,92);
+            private final Color HUNDIMIENTO_COLOR = Color.GREEN;//new Color(95,196,92);
 
             @Override
             public void mouseEntered(MouseEvent e) {
