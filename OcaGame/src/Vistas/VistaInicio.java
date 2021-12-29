@@ -118,6 +118,7 @@ public class VistaInicio extends JFrame{
     private JButton botonFournier;
     
     private int idioma;
+    private boolean modo1activado;
 
     //Constructor.
     public VistaInicio(int idioma){
@@ -131,12 +132,14 @@ public class VistaInicio extends JFrame{
         disenoObjetos();
         anadirObjetos();
         anadirEscuchadores();
-
+        modo1ON(true); //Comienza con el modo individual seleccionado.
         this.setVisible(true);
     }
     
     //Metodo que inicializa elementos de la vista inicio.
     private void crearObjetos() {
+        //Atributo modo
+        this.modo1activado=true;
         //Controlador Inicio
         this.controladorInicio = new ControladorInicio(this);
         //Fondo Vista Inicio.
@@ -266,10 +269,10 @@ public class VistaInicio extends JFrame{
         });
         //Boton Modo 1.
         this.botonModo1.setFont(this.FUENTE_2);
-        this.botonModo1.setForeground(Color.BLACK);
+        this.botonModo1.setForeground(Color.GREEN); //Comienza seleccionado.
         this.botonModo1.setHorizontalTextPosition(SwingConstants.CENTER);
         this.botonModo1.setActionCommand(Constantes.BOTON_MODO_1_COMMAND);
-        this.botonModo1.setIcon(this.ICONO_BOTON_MODO1);
+        this.botonModo1.setIcon(this.ICONO_BOTON_MODO1_HOVER); //Comienza seleccionado.
         this.botonModo1.setOpaque(false);
         this.botonModo1.setBorderPainted(false);
         this.botonModo1.setFocusPainted(false);
@@ -283,29 +286,38 @@ public class VistaInicio extends JFrame{
         this.botonModo1.addMouseListener(new MouseAdapter() {
             
             private final int HUNDIMIENTO_BOTON = 5;
-            private final Color HUNDIMIENTO_COLOR = Color.GREEN;//new Color(95,196,92);
+            private final Color HUNDIMIENTO_COLOR = Color.GREEN;
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                botonModo1.setIcon(ICONO_BOTON_MODO1_HOVER);
-                botonModo1.setForeground(Color.WHITE);
+                if(!modo1activado){
+                    botonModo1.setIcon(ICONO_BOTON_MODO1_HOVER);
+                    botonModo1.setForeground(Color.WHITE);
+                }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                botonModo1.setIcon(ICONO_BOTON_MODO1);
-                botonModo1.setForeground(Color.BLACK);
+                if(!modo1activado){
+                    botonModo1.setIcon(ICONO_BOTON_MODO1);
+                    botonModo1.setForeground(Color.BLACK);
+                }
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
+                botonModo2.setIcon(ICONO_BOTON_MODO2);
                 botonModo1.setForeground(HUNDIMIENTO_COLOR);
                 botonModo1.setLocation(botonModo1.getLocation().x, botonModo1.getLocation().y + HUNDIMIENTO_BOTON);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                botonModo1.setForeground(Color.BLACK);
+                if(!modo1activado){
+                    botonModo1.setForeground(Color.BLACK);
+                }else{
+                    botonModo1.setForeground(HUNDIMIENTO_COLOR);
+                }
                 botonModo1.setLocation(botonModo1.getLocation().x, botonModo1.getLocation().y - HUNDIMIENTO_BOTON);
             }
         });
@@ -346,25 +358,35 @@ public class VistaInicio extends JFrame{
 
             @Override
             public void mouseEntered(MouseEvent e) {
-                botonModo2.setIcon(ICONO_BOTON_MODO2_HOVER);
-                botonModo2.setForeground(Color.WHITE);
+                if(modo1activado){
+                    botonModo2.setIcon(ICONO_BOTON_MODO2_HOVER);
+                    botonModo2.setForeground(Color.WHITE);
+                }
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-                botonModo2.setIcon(ICONO_BOTON_MODO2);
-                botonModo2.setForeground(Color.BLACK);
+                if(modo1activado){
+                    botonModo2.setIcon(ICONO_BOTON_MODO2);
+                    botonModo2.setForeground(Color.BLACK);
+                }
             }
 
             @Override
             public void mousePressed(MouseEvent e) {
+                botonModo1.setForeground(Color.BLACK);
+                botonModo1.setIcon(ICONO_BOTON_MODO1);
                 botonModo2.setForeground(HUNDIMIENTO_COLOR);
                 botonModo2.setLocation(botonModo2.getLocation().x, botonModo2.getLocation().y + HUNDIMIENTO_BOTON);
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                botonModo2.setForeground(Color.BLACK);
+                if(modo1activado){
+                    botonModo2.setForeground(Color.BLACK);
+                }else{
+                   botonModo2.setForeground(HUNDIMIENTO_COLOR); 
+                }
                 botonModo2.setLocation(botonModo2.getLocation().x, botonModo2.getLocation().y - HUNDIMIENTO_BOTON);
             }
         });
@@ -491,6 +513,9 @@ public class VistaInicio extends JFrame{
         this.botonESP.addActionListener(this.controladorInicio);
         this.botonING.addActionListener(this.controladorInicio);
         this.botonFournier.addActionListener(this.controladorInicio);
+        this.botonModo1.addActionListener(this.controladorInicio);
+        this.botonModo2.addActionListener(this.controladorInicio);
+        this.botonJugar.addActionListener(this.controladorInicio);
         this.addWindowListener(this.controladorInicio);
     }
 
@@ -527,5 +552,42 @@ public class VistaInicio extends JFrame{
         
         return false;
         
+    }
+    
+    //Metodo que lanza un dialogo y retorna true si el jugador quiere cambiar el idioma del juego.
+    public void mensajeErrorCampos(){
+        JOptionPane.showMessageDialog(this, TextosJuego.MENSAJE_ERROR_CAMPOS[idioma]);
+    }
+
+    //Getters del contenido de los textfields (Nombres Jugadores)
+    public String getTextFieldNameJ1(){
+        return this.textFieldJ1.getText();
+    }
+    
+    public String getTextFieldNameJ2(){
+        return this.textFieldJ2.getText();
+    }
+    
+    //Getter del modo de juego actual.
+    public boolean isModo1activado() {
+        return modo1activado;
+    }
+    
+
+    public void modo1ON(boolean activado){
+        //Si está activado el modo 1, se ocultan los campos del modo 2.
+        if(activado){
+            this.modo1activado=true;
+            this.botonModo2.setForeground(Color.BLACK);
+            this.labelJ2.setVisible(false);
+            this.textFieldJ2.setVisible(false);
+            this.textFieldJ2.setText("");
+        //Si se desactiva el modo 1(se activa el modo 2), se visibilizan los campos del modo 2    
+        }else{
+            this.modo1activado=false;
+            this.botonModo2.setForeground(Color.GREEN);
+            this.labelJ2.setVisible(true);
+            this.textFieldJ2.setVisible(true);
+        }
     }
 }

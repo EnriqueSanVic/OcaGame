@@ -42,6 +42,7 @@ public class TextosJuego {
     
     public static final String[] MENSAJE_SALIR_PARTIDA = {"¿Seguro/a que quieres terminar la partida?", "Are you sure you want to finish the game?"};
     public static final String[] MENSAJE_SALIR_JUEGO = {"¿Seguro/a que quieres salir del juego?", "Are you sure you want to get out of the game?"};
+    public static final String[] MENSAJE_ERROR_CAMPOS = {"ERROR: Completa los campos correctamente.", "ERROR: Complete the fields correctly."};
     public static final String[] MENSAJE_CAMBIAR_IDIOMA = {"¿Seguro/a que quieres cambiar el idioma?\nNo se guardarán los cambios.", "Are you sure you want to change the language?\nThe changes will not be saved."};
     
     //Vista Inicio
