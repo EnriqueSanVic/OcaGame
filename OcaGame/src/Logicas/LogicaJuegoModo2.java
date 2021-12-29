@@ -2,6 +2,8 @@
 
 package Logicas;
 
+import Modelos.DirectivasEvaluacion;
+
 /**
  *
  * @author Enrique Sánchez 
@@ -41,11 +43,11 @@ public class LogicaJuegoModo2 extends LogicaJuego{
         DirectivasEvaluacion directivas = super.evaluarTurnoFinal(jugador);
         
         //si en las directivas de la casilla en la que se ha caido  no hay cambios de posicion y  hay turnos de bloqueo en la casilla en la que se ha caido
-        if(directivas.penalizacion > 0){
-            turnosBloqueo[jugador] += directivas.penalizacion;
+        if(directivas.getPenalizacion() > 0){
+            turnosBloqueo[jugador] += directivas.getPenalizacion();
         }
         
-        return new DirectivasEvaluacion(directivas.posicion, directivas.penalizacion, directivas.tirarOtraVez);
+        return new DirectivasEvaluacion(directivas.getPosicion(), directivas.getPenalizacion(), directivas.isTirarOtraVez());
     
     }
     

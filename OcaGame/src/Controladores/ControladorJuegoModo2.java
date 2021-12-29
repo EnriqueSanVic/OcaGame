@@ -3,7 +3,7 @@
 package Controladores;
 
 import DatosEstaticos.Constantes;
-import Logicas.DirectivasEvaluacion;
+import Modelos.DirectivasEvaluacion;
 import Logicas.LogicaJuegoModo2;
 import ReproductorSonido.ManejadorSonidos;
 import Vistas.VistaJuegoModo1;

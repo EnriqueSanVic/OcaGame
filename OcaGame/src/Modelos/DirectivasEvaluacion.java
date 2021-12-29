@@ -1,6 +1,6 @@
 
 
-package Logicas;
+package Modelos;
 
 /**
  * 
@@ -15,11 +15,11 @@ package Logicas;
 public class DirectivasEvaluacion {
 
     
-    protected final int posicion;
+    private final int posicion;
     
-    protected final int penalizacion;
+    private final int penalizacion;
     
-    protected final boolean tirarOtraVez;
+    private final boolean tirarOtraVez;
     
     public DirectivasEvaluacion(int posicion, int penalizacion, boolean tirarOtraVez ) {
         this.posicion = posicion;

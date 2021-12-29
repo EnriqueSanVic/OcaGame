@@ -2,6 +2,8 @@
 
 package Logicas;
 
+import Modelos.DirectivasEvaluacion;
+
 /**
  *
  * @author Enrique Sánchez 
