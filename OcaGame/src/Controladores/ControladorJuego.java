@@ -19,7 +19,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Timer;
@@ -39,10 +41,13 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     protected List<Hilo> hilos;
     
     protected int ultimoNumeroDado;
+    
+    private Random random;
         
     public ControladorJuego(int idioma, String jugador1, String jugador2){
         this.hilos = new ArrayList<Hilo>();
         
+        this.random = new Random();
         //Si se quieren monitorizar los hilos activos en cada momento llamar a esta función
         //debugearHilos();
         
@@ -117,9 +122,19 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
         */
         
         synchronized(hilos){
-            for (Hilo i:hilos) {
-                i.matar();
+            
+            try{
+            
+                for (Hilo i:hilos) {
+                    i.matar();
+                }
+            
+            }catch(ConcurrentModificationException ex){
+                
+                System.out.println("Error de cierre");
+                
             }
+            
         }
         
         
@@ -182,7 +197,17 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     public abstract void guardarPartida();
     
     public abstract void cargarPartida();
+    
+    
+    protected void evaluarSonidoMovimiento(int posicion) {
 
+        if (posicion > 0) {
+            sonidoAvance();
+        } else if (posicion < 0) {
+            sonidoRetroceso();
+        }
+
+    }
     
     protected void volverMenuInicio(){
         //guardar/serializar
@@ -203,6 +228,40 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     
     public void accionPantallaCompleta(){
         UtilidadesGraficas.pantallaCompleta((VentanaConCorrecion)vista);
+    }
+    
+    protected void sonidoRetroceso(){
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_RETROCESO, this).start();
+    }
+    
+    protected void sonidoAvance(){
+        
+        String path;
+       
+        path = random.nextBoolean() ? Constantes.PATH_SONIDO_AVANCE1 : Constantes.PATH_SONIDO_AVANCE2;
+       
+       ManejadorSonidos.hiloPuntual(path, this).start();
+        
+    }
+    
+    protected void sonidoTurnoBloqueado(){
+        
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_TURNO_BLOQUEADO, this).start();
+        
+    }
+    
+    protected void sonidoCambioTurno(){
+        
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_CAMBIO_TURNO, this).start();
+        
+    }
+    
+    protected void sonidoGanar(){
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_GANAR, this).start();
+    }
+    
+    protected void sonidoPerder(){
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_PERDER, this).start();
     }
     
 }

@@ -83,6 +83,8 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
             jugadorTurnoActual = Constantes.JUGADOR_1;
         }
         
+        super.sonidoCambioTurno();
+        
         actualizarTurnoJugadorVista();
         
     }
@@ -136,7 +138,7 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
             }
 
         } else {
-            lanzarSonidoTurnoBloqueado();
+            super.sonidoTurnoBloqueado();
             actualizarPenalizacionesJugadorVista();
             cambiarTurno();
         }
@@ -206,6 +208,7 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
         }
         
         if(logica.isGanador(jugadorTurnoActual)){
+             super.sonidoGanar();
              finalizarPartidaPorMeta(jugadorTurnoActual);
         }
         
@@ -227,15 +230,17 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
             
             avanceAuto = directivas.getPosicion();
             
-            super.esperarDelayAntesDeAccionAuto();
+            super.evaluarSonidoMovimiento(directivas.getPosicion());
             
+            super.esperarDelayAntesDeAccionAuto();
+ 
             vista.mover(jugadorTurnoActual, logica.getPosicionJugador(jugadorTurnoActual) + avanceAuto);
 
             return false;
             
         }else if(directivas.getPenalizacion() != 0){
             
-            lanzarSonidoTurnoBloqueado();
+            super.sonidoTurnoBloqueado();
             actualizarPenalizacionesJugadorVista();
             
         }
@@ -269,11 +274,7 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
     }
     
     
-    private void lanzarSonidoTurnoBloqueado(){
-        
-        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_TURNO_BLOQUEADO, this).start();
-        
-    }
+    
 
     
 
