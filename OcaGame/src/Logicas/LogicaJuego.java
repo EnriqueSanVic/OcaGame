@@ -2,6 +2,8 @@
 
 package Logicas;
 
+import Modelos.DirectivasEvaluacion;
+import Modelos.CasillaLogica;
 import java.util.Random;
 
 /**
@@ -101,18 +103,14 @@ public abstract class LogicaJuego {
         
         boolean tirarOtraVez;
         
-        avance = tablero[posicionJugador[jugador]].avance;
+        avance = tablero[posicionJugador[jugador]].getAvance();
         
-        tiempo = tablero[posicionJugador[jugador]].penalizacion;
+        tiempo = tablero[posicionJugador[jugador]].getPenalizacion();
         
-        tirarOtraVez = tablero[posicionJugador[jugador]].tirarOtraVez;
-                        
-        
-        
+        tirarOtraVez = tablero[posicionJugador[jugador]].isTirarOtraVez();
+
         return  new DirectivasEvaluacion(avance, tiempo, tirarOtraVez);
-        
-        
-        
+
     }
     
 
