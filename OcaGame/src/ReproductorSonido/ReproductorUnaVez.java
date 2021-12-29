@@ -66,6 +66,10 @@ public class ReproductorUnaVez extends Thread implements Hilo{
             
             Thread.sleep(duracion);
             
+            reproductor.stop();
+            
+            reproductor.flush();
+            
             reproductor.close();
             
             audio.close();
@@ -92,11 +96,15 @@ public class ReproductorUnaVez extends Thread implements Hilo{
             
             reproductor.stop();
             
+            reproductor.flush();
+            
             reproductor.close();
+            
             
             audio.close();
             
-        } catch (IOException ex) {
+            
+        } catch (Exception ex) {
             Logger.getLogger(ReproductorUnaVez.class.getName()).log(Level.SEVERE, null, ex);
         }
         

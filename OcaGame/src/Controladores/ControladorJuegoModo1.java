@@ -218,6 +218,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
             
             avanceAuto = directivas.getPosicion();
             
+            super.evaluarSonidoMovimiento(directivas.getPosicion());
+            
             super.esperarDelayAntesDeAccionAuto();
             
             vista.mover(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1) + avanceAuto);
@@ -232,6 +234,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
                     
              
             int valorPenalizacionesTotales = Integer.valueOf(((VistaJuegoModo1)vista).getPenalizacionLabel());
+            
+            super.sonidoTurnoBloqueado();
             
             ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(valorPenalizacionesTotales - penalizacion));
             
@@ -250,6 +254,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
         victoria = false;
         
+        super.sonidoPerder();
+        
         evaluarFinal();
         
         
@@ -267,6 +273,10 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
             
             victoria = true;
             
+            super.sonidoGanar();
+            
+        }else{
+            super.sonidoPerder();
         }
         
         evaluarFinal();

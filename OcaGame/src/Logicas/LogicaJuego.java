@@ -121,8 +121,8 @@ public abstract class LogicaJuego {
         
         int numero;
         
-        //hay un 5% de probabilidades de que salga una tirada de 7
-        if(random.nextInt(100) > 95){
+        //hay un 3% de probabilidades de que salga una tirada de 7
+        if((random.nextInt(100) + 1) > 97){
             numero = 7;
         }else{
             numero = random.nextInt(6) + 1;

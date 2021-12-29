@@ -54,6 +54,12 @@ public class Constantes {
     public static final String PATH_SONIDO_GOLPE_DADO = "./sounds/kick_sound.aiff";
     public static final String PATH_SONIDO_TURNO_BLOQUEADO = "./sounds/fallo.aiff";
     public static final String PATH_SONIDO_PUNTERO_GRAFICO = "./sounds/oscilador.aiff";
+    public static final String PATH_SONIDO_CAMBIO_TURNO = "./sounds/cambioTurno.aiff";
+    public static final String PATH_SONIDO_RETROCESO = "./sounds/retroceso.aiff";
+    public static final String PATH_SONIDO_AVANCE1 = "./sounds/cartoon018.aiff";
+    public static final String PATH_SONIDO_AVANCE2 = "./sounds/cartoon016.aiff";
+    public static final String PATH_SONIDO_GANAR = "./sounds/ganar.aiff";
+    public static final String PATH_SONIDO_PERDER = "./sounds/perder.aiff";
     
     public static final String PATH_ICONO_JUEGO_OCA_WINDOWS = "./img/rotulos/icono_juego_oca.png"; //ico no se ve (?)
     public static final String PATH_ICONO_JUEGO_OCA_MAC = "./img/rotulos/icono_juego_oca.icns";
