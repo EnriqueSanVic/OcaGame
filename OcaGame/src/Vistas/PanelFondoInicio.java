@@ -31,6 +31,6 @@ public class PanelFondoInicio extends JPanel{
     @Override
     public void paintComponent(Graphics grphcs) {
         super.paintComponent(grphcs); 
-        grphcs.drawImage(imagenFondoInicio, 0, 0, this);
+        grphcs.drawImage(imagenFondoInicio, 18, 0, this);
     }
 }
