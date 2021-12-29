@@ -14,9 +14,14 @@ import javax.swing.JPanel;
  */
 public class PanelFondoInicio extends JPanel{
     
+    //Atributos de la clase
     private BufferedImage imagenFondoInicio;
     private VistaInicio vistaPadre;
     
+    /**
+     * Constructor.
+     * @param vistaPadre 
+     */
     public PanelFondoInicio(VistaInicio vistaPadre) {
         super();
         this.vistaPadre = vistaPadre;

@@ -22,7 +22,10 @@ public class VistaInstrucciones extends JDialog{
     private BufferedImage imagenFondoInstrucciones;
     int idioma;
     
-    //Constructor.
+    /**
+     * Constructor.
+     * @param vistaPadre 
+     */
     public VistaInstrucciones(VistaJuego vistaPadre){
         
         super(vistaPadre, true);

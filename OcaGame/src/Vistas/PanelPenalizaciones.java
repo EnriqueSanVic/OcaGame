@@ -14,8 +14,12 @@ import javax.swing.JPanel;
  */
 public class PanelPenalizaciones extends JPanel{
     
+    //Atributos de la clase
     private BufferedImage imagenFondoPenalizaciones;
 
+    /**
+     * Constructor.
+     */
     public PanelPenalizaciones() {
         //Imagen Fondo Panel Penalizaciones.
         try {

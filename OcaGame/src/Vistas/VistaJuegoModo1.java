@@ -17,7 +17,6 @@ public class VistaJuegoModo1 extends VistaJuego{
     
     //Constantes de configuracion.
     
-    
     private final int FICHAJ1_X=60, FICHAJ1_Y=60; //Posicion de la ficha J1.
     private final int FICHAJ1_WIDTH = 100, FICHAJ1_HEIGHT = 100; //Medidas de la ficha J1.
     
@@ -47,7 +46,7 @@ public class VistaJuegoModo1 extends VistaJuego{
     
     private final Color COLOR_PELIGRO = Color.RED;
     
-//Atributos de la clase.
+    //Atributos de la clase.
     private ImageIcon iconoFichaJ1;
     private JLabel fichaNombreJ1;
     private JLabel nombreJugador1;
@@ -61,7 +60,13 @@ public class VistaJuegoModo1 extends VistaJuego{
     private JLabel segundosTemporizador; 
     private JLabel labelSegundosTemporizador;
      
-    //Constructor.
+    /**
+     * Constructor.
+     * @param control
+     * @param idioma
+     * @param jugador1
+     * @param jugador2 
+     */
     public VistaJuegoModo1(ControladorJuego control, int idioma,String jugador1, String jugador2) {
         super(control, idioma, jugador1, jugador2);
         //solo iniciarTemporizador es un metodo del propio del constructor de esta clase
@@ -154,32 +159,50 @@ public class VistaJuegoModo1 extends VistaJuego{
     //Metodo que inicia la cuenta atras del temporizador hasta que llega a 0.
     
 
-    //Getter que devuelve el nombre del J1 actual.
+    /**
+     * Getter que devuelve el nombre del J1 actual.
+     * @return 
+     */
     public String getNombreJugador1() {
         return nombreJugador1.getText();
     }
 
-    //Setter que actualiza el nombre del J1 actual.
+    /**
+     * Setter que actualiza el nombre del J1 actual.
+     * @param nombreJugador1 
+     */
     public void setNombreJugador1(String nombreJugador1) {
         this.nombreJugador1.setText(nombreJugador1);
     }
 
-    //Getter label penalizacion (-10seg)
+    /**
+     * Getter label penalizacion (-10seg)
+     * @return String numeroPenalizacion
+     */
     public String getPenalizacionLabel() {
         return numeroPenalizacionLabel.getText();
     }
 
-    //Setter label penalizacion (-10seg)
+    /**
+     * Setter label penalizacion (-10seg)
+     * @param penalizacionLabel 
+     */
     public void setPenalizacionLabel(String penalizacionLabel) {
         this.numeroPenalizacionLabel.setText(penalizacionLabel);
     }
 
 
-    //Setter texto label penalizacion (200seg)
+    /**
+     * Setter texto label penalizacion (200seg)
+     * @param segundosTemporizador 
+     */
     public void setSegundosTemporizador(String segundosTemporizador) {
         this.segundosTemporizador.setText(segundosTemporizador);
     }
     
+    /**
+     * Metodo que cambia el color al temporizador del modo 1 cuando queda poco tiempo.
+     */
     public void cambiarColorFinTemporizador(){
         segundosTemporizador.setForeground(COLOR_PELIGRO);
     }

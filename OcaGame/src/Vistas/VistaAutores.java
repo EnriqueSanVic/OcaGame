@@ -22,7 +22,11 @@ public class VistaAutores extends JDialog{
     private BufferedImage imagenFondoAutores;
     private int idioma;
     
-    //Constructor
+    /**
+     * Constructor
+     * @param vistaPadre
+     * @param idioma 
+     */
     public VistaAutores(VistaInicio vistaPadre, int idioma) {
         super(vistaPadre, true);
         this.idioma = idioma;

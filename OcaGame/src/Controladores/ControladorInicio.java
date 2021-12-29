@@ -21,7 +21,10 @@ public class ControladorInicio extends WindowAdapter implements ActionListener{
     //Atributos de la clase.
     protected VistaInicio vistaInicio;
     
-    //Constructor.
+    /**
+     * Constructor.
+     * @param vistaInicio 
+     */
     public ControladorInicio(VistaInicio vistaInicio) {
         this.vistaInicio = vistaInicio;
         
@@ -68,14 +71,19 @@ public class ControladorInicio extends WindowAdapter implements ActionListener{
         protocoloCierre();
     }
 
-    //Metodo que se asegura de que el usuario quiso salir.
+    /**
+     * Metodo que se asegura de que el usuario quiso salir.
+     */
     private void protocoloCierre() {
         if(vistaInicio.mensajeSalirJuego()){
            System.exit(0);
         }
     }
 
-    //Metodo que se asegura de que el usuario quiso salir.
+    /**
+     * Metodo que se asegura de que el usuario quiso salir.
+     * @param idioma 
+     */
     private void protocoloCambioIdioma(int idioma) {
         if(vistaInicio.mensajeCambioIdioma()){
            new VistaInicio(idioma); //Lanzamos nueva vista del juego con el idioma seleccionado.
@@ -83,6 +91,10 @@ public class ControladorInicio extends WindowAdapter implements ActionListener{
         }
     }
 
+    /**
+     * Metodo que realiza las comprobaciones necesarias en los campos que debe rellenar el usuario antes de iniciar una partida.
+     * Despues de la comprobacion, lanza dicha partida escogida.
+     */
     private void comprobarPartidaElegida() {
         String nombreJ1 = this.vistaInicio.getTextFieldNameJ1();
         String nombreJ2 = this.vistaInicio.getTextFieldNameJ2();

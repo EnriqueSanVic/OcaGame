@@ -59,7 +59,11 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
 
     private RegistradorHilos registrador;
 
-    //Constructor.
+    /**
+     * Constructor
+     * @param vistaJuego
+     * @param registrador 
+     */
     public DadoGrafico(VistaJuego vistaJuego, RegistradorHilos registrador){
         super();
         this.vistaJuego = vistaJuego;
@@ -117,7 +121,9 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         }
     }
     
-    //Metodo que deja en espera al hilo del dado hasta que el usuario lo vuelva a accionar.
+    /**
+     * Metodo que deja en espera al hilo del dado hasta que el usuario lo vuelva a accionar.
+     */
     private synchronized void esperar(){
         try {
             wait();
@@ -126,7 +132,9 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         }
     }
     
-    //Metodo que crea el cubilete graficamente.
+    /**
+     * Metodo que crea el cubilete graficamente.
+     */
     private void crearCubilete() {
         //se carga la imagen del fondo del cubilete
         try {
@@ -146,7 +154,9 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         grphcs.drawImage(imagenFondoTerciopelo, 0, 0, this);
     }
     
-    //Metodo que crea el dado inicial graficamente.
+    /**
+     * Metodo que crea el dado inicial graficamente.
+     */
     private void crearDado(){
         this.imagenDadoInicial = new ImageIcon("./img/dados/DADO_3.png");
         this.dado = new JLabel();
@@ -155,7 +165,9 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         this.add(this.dado);
     }
     
-    //Metodo que asigna una configuracion inicial a las variables del dado.
+    /**
+     * Metodo que asigna una configuracion inicial a las variables del dado.
+     */
     private void configurarDado() {
         this.numeroDadoActual = this.NUMERO_INICIAL_DADO;
         this.velocidad_Dado_X = this.VELOCIDAD_INICIAL_DADO;
@@ -164,18 +176,24 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         this.posicion_Dado_Y=this.POSICION_INICIAL_DADO_Y;
     }
 
-    //Metodo que notifica al hilo del dado cuando hubo un cambio en su condicionante.
+    /**
+     * Metodo que notifica al hilo del dado cuando hubo un cambio en su condicionante.
+     */
     public synchronized void notificarTirada() {
         notifyAll();
     }
 
-    //Al acabar el hilo.
+    /**
+     * Al acabar el hilo.
+     */
     @Override
     public void matar() {
         this.dadoON=false;
     }
 
-    //Metodo que hace que se mueva el dado.
+    /**
+     * Metodo que hace que se mueva el dado.
+     */
     private void mover(){
         //segun su direccion...
         switch (direccionDado) {
@@ -204,7 +222,9 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         }
     }
 
-    //Metodo que hace rebotar al dado, cambiando su direcion y velocidad aleatoriamente cuando llega a un limite.
+    /**
+     * Metodo que hace rebotar al dado, cambiando su direcion y velocidad aleatoriamente cuando llega a un limite.
+     */
     private void rebotar() { 
         int anterior=direccionDado;
         int opuesta = getDireccionOpuesta();
@@ -235,12 +255,16 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         //Abajo no hay por que se acaba la animacion.
     }
 
-   //Metodo que actualiza la posicion del dado.
+   /**
+    * Metodo que actualiza la posicion del dado.
+    */
     private void repintar() {
         this.dado.setLocation(this.posicion_Dado_X, this.posicion_Dado_Y);
     }
     
-    //Metodo que cambia la imagen del dado de forma aleatoria para simular un rebote
+    /**
+     * Metodo que cambia la imagen del dado de forma aleatoria para simular un rebote
+     */
     private void efectoReboteDado(){
         
         sonar();
@@ -255,7 +279,9 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         this.dado.repaint();
     }
     
-    //Metodo que varia la velocidad del dado cada vez que realiza un rebote.
+    /**
+     * Metodo que varia la velocidad del dado cada vez que realiza un rebote.
+     */
     public void variarVelocidad(){
         int ejeX = (int)(Math.random()*2);
         if(ejeX==0){
@@ -265,7 +291,10 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         }        
     }
 
-    //Metodo que devuelve la direccion opuesta a la actual.
+    /**
+     * Metodo que devuelve la direccion opuesta a la actual.
+     * @return direccionOpuesta
+     */
     public int getDireccionOpuesta(){
         int direccionOpuesta = 0;
         switch (this.direccionDado) {
@@ -291,18 +320,20 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         return direccionOpuesta; 
     }
     
-    //Metodo que cambia la imagen del dado con la cara final escogida.
+    /**
+     * Metodo que cambia la imagen del dado con la cara final escogida.
+     */
     private void posicionarDadoFinal() {
         //Si llega al limite inferior, se para y se pone la imagen del numero final.
         this.imagenDadoCambiante = new ImageIcon("./img/dados/DADO_"+numeroFinal+".png");
         this.dado.setIcon(imagenDadoCambiante);      
     }
     
-    private void sonar(){
-        
-        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_GOLPE_DADO, registrador).start();
-
-        
+    /**
+     * Metodo que hace que suene el sonido de rebote de dado cuando choca con un limite.
+     */
+    private void sonar(){  
+        ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_GOLPE_DADO, registrador).start();  
     }
     
     //Getters de posicion del dado actuales(x, Y).
@@ -314,15 +345,22 @@ public class DadoGrafico extends JPanel implements Runnable, Hilo{
         return this.posicion_Dado_Y;
     }
     
-    //Setters de posiciones del dado actuales(x, Y).
+    /**
+     * Setters de posiciones del dado actuales(x)
+     * @param posicionX 
+     */
     public void setPosicionDado_X(int posicionX) {
         this.posicion_Dado_X = posicionX;
     }
-
+    
+    /**
+     * Setters de posiciones del dado actuales(Y)
+     * @param posicionY 
+     */
     public void setPosicionDado_Y(int posicionY) {
         this.posicion_Dado_Y = posicionY;
     }
-
+    
     @Override
     public String toString() {
         return "DadoGrafico";

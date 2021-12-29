@@ -78,7 +78,13 @@ public class VistaJuegoModo2 extends VistaJuego{
     private ImageIcon iconoFicha1;
     private ImageIcon iconoFicha2;
     
-    //Constructor.
+    /**
+     * Constructor.
+     * @param control
+     * @param idioma
+     * @param jugador1
+     * @param jugador2 
+     */
     public VistaJuegoModo2(ControladorJuego control, int idioma, String jugador1, String jugador2) {
         super(control, idioma, jugador1, jugador2);
     }
@@ -207,46 +213,74 @@ public class VistaJuegoModo2 extends VistaJuego{
         this.panelPenalizacionJ2.add(this.labelTurnosJ2);  
     } 
 
-    //Getter que devuelve el nombre del J1 actual.
+    /**
+     * Getter que devuelve el nombre del J1 actual.
+     * @return String nombreJugador1
+     */
     public String getNombreJugador1() {
         return nombreJugador1.getText();
     }
 
-    //Setter que actualiza el nombre del J1 actual.
+    /**
+     * Setter que actualiza el nombre del J1 actual.
+     * @param nombreJugador1 
+     */
     public void setNombreJugador1(String nombreJugador1) {
         this.nombreJugador1.setText(nombreJugador1);
     }
 
-    //Getter que devuelve el nombre del J2 actual.
+    /**
+     * Getter que devuelve el nombre del J2 actual.
+     * @return String nombreJugador2
+     */
     public String getNombreJugador2() {
         return nombreJugador2.getText();
     }
 
-    //Setter que actualiza el nombre del J2 actual.
+    /**
+     * Setter que actualiza el nombre del J2 actual.
+     * @param nombreJugador2 
+     */
     public void setNombreJugador2(String nombreJugador2) {
         this.nombreJugador2.setText(nombreJugador2);
     }
 
-    //Metodo que devuelve el String actual del numero de turnos penalizados del Jugador 1.
+    /**
+     * Metodo que devuelve el String actual del numero de turnos penalizados del Jugador 1.
+     * @return String numeroTurnosPenalizadoJ1
+     */
     public String getPenalizacionTurnosJ1() {
         return numeroTurnosPenalizadoJ1.getText();
     }
 
-    //Metodo que modifica el String actual del numero de turnos penalizados del Jugador 1.
+    /**
+     * Metodo que modifica el String actual del numero de turnos penalizados del Jugador 1.
+     * @param penalizacionTurnosJ1 
+     */
     public void setPenalizacionTurnosJ1(String penalizacionTurnosJ1) {
         this.numeroTurnosPenalizadoJ1.setText(penalizacionTurnosJ1);
     }
 
-    //Metodo que devuelve el String actual del numero de turnos penalizados del Jugador 2.
+    /**
+     * Metodo que devuelve el String actual del numero de turnos penalizados del Jugador 2.
+     * @return String numeroTurnosPenalizadoJ2
+     */
     public String getPenalizacionTurnosJ2() {
         return numeroTurnosPenalizadoJ2.getText();
     }
 
-    //Metodo que modifica el String actual del numero de turnos penalizados del Jugador 2.
+    /**
+     * Metodo que modifica el String actual del numero de turnos penalizados del Jugador 2.
+     * @param penalizacionTurnosJ2 
+     */
     public void setPenalizacionTurnosJ2(String penalizacionTurnosJ2) {
         this.numeroTurnosPenalizadoJ2.setText(penalizacionTurnosJ2);
     }
     
+    /**
+     * Metodo que enfatiza con un marco y color el nombre del jugador al que le pertenece el turno.
+     * @param jugador 
+     */
     public void enfatizarNombreTurno(int jugador){
         
         if(jugador == Constantes.JUGADOR_1){
@@ -265,6 +299,10 @@ public class VistaJuegoModo2 extends VistaJuego{
     
     }
     
+    /**
+     * Metodo que hace variar el marco y color en los nombres dependiendo el jugador que tiene el turno.
+     * @param jugador 
+     */
     private void normalizarNombresTurno(int jugador){
         
         if(jugador == Constantes.JUGADOR_1){
@@ -277,6 +315,11 @@ public class VistaJuegoModo2 extends VistaJuego{
 
     }
     
+    /**
+     * Metodo setter que actualiza las penalizaciones de los jugadores.
+     * @param jugador
+     * @param turnos 
+     */
     public void actualizarPenalizacionesJugador(int jugador, int turnos){
         
         if(jugador == Constantes.JUGADOR_1){

@@ -14,8 +14,12 @@ import javax.swing.JPanel;
  */
 public class PanelNombres extends JPanel{
 
+    //Atributos de la clase.
     private BufferedImage imagenFondoNombres;
 
+    /**
+     * Constructor.
+     */
     public PanelNombres() {
         //Imagen Fondo Panel Nombres.
         try {

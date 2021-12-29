@@ -46,7 +46,6 @@ import javax.swing.border.MatteBorder;
 public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     
     //Constantes de configuracion. 
-    //Broadway/Arial
     protected final Font FUENTE_1 = new Font("Broadway", 1, 15); //Textos.
     protected final Font FUENTE_2 = new Font("Broadway", 1, 22); //Boton dado.
     protected final Font FUENTE_3 = new Font("Broadway", 1, 50); //Numero penalizacion
@@ -148,7 +147,13 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     protected final String[] nombresJugadores;
     
 
-    //Constructor.
+    /**
+     * Constructor.
+     * @param control
+     * @param idioma
+     * @param jugador1
+     * @param jugador2 
+     */
     public VistaJuego(ControladorJuego control, int idioma, String jugador1, String jugador2){
         this.controlador = control;
         this.controladorMenu = new ControladorMenu(controlador);
@@ -158,7 +163,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         iniciarVista();
     }
 
-    //Metodo que crea la vista del juego.
+    /**
+     * Metodo que crea la vista del juego.
+     */
     private void iniciarVista() {
         crearObjetos();
         disenoObjetos();
@@ -168,7 +175,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.setVisible(true);
     }
 
-    //Metodo que inicializa elementos de la vista general del juego.
+    /**
+     * Metodo que inicializa elementos de la vista general del juego.
+     */
     protected void crearObjetos() {
         //Fondo vista Juego
         this.fondoVistaJuego = new PanelFondo(this);
@@ -208,7 +217,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         
     }
 
-    //Metodo que da un diseño a los elementos de la vista general del juego.
+    /**
+     * Metodo que da un diseño a los elementos de la vista general del juego.
+     */
     protected void disenoObjetos() {
         //Frame.
         this.setLayout(null);
@@ -379,7 +390,6 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         });
     }
     
-    //Metodo sobreescrito para cambiar el icono del juego.
     @Override
     public Image getIconImage() {
         //System.getProperties();
@@ -404,7 +414,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     }
     
 
-    //Metodo que añade elementos a la vista general del juego.
+    /**
+     * Metodo que añade elementos a la vista general del juego.
+     */
     protected void anadirObjetos() {
         
         //Menus.
@@ -441,7 +453,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.add(this.fondoVistaJuego);
     }
 
-    //Metodo que añade el escuchador necesario a ciertos elementos.
+    /**
+     * Metodo que añade el escuchador necesario a ciertos elementos.
+     */
     protected void anadirEscuchadores() {
         
         this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -473,58 +487,90 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         this.botonFournier.addActionListener(this.controlador);
     }
 
-    //Metodo que devuelve el resultado booleano de impulso tirar dado, 
-    //que indica que se ha iniciado o finalizado la animacion de la tirada del dado.
+    /**
+     * Metodo que devuelve el resultado booleano de impulso tirar dado, 
+     * que indica que se ha iniciado o finalizado la animacion de la tirada del dado.
+     * @return impulsoTirarDado
+     */
     public boolean getImpulsoTirarDado() {
         return impulsoTirarDado;
     }
     
-    //Metodo que actualiza el estado booleano del impulso tirar dado, 
-    //que indica que se ha iniciado o finalizado la animacion de la tirada del dado.
+    /**
+     * Metodo que actualiza el estado booleano del impulso tirar dado, 
+     * que indica que se ha iniciado o finalizado la animacion de la tirada del dado.
+     * @param impulso 
+     */
     public void setImpulsoTirarDado(boolean impulso) {
         this.impulsoTirarDado = impulso;
     }
-
+    
+    /**
+     * Metodo que notifica que se ha activado el hilo del dado.
+     */
     public synchronized void notificarTiradaDado() {
         dadoGrafico.notificarTirada();
     }
 
-    //Metodo que retorna el numero final del dado que ha salido en una tirada.
+    /**
+     * Metodo getter que retorna el numero final del dado que ha salido en una tirada.
+     * @return numeroFinalDado
+     */
     public int getNumeroFinalDado() {
         return numeroFinalDado;
     }
 
-    //Metodo que actualiza el numero final del dado que ha salido en una tirada.
+    /**
+     * Metodo setter que actualiza el numero final del dado que ha salido en una tirada.
+     * @param numeroFinalDado 
+     */
     public void setNumeroFinalDado(int numeroFinalDado) {
         this.numeroFinalDado = numeroFinalDado;
     }
     
-    //Metodo que avisa al controlador cuando la animacion del dado a finalizado.
+    /**
+     * Metodo que avisa al controlador cuando la animacion del dado a finalizado.
+     */
     public void finalAnimacionDado() {
         this.controlador.eventoFinalizacionDado();
     }
     
-    //Metodo que bloquea o desbloqueael boton de lanzar dado dependiendo el parametro enviado.
+    /**
+     * Metodo que bloquea o desbloqueael boton de lanzar dado dependiendo el parametro enviado.
+     * @param b 
+     */
     public void bloquearBoton(boolean b){
         this.botonLanzarDado.setEnabled(b);
     }
 
-    //Getter del JPanel de nombres de jugadores.
+    /**
+     * Getter del JPanel de nombres de jugadores.
+     * @return panelNombresJugadores
+     */
     public JPanel getPanelNombresJugadores() {
         return this.panelNombresJugadores;
     }
 
-    //Getter del JPanel de penalizaciones.
+    /**
+     * Getter del JPanel de penalizaciones.
+     * @return panelPenalizaciones
+     */
     public JPanel getPanelPenalizaciones() {
         return this.panelPenalizaciones;
     }
     
-    //Metodo que devuelve el objeto border utilizado.
+    /**
+     * Metodo que devuelve el objeto border utilizado.
+     * @return blackline
+     */
     public Border getBlackBorder(){
         return this.blackline;
     }
 
-    //Metodo que devuelve el idioma escogido por el usuario.
+    /**
+     * Metodo getter que devuelve el idioma escogido por el usuario.
+     * @return idioma
+     */
     public int getIdioma() {
         return this.idioma;
     }

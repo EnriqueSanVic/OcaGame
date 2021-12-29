@@ -121,13 +121,18 @@ public class VistaInicio extends JFrame{
     private int idioma;
     private boolean modo1activado;
 
-    //Constructor.
+    /**
+     * Constructor.
+     * @param idioma 
+     */
     public VistaInicio(int idioma){
         this.idioma = idioma; //Comienza en español.
         this.iniciarVista();
     }
 
-    //Metodo que crea la vista de inicio.
+    /**
+     * Metodo que crea la vista de inicio.
+     */
     private void iniciarVista(){
         crearObjetos();
         disenoObjetos();
@@ -137,7 +142,9 @@ public class VistaInicio extends JFrame{
         this.setVisible(true);
     }
     
-    //Metodo que inicializa elementos de la vista inicio.
+    /**
+     * Metodo que inicializa elementos de la vista inicio.
+     */
     private void crearObjetos() {
         //Atributo modo
         this.modo1activado=true;
@@ -173,7 +180,9 @@ public class VistaInicio extends JFrame{
         
     }
 
-    //Metodo que da un diseño a los elementos de la vista inicio.
+    /**
+     * Metodo que da un diseño a los elementos de la vista inicio.
+     */
     private void disenoObjetos() {
         //Frame.
         this.setLayout(null);
@@ -492,7 +501,9 @@ public class VistaInicio extends JFrame{
         });
     }
 
-    //Metodo que añade elementos a la vista inicio.
+    /**
+     * Metodo que añade elementos a la vista inicio.
+     */
     private void anadirObjetos() {
         this.add(this.botonESP);
         this.add(this.botonING);
@@ -510,7 +521,9 @@ public class VistaInicio extends JFrame{
         this.add(this.panelFondoInicio);
     }
 
-    //Metodo que añade el escuchador necesario a ciertos elementos.
+    /**
+     * Metodo que añade el escuchador necesario a ciertos elementos.
+     */
     private void anadirEscuchadores() {
         this.botonESP.addActionListener(this.controladorInicio);
         this.botonING.addActionListener(this.controladorInicio);
@@ -545,16 +558,26 @@ public class VistaInicio extends JFrame{
         return iconoJuego;
     }
 
-    //Getter y Setter de idioma.
+    /**
+     * Getter de idioma.
+     * @return idioma
+     */
     public int getIdioma() {
         return idioma;
     }
 
+    /**
+     * Setter de idioma.
+     * @param idioma 
+     */
     public void setIdioma(int idioma) {
         this.idioma = idioma;
     }
     
-    //Metodo que lanza un dialogo y retorna true si el jugador quiere salir del juego.
+    /**
+     * Metodo que lanza un dialogo y retorna true si el jugador quiere salir del juego.
+     * @return true si quiere salir, false si quiere permanecer en el juego.
+     */
     public boolean mensajeSalirJuego(){
 
         int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_SALIR_JUEGO[idioma]);
@@ -567,7 +590,10 @@ public class VistaInicio extends JFrame{
         
     }
     
-    //Metodo que lanza un dialogo y retorna true si el jugador quiere cambiar el idioma del juego.
+    /**
+     * Metodo que lanza un dialogo y retorna true si el jugador quiere cambiar el idioma del juego.
+     * @return true si quiere cambiar el idioma, false si no quiere cambiar el idioma del juego.
+     */
     public boolean mensajeCambioIdioma(){
 
         int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_CAMBIAR_IDIOMA[idioma]);
@@ -580,26 +606,43 @@ public class VistaInicio extends JFrame{
         
     }
     
-    //Metodo que lanza un dialogo y retorna true si el jugador quiere cambiar el idioma del juego.
+    /**
+     * Metodo que lanza un dialogo mostrando un error cuando el usuario no ha rellenado los campos requeridos para la partida.
+     */
     public void mensajeErrorCampos(){
         JOptionPane.showMessageDialog(this, TextosJuego.MENSAJE_ERROR_CAMPOS[idioma]);
     }
 
-    //Getters del contenido de los textfields (Nombres Jugadores)
+    /**
+     * Getter del contenido del textfield del nombre del jugador 1.
+     * @return String nombre J1.
+     */
     public String getTextFieldNameJ1(){
         return this.textFieldJ1.getText();
     }
-    
+    /**
+     * Getter del contenido del textfield del nombre del jugador 2.
+     * @return String nombre J2.
+     */
     public String getTextFieldNameJ2(){
         return this.textFieldJ2.getText();
     }
     
-    //Getter del modo de juego actual.
+    /**
+     * Getter del modo de juego actual.
+     * Si el modo 1 esta seleccionado = true.
+     * Si el modo 2 esta seleccionado = false.
+     * @return mdoo1activado
+     */
     public boolean isModo1activado() {
         return modo1activado;
     }
     
-
+    /**
+     * Metodo que modifica el estado de la vista inicio dependiendo el modo que ha escogido el usuario.
+     * Si recibe true=Modo1, Si recibe false=Modo2.
+     * @param activado 
+     */
     public void modo1ON(boolean activado){
         //Si está activado el modo 1, se ocultan los campos del modo 2.
         if(activado){
