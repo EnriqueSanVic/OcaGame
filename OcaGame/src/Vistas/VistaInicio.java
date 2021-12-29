@@ -6,7 +6,10 @@ import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import Utilidades.UtilidadesGraficas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
@@ -174,9 +177,11 @@ public class VistaInicio extends JFrame{
     //Metodo que da un diseño a los elementos de la vista inicio.
     private void disenoObjetos() {
         //Frame.
-        this.setResizable(false);
         this.setLayout(null);
+        this.setResizable(true);
         this.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
+        this.setMinimumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
+        this.setIconImage(this.getIconImage());
         UtilidadesGraficas.ponerMedioPantalla(this);
         //Panel fondo vista inicio.
         this.panelFondoInicio.setBounds(0, 0, this.FRAME_WIDTH, this.FRAME_HEIGHT);
@@ -516,6 +521,30 @@ public class VistaInicio extends JFrame{
         this.botonModo2.addActionListener(this.controladorInicio);
         this.botonJugar.addActionListener(this.controladorInicio);
         this.addWindowListener(this.controladorInicio);
+    }
+    
+    //Metodo sobreescrito para cambiar el icono del juego.
+    @Override
+    public Image getIconImage() {
+        //System.getProperties();
+        String sistemaOperativo = System.getProperty("os.name").toLowerCase();
+        System.out.println(sistemaOperativo);
+        Image iconoJuego = null;
+        switch(sistemaOperativo.charAt(0)){
+            //Windows
+            case 'w':
+                iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_WINDOWS);
+                break;
+            //MacOs    
+            case 'm':
+                iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_MAC);
+                break;
+            //UNIX    
+            default:
+                iconoJuego = Toolkit.getDefaultToolkit().createImage(Constantes.PATH_ICONO_JUEGO_OCA_LINUX);
+                break;
+        }
+        return iconoJuego;
     }
 
     //Getter y Setter de idioma.
