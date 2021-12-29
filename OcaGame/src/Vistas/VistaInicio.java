@@ -178,9 +178,8 @@ public class VistaInicio extends JFrame{
     private void disenoObjetos() {
         //Frame.
         this.setLayout(null);
-        this.setResizable(true);
+        this.setResizable(false);
         this.setSize(this.FRAME_WIDTH, this.FRAME_HEIGHT);
-        this.setMinimumSize(new Dimension(FRAME_WIDTH,FRAME_HEIGHT));
         this.setIconImage(this.getIconImage());
         UtilidadesGraficas.ponerMedioPantalla(this);
         //Panel fondo vista inicio.
