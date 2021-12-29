@@ -105,7 +105,7 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
        if(vista.mensajeSalirPartida()){
            
            matarHilos();
-           System.exit(0);
+           volverMenuInicio();
            
        }
  
@@ -211,8 +211,10 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     
     protected void volverMenuInicio(){
         //guardar/serializar
-        new VistaInicio(this.vista.getIdioma()); //Lanzamos la vista inicio
+        
         this.vista.dispose();
+        new VistaInicio(this.vista.getIdioma()).setVisible(true); //Lanzamos la vista inicio
+        
     }
     
     
