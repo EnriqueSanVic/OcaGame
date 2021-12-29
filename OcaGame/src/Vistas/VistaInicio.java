@@ -49,9 +49,8 @@ public class VistaInicio extends JFrame{
     private final ImageIcon ICONO_BOTON_JUGAR = new ImageIcon(Constantes.PATH_ICONO_BOTON_JUGAR); //icono del boton Jugar
     private final ImageIcon ICONO_BOTON_JUGAR_HOVER = new ImageIcon(Constantes.PATH_ICONO_BOTON_JUGAR_HOVER); //icono del boton Jugar Hover 
     
-    private final int FRAME_WIDTH_ORIGINAL = 1450, FRAME_HEIGHT_ORIGINAL = 800; //Medidas del frame.
-    private final int CORRECCION_FRAME_WIDTH = 18, CORRECCION_FRAME_HEIGHT = 72; 
-    private final int FRAME_WIDTH = FRAME_WIDTH_ORIGINAL + CORRECCION_FRAME_WIDTH, FRAME_HEIGHT = FRAME_HEIGHT_ORIGINAL + CORRECCION_FRAME_HEIGHT;
+    private final int FRAME_WIDTH = 1450, FRAME_HEIGHT = 860; //Medidas del frame.
+    
     
     private final int BOTON_IDIOMA_ESP_X=80, BOTON_IDIOMA_ESP_Y=525; //Posicion del Boton de idioma ESP
     private final int BOTON_IDIOMA_ESP_WIDTH = 100, BOTON_IDIOMA_ESP_HEIGHT = 100; //Medidas del Boton de idioma ESP
