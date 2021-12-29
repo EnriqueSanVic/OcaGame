@@ -53,6 +53,13 @@ public class TextosJuego {
     public static final String[] NOMBRE_J1 = {"Nombre del Jugador 1:", "Player 1´s name:"};
     public static final String[] NOMBRE_J2= {"Nombre del Jugador 2:", "Player 2´s name:"};
     
+    //mensajes guardado-carga
+    
+    public static final String[] MENSAJE_CONFIRMACION_CARGA = {"¿Estás seguro que quieres cargar la partida guardada?", "Are you sure you want to load the saved game?"};
+    public static final String[] MENSAJE_ERROR_CARGA = {"Error de carga, es posible que no haya una partida guardada en el slot.","Loading error, it is possible that there is no game saved in the slot."};
+    public static final String[] MENSAJE_ERROR_GUARDADO = {"Error de guardado, revise los permisos de escritura de la aplicación, pruebe a ejecutar en modo super usuario.","Save error, check application write permissions, try running in super user mode."};
+
+            
     //Constructor.
     public TextosJuego(){
     }

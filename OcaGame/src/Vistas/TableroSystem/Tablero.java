@@ -248,21 +248,23 @@ public class Tablero extends JPanel{
         
     }
     
-    public void eliminarPuntero(){
-        
-        puntero.parar();
-        
-        this.remove(puntero);
-        
-        puntero = null;
-        
-        this.repaint();
-        
+    public void eliminarPuntero() {
+
+        if (puntero != null) {
+
+            puntero.parar();
+
+            this.remove(puntero);
+
+            puntero = null;
+
+            this.repaint();
+
+        }
+
     }
     
-    
 
-   
     
     
     public void mover(int jugador, int destino){
@@ -295,7 +297,13 @@ public class Tablero extends JPanel{
         return casillas;
     }
     
-    
+    public void reiniciarCasillasGraficas(){
+        
+        for(CasillaGrafica i:casillas){
+            i.reiniciar();
+        }
+        
+    }
     
     
     

@@ -2,6 +2,7 @@
 package Controladores;
 
 import DatosEstaticos.Constantes;
+import Modelos.GestorGuardado;
 import Vistas.VistaAutores;
 import Vistas.VistaInicio;
 import java.awt.event.ActionEvent;
@@ -23,6 +24,8 @@ public class ControladorInicio extends WindowAdapter implements ActionListener{
     //Constructor.
     public ControladorInicio(VistaInicio vistaInicio) {
         this.vistaInicio = vistaInicio;
+        
+        comprobarDirectorios();
     }
     
     @Override
@@ -102,6 +105,12 @@ public class ControladorInicio extends WindowAdapter implements ActionListener{
                 this.vistaInicio.mensajeErrorCampos();
             }
         }
+    }
+
+    private void comprobarDirectorios() {
+        
+        GestorGuardado.crearCarpeta(Constantes.RUTA_DIRECTORIO_GUARDADO);
+        
     }
 
 }

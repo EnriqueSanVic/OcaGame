@@ -6,7 +6,6 @@ import Controladores.ControladorJuego;
 import Controladores.ControladorMenu;
 import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
-import Hilos.Hilo;
 import Utilidades.UtilidadesGraficas;
 import Utilidades.VentanaConCorrecion;
 import Vistas.TableroSystem.Ficha;
@@ -15,7 +14,6 @@ import Vistas.TableroSystem.NotificableTablero;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -26,8 +24,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowStateListener;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -546,6 +542,12 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         tablero.eliminarPuntero();
     }
     
+    public void reiniciarCasillas(){
+        tablero.reiniciarCasillasGraficas();
+    }
+    
+    
+    
     public void iniciarJugadorSalida(int jugador, int casillaSalida){
         
         Ficha ficha = null;
@@ -582,6 +584,30 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     public boolean mensajeSalirPartida(){
 
         int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_SALIR_PARTIDA[idioma]);
+        
+        if(opcion == JOptionPane.YES_OPTION){
+            return true;
+        }
+        
+        return false;
+        
+    }
+    
+    public void mensajeErrorGuardado(){
+        
+        JOptionPane.showMessageDialog(this, TextosJuego.MENSAJE_ERROR_GUARDADO[idioma]);
+    
+    }
+    
+    public void mensajeErrorCarga(){
+        
+         JOptionPane.showMessageDialog(this, TextosJuego.MENSAJE_ERROR_CARGA[idioma]);
+        
+    }
+    
+    public boolean mensajeConfirmarCarga(){
+        
+        int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_CONFIRMACION_CARGA[idioma]);
         
         if(opcion == JOptionPane.YES_OPTION){
             return true;

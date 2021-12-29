@@ -34,11 +34,15 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
 
     private final int TIEMPO_DELAY_COMIENZO_MOVIMIENTO_AUTO = 400;
     
+    protected final int POSICION_SALIDA = 0;
+    
     protected LogicaJuego logica;
     
     protected VistaJuego vista;
     
     protected List<Hilo> hilos;
+    
+    protected String[] nombres;
     
     protected int ultimoNumeroDado;
     
@@ -48,6 +52,8 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
         this.hilos = new ArrayList<Hilo>();
         
         this.random = new Random();
+        
+        this.nombres = new String[]{jugador1, jugador2};
         
         //Si se quieren monitorizar los hilos activos en cada momento llamar a esta función
         //debugearHilos();
@@ -180,9 +186,7 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     }
     
     protected abstract boolean sePuedeTirarDado();
-    
-    protected abstract void iniciarPartida();
-    
+        
     //eventos del flujo de ejecución del turno
 
     public abstract void eventoFinalizacionDado();
@@ -267,6 +271,14 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
         ManejadorSonidos.hiloPuntual(Constantes.PATH_SONIDO_PERDER, this).start();
     }
     
+    
+    //sirve para quitar elementos temporales de la vista que en caso de reiniciarse deberían desaparecer
+    protected void normalizarVista(){
+        
+        vista.eliminarPuntero();
+        vista.reiniciarCasillas();
+        
+    }
 }
     
     

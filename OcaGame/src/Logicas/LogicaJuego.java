@@ -88,8 +88,6 @@ public abstract class LogicaJuego {
         tablero[62] = new CasillaLogica(0,0); //oca 63 Final
 
 
-
-
     }
     
 
@@ -151,17 +149,9 @@ public abstract class LogicaJuego {
         return posicionJugador[jugador];
         
     }
+
     
-    
-    
-    private boolean evaluarFin(int jugador){
-        
-        if(posicionJugador[jugador] == tablero.length){
-            return true;
-        }
-        
-        return false;
-    }
+
 
     public int getPosicionJugador(int jugador) {
         return posicionJugador[jugador];
@@ -173,11 +163,19 @@ public abstract class LogicaJuego {
         return tablero[posicion];
     }
     
+    public void setPosicionJugador(int jugador, int posicion){
+        posicionJugador[jugador] = posicion;
+    }
+    
     public boolean isGanador(int jugador){
         if(posicionJugador[jugador] == tablero.length - 1){
             return true;
         }
         return false;
+    }
+
+    public int[] getPosicionJugador() {
+        return posicionJugador;
     }
     
     

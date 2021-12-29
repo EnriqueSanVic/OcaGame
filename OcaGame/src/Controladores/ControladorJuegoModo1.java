@@ -5,9 +5,12 @@ package Controladores;
 import DatosEstaticos.Constantes;
 import Modelos.DirectivasEvaluacion;
 import Logicas.LogicaJuegoModo1;
+import Modelos.DatosPartidaModo1;
+import Modelos.GestorGuardado;
 import Vistas.VistaJuegoModo1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import javax.swing.Timer;
 
 /**
@@ -26,7 +29,7 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
     
     private int casillaDestino, avanceAuto, retrocesoAcumuladoCasillaFin;
     
-    private boolean iniciarTurno, controlAutomatico, reevaluarDespuesDeAuto, enJuego, victoria;
+    private boolean iniciarTurno, controlAutomatico, reevaluarDespuesDeAuto, victoria;
     
     public ControladorJuegoModo1(int idioma, String jugador1, String jugador2) {
         
@@ -34,17 +37,9 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
         this.vista = new VistaJuegoModo1(this, idioma, jugador1, jugador2);
         this.logica = new LogicaJuegoModo1();
+
+        iniciarPartida(super.nombres[Constantes.JUGADOR_1], super.POSICION_SALIDA, SEGUNDOS_INICIO, 0);
         
-        segundos = SEGUNDOS_INICIO;
-        
-        retrocesoAcumuladoCasillaFin = 0;
-        
-        penalizaciones = 0;
-        
-        controlAutomatico = false;
-        victoria = false;
-        
-        iniciarPartida();
     }
 
     @Override
@@ -55,17 +50,33 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
     
     
 
-    @Override
-    protected void iniciarPartida() {
+    protected void iniciarPartida(String nombre, int posicionJugador1, int segundos, int penalizaciones) {
+        
+        logica.setPosicionJugador(Constantes.JUGADOR_1, posicionJugador1);
+        
+        this.segundos = segundos;
+
+        retrocesoAcumuladoCasillaFin = 0;
+        
+        this.penalizaciones = penalizaciones;
+        
+        controlAutomatico = false;
+        victoria = false;
+        
+        super.normalizarVista();
         
         iniciarTemporizador();
         
-        ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(penalizaciones));
+        ((VistaJuegoModo1)vista).setNombreJugador1(nombre);
         
+        ((VistaJuegoModo1)vista).setSegundosTemporizador(String.valueOf(segundos)); 
+        
+        ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(penalizaciones));
+
         //se inicia el jugador en la posicion que tiene la lógica en este momento
         (vista).iniciarJugadorSalida(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1));
         
-        enJuego = true;
+        //no se inicia el turno hasta este punto para no escuchar los eventos hasta que esté todo configurado
         iniciarTurno = true;
 
         
@@ -184,6 +195,13 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
     }
 
     private void iniciarTemporizador() {
+        
+        //si hubiera de otra partida un timer iniciado se para
+        if(this.timer != null){
+            this.timer.stop();
+            this.timer = null;
+        }
+        
         //Se repite a cada segundo.
         this.timer = new Timer(1000, new ActionListener() {
             
@@ -255,7 +273,6 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
         rutinaFinPartida();
         
-        enJuego = false;
         
         victoria = false;
         
@@ -273,9 +290,7 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         rutinaFinPartida();
         
         if(segundos > 0){
-            
-            enJuego = false;
-            
+                        
             victoria = true;
             
             super.sonidoGanar();
@@ -309,17 +324,36 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
 
     @Override
     public void nuevaPartida() {
-        
+        iniciarPartida(super.nombres[Constantes.JUGADOR_1], super.POSICION_SALIDA, SEGUNDOS_INICIO, 0);
     }
 
+    
     @Override
     public void guardarPartida() {
         
+        DatosPartidaModo1 datos = new DatosPartidaModo1(super.nombres[Constantes.JUGADOR_1], logica.getPosicionJugador()[Constantes.JUGADOR_1], segundos, penalizaciones);
+        
+        try {
+            GestorGuardado.guardarPartidaModo1(Constantes.RUTA_GUARDADO_PARTIDA_MODO_1, datos);
+        } catch (IOException ex) {
+            vista.mensajeErrorGuardado();
+        }
+        
+        
     }
 
+    
     @Override
     public void cargarPartida() {
         
+        try {
+            DatosPartidaModo1 datos = GestorGuardado.cargarPartidaModo1(Constantes.RUTA_GUARDADO_PARTIDA_MODO_1);
+            
+            iniciarPartida(datos.getNombre(), datos.getPosicion(), datos.getSegundos(), datos.getPenalizaciones());
+        } catch (IOException | ClassNotFoundException ex) {
+            vista.mensajeErrorCarga();
+        }
+
     }
 
     

@@ -5,20 +5,27 @@ package Controladores;
 import DatosEstaticos.Constantes;
 import Modelos.DirectivasEvaluacion;
 import Logicas.LogicaJuegoModo2;
-import ReproductorSonido.ManejadorSonidos;
-import Vistas.VistaJuegoModo1;
+import Modelos.DatosPartidaModo2;
+import Modelos.GestorGuardado;
 import Vistas.VistaJuegoModo2;
+import java.io.IOException;
+
 
 /**
  *
  * @author Enrique Sánchez 
  */
 public final class ControladorJuegoModo2 extends ControladorJuego{
+    
+    private final int[] POSICIONES_INICIO = new int[]{0,0};
+    
+    private final int[] TURNOS_BLOQUEO_INICIO = new int[]{0,0};
+    
+    private final int TURNO_INICIO = Constantes.JUGADOR_1;
 
     private int jugadorTurnoActual, casillaDestino, retrocesoAcumuladoCasillaFin, avanceAuto;
     
     private boolean iniciarTurno, controlAutomatico, reevaluarDespuesDeAuto, tirarOtraVez;
-    
     
     public ControladorJuegoModo2(int idioma, String jugador1, String jugador2) {
         
@@ -26,12 +33,8 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
         
         super.vista = new VistaJuegoModo2(this, idioma, jugador1, jugador2);
         super.logica = new LogicaJuegoModo2();
-        
-        retrocesoAcumuladoCasillaFin = 0;
-        avanceAuto = 0;
-        controlAutomatico = false;
-        
-        iniciarPartida();
+
+        iniciarPartida(super.nombres, POSICIONES_INICIO, TURNOS_BLOQUEO_INICIO, TURNO_INICIO);
     }
 
     
@@ -52,23 +55,33 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
         
     }
 
-    @Override
-    protected void iniciarPartida() {
+    protected void iniciarPartida(String[] nombres, int[] posiciones, int[] turnosBloqueo, int turnoActual) {
         
+        logica.setPosicionJugador(Constantes.JUGADOR_1, posiciones[Constantes.JUGADOR_1]);
+        logica.setPosicionJugador(Constantes.JUGADOR_2, posiciones[Constantes.JUGADOR_2]);
+        
+        ((LogicaJuegoModo2)logica).setTurnosBloqueo(Constantes.JUGADOR_1, turnosBloqueo[Constantes.JUGADOR_1]);
+        ((LogicaJuegoModo2)logica).setTurnosBloqueo(Constantes.JUGADOR_2, turnosBloqueo[Constantes.JUGADOR_2]);
+        
+        jugadorTurnoActual = turnoActual;
+        
+        retrocesoAcumuladoCasillaFin = 0;
+        avanceAuto = 0;
+        controlAutomatico = false;
+        tirarOtraVez = false;
+        
+        super.normalizarVista();
+
         //se inicia el jugadores en la posiciones que tiene la lógica en este momento
         (vista).iniciarJugadorSalida(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1));
         (vista).iniciarJugadorSalida(Constantes.JUGADOR_2, logica.getPosicionJugador(Constantes.JUGADOR_2));
         
-        jugadorTurnoActual = Constantes.JUGADOR_1;
-        
+
         actualizarTurnoJugadorVista();
         actualizarPenalizacionesJugadorVista(Constantes.JUGADOR_1);
         actualizarPenalizacionesJugadorVista(Constantes.JUGADOR_2);
         
         iniciarTurno = true;
-        
-        tirarOtraVez = false;
-
 
     }
     
@@ -251,14 +264,36 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
 
     @Override
     public void nuevaPartida() {
+        iniciarPartida(super.nombres, POSICIONES_INICIO, TURNOS_BLOQUEO_INICIO, TURNO_INICIO);
     }
 
     @Override
     public void guardarPartida() {
+        
+        DatosPartidaModo2 datos = new DatosPartidaModo2(super.nombres, logica.getPosicionJugador(), ((LogicaJuegoModo2)logica).getTurnosBloqueo(), jugadorTurnoActual );
+        
+        try {
+            GestorGuardado.guardarPartidaModo2(Constantes.RUTA_GUARDADO_PARTIDA_MODO_2, datos);
+        } catch (IOException ex) {
+            vista.mensajeErrorGuardado();
+        }
+        
     }
 
     @Override
     public void cargarPartida() {
+        
+        try {
+            
+            DatosPartidaModo2 datos = GestorGuardado.cargarPartidaModo2(Constantes.RUTA_GUARDADO_PARTIDA_MODO_2);
+            
+            iniciarPartida(datos.getNombres(), datos.getPosiciones(), datos.getTurnosBloqueo(), datos.getTurnoActual());
+            
+        } catch (IOException | ClassNotFoundException ex) {
+            vista.mensajeErrorCarga();
+        }
+        
+        
     }
 
     private void finalizarPartidaPorMeta(int jugador) {

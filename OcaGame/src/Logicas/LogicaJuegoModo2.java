@@ -54,5 +54,15 @@ public class LogicaJuegoModo2 extends LogicaJuego{
     public int getTurnosBloqueo(int jugador){
         return turnosBloqueo[jugador];
     }
+    
+    public void setTurnosBloqueo(int jugador, int turnos){
+        turnosBloqueo[jugador] = turnos;
+    }
+
+    public int[] getTurnosBloqueo() {
+        return turnosBloqueo;
+    }
+    
+    
 
 }

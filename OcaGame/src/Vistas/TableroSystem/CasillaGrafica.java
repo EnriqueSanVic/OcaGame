@@ -66,5 +66,9 @@ public class CasillaGrafica extends JPanel{
         return new Point( this.getLocation().x + centro.x, this.getLocation().y + centro.y);
     }
     
+    public void reiniciar(){
+        slot1 = null;
+        slot2 = null;
+    }
     
 }

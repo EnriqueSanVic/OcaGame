@@ -22,6 +22,10 @@ public class Constantes {
     
     //rutas
     
+    public static final String RUTA_DIRECTORIO_GUARDADO = "./partidas";
+    public static final String RUTA_GUARDADO_PARTIDA_MODO_1 = RUTA_DIRECTORIO_GUARDADO + "/modo1.oca";
+    public static final String RUTA_GUARDADO_PARTIDA_MODO_2 = RUTA_DIRECTORIO_GUARDADO + "/modo2.oca";
+    
     public static final String IMAGEN_FONDO_TERCIOPELO = "./img/rotulos/fondo_terciopelo.png";
     
     public static final String PATH_ICONO_FICHA_GRANDEJ1 = "./img/fichas/ficha1.png";

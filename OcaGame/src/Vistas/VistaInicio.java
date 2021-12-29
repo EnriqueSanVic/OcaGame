@@ -6,7 +6,6 @@ import DatosEstaticos.Constantes;
 import DatosEstaticos.TextosJuego;
 import Utilidades.UtilidadesGraficas;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Toolkit;
