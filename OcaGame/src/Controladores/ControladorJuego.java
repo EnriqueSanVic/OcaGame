@@ -11,6 +11,7 @@ import ReproductorSonido.ReproductorContinuo;
 import Utilidades.UtilidadesGraficas;
 import Utilidades.VentanaConCorrecion;
 import Vistas.TableroSystem.NotificableTablero;
+import Vistas.VistaInicio;
 import Vistas.VistaInstrucciones;
 import Vistas.VistaJuego;
 import java.awt.event.ActionEvent;
@@ -184,8 +185,9 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
 
     
     protected void volverMenuInicio(){
-        
-        System.out.println("Menu inicio");
+        //guardar/serializar
+        new VistaInicio(this.vista.getIdioma()); //Lanzamos la vista inicio
+        this.vista.dispose();
     }
     
     

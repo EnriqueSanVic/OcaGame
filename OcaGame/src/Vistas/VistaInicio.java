@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -490,6 +491,7 @@ public class VistaInicio extends JFrame{
         this.botonESP.addActionListener(this.controladorInicio);
         this.botonING.addActionListener(this.controladorInicio);
         this.botonFournier.addActionListener(this.controladorInicio);
+        this.addWindowListener(this.controladorInicio);
     }
 
     //Getter y Setter de idioma.
@@ -501,5 +503,29 @@ public class VistaInicio extends JFrame{
         this.idioma = idioma;
     }
     
+    //Metodo que lanza un dialogo y retorna true si el jugador quiere salir del juego.
+    public boolean mensajeSalirJuego(){
+
+        int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_SALIR_JUEGO[idioma]);
+        
+        if(opcion == JOptionPane.YES_OPTION){
+            return true;
+        }
+        
+        return false;
+        
+    }
     
+    //Metodo que lanza un dialogo y retorna true si el jugador quiere cambiar el idioma del juego.
+    public boolean mensajeCambioIdioma(){
+
+        int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_CAMBIAR_IDIOMA[idioma]);
+        
+        if(opcion == JOptionPane.YES_OPTION){
+            return true;
+        }
+        
+        return false;
+        
+    }
 }
