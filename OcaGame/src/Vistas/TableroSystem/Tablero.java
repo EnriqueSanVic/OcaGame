@@ -240,8 +240,6 @@ public class Tablero extends JPanel{
         
         puntero = new PunteroGrafico(casillas[nCasilla].getCentroAbsoluto(), escuchadorPuntero, registradorHilos, this);
         
-        registradorHilos.aniadirHilo(puntero);
-        
         this.add(puntero);
         
         puntero.iniciar();

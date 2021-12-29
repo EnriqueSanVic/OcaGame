@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 public class DatosPartidaModo1 implements Serializable{
 
-    
+     private int segundos;
+     
     
 }

@@ -48,6 +48,7 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
         this.hilos = new ArrayList<Hilo>();
         
         this.random = new Random();
+        
         //Si se quieren monitorizar los hilos activos en cada momento llamar a esta función
         //debugearHilos();
         
@@ -211,7 +212,7 @@ public abstract class ControladorJuego extends WindowAdapter implements ActionLi
     
     protected void volverMenuInicio(){
         //guardar/serializar
-        
+        matarHilos();
         this.vista.dispose();
         new VistaInicio(this.vista.getIdioma()).setVisible(true); //Lanzamos la vista inicio
         

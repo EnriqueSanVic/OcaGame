@@ -123,6 +123,7 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
 
     @Override
     public void mousePressed(MouseEvent me) {
+        
         notificable.eventoToquePuntero();
         tablero.eliminarPuntero();
     }

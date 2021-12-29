@@ -5,8 +5,6 @@ import DatosEstaticos.Constantes;
 import Hilos.Hilo;
 import Hilos.RegistradorHilos;
 import ReproductorSonido.ManejadorSonidos;
-import ReproductorSonido.ReproductorUnaVez;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;

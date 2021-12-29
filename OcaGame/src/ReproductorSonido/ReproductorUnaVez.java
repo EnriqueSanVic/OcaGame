@@ -4,12 +4,7 @@ package ReproductorSonido;
 
 import Hilos.Hilo;
 import Hilos.RegistradorHilos;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.AudioFormat;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -30,7 +25,11 @@ public class ReproductorUnaVez extends Thread implements Hilo{
     
     private RegistradorHilos registrador;
     
+    private String id;
+    
     public ReproductorUnaVez(String path, RegistradorHilos registrador) {
+        
+        this.id = path;
         
         this.registrador = registrador;
         
@@ -41,7 +40,7 @@ public class ReproductorUnaVez extends Thread implements Hilo{
         try {
             
             audio = AudioSystem.getAudioInputStream(new File(path));
-            duracion = audio.getFrameLength();
+            duracion = audio.getFrameLength()/2;
    
                 
         }catch(Exception ex){
@@ -75,7 +74,7 @@ public class ReproductorUnaVez extends Thread implements Hilo{
             
             
         } catch (Exception ex) {
-            System.out.println("Error de carga de audio");
+            //si se mata el hilo va a saltar esta excepcion por el sleep para la reproducción
         }
         
         reproductor = null;
@@ -103,7 +102,7 @@ public class ReproductorUnaVez extends Thread implements Hilo{
             
             
         } catch (Exception ex) {
-            Logger.getLogger(ReproductorUnaVez.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
         
         reproductor = null;
@@ -111,6 +110,12 @@ public class ReproductorUnaVez extends Thread implements Hilo{
         
     }
 
+    @Override
+    public String toString() {
+        return "ReproductorUnaVez " + id;
+    }
+
+    
     
     
 }

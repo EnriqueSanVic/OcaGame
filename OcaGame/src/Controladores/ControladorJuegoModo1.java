@@ -22,6 +22,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
 
     private int segundos;
     
+    private int penalizaciones;
+    
     private int casillaDestino, avanceAuto, retrocesoAcumuladoCasillaFin;
     
     private boolean iniciarTurno, controlAutomatico, reevaluarDespuesDeAuto, enJuego, victoria;
@@ -36,6 +38,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         segundos = SEGUNDOS_INICIO;
         
         retrocesoAcumuladoCasillaFin = 0;
+        
+        penalizaciones = 0;
         
         controlAutomatico = false;
         victoria = false;
@@ -55,6 +59,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
     protected void iniciarPartida() {
         
         iniciarTemporizador();
+        
+        ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(penalizaciones));
         
         //se inicia el jugador en la posicion que tiene la lógica en este momento
         (vista).iniciarJugadorSalida(Constantes.JUGADOR_1, logica.getPosicionJugador(Constantes.JUGADOR_1));
@@ -232,12 +238,11 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
             
             segundos -= penalizacion;
                     
-             
-            int valorPenalizacionesTotales = Integer.valueOf(((VistaJuegoModo1)vista).getPenalizacionLabel());
+            penalizaciones -= penalizacion;
             
             super.sonidoTurnoBloqueado();
             
-            ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(valorPenalizacionesTotales - penalizacion));
+            ((VistaJuegoModo1)vista).setPenalizacionLabel(String.valueOf(penalizaciones));
             
         }
         

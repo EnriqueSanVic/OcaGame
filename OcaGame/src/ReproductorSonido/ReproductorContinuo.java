@@ -19,7 +19,10 @@ public class ReproductorContinuo extends Thread implements Hilo{
     
     private Clip clip;
     
+    private String id;
+    
     public ReproductorContinuo(String path) {
+        this.id = path;
         this.file = new File(path);
     }
 
@@ -50,10 +53,19 @@ public class ReproductorContinuo extends Thread implements Hilo{
 
     @Override
     public void matar() {
-        clip.stop();
-        clip = null;
+        
+        if(clip != null){
+            clip.stop();
+            clip = null;
+        }
+        
     }
     
+    
+    @Override
+    public String toString() {
+        return "ReproductorContinuo" + id;
+    }
 
     
 }
