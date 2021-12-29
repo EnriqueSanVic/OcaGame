@@ -45,8 +45,7 @@ public class ReproductorUnaVez extends Thread implements Hilo{
    
                 
         }catch(Exception ex){
-            System.out.println("Error al cargar el archivo");
-            System.out.println(ex.getMessage());
+
         }
         
     }
@@ -99,7 +98,6 @@ public class ReproductorUnaVez extends Thread implements Hilo{
             reproductor.flush();
             
             reproductor.close();
-            
             
             audio.close();
             

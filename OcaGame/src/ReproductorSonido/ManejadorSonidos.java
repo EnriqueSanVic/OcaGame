@@ -2,8 +2,7 @@
 
 package ReproductorSonido;
 
-import DatosEstaticos.Constantes;
-import Hilos.Hilo;
+
 import Hilos.RegistradorHilos;
 
 /**
