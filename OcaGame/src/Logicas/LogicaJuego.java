@@ -7,9 +7,11 @@ import Modelos.CasillaLogica;
 import java.util.Random;
 
 /**
+ * Lógica abstracta del juego, es la generalización de las lógicas.
+ * 
+ * Con la lógica se consigue tener una lógica de juego modular que no depende de ninguna implementación del juego.
  *
  * @author Enrique Sánchez 
- * @author Alvaro Cañada
  */
 public abstract class LogicaJuego {
     
@@ -21,12 +23,17 @@ public abstract class LogicaJuego {
     
     private CasillaLogica[] tablero;
 
+    /**
+     * Conmstructor de la lógica
+     */
     public LogicaJuego() {
         init();
         
     }
 
-    
+    /**
+     * Inicio de las variables y las casillas lógicas.
+     */
     private void init() {
         this.posicionJugador = new int[2];
         random = new Random();
@@ -91,10 +98,22 @@ public abstract class LogicaJuego {
     }
     
 
-    //implementar metodo de evaluación de tirada para devolver si es posible realizar el turno para un jugador
+
+    /**
+     * Ymplementar metodo de evaluación de tirada para devolver si es posible realizar el turno para un jugador.
+     * 
+     * @param jugador id del jugador a evaluar.
+     * @return afirmación o negación de la acción de tirada de dado.
+     */
     public abstract boolean evaluarTurnoInicio(int jugador);
     
-    //implementar metodo de evaluación de consecuencia de una tirada, es decir evalua la casilla en la que ha caido y cuales son las consecuendias
+   
+    /**
+     * Implementar metodo de evaluación de consecuencia de una tirada, es decir evalua la casilla en la que ha caido y cuales son las consecuendias.
+     * 
+     * @param jugador id del jugador que al que se quiere evaluar su posición.
+     * @return directivas de evaluación de la posión del jugador.
+     */
     public  DirectivasEvaluacion evaluarTurnoFinal(int jugador){
         
         int avance, tiempo;
@@ -112,7 +131,15 @@ public abstract class LogicaJuego {
     }
     
 
-    //retorna numero de 1 al 6 como un dado clasico
+    
+    /**
+     * 
+     * Retorna numero de 1 al 6 como un dado clasico.
+     * 
+     * Tiene una probabilidad del 3% de sacar un 7.
+     * 
+     * @return numero sacado del dado.
+     */
     public int tirarDado(){
         
         int numero;
@@ -130,7 +157,13 @@ public abstract class LogicaJuego {
     
     
     
-    //el retorno es el numero de casillas de avance o retroceso que se debe usar
+    /**
+     * Método para mover lógicamente a un jugador por el tablero lógico.
+     * 
+     * @param jugador id del jugador.
+     * @param casillasDesplazamiento numero de casillas de avance o retroceso que se debe mover, puede ser negativo para retroceder.
+     * @return posición final del jugador.
+     */
     public int mover (int jugador, int casillasDesplazamiento){
         
         //si se sobrepasa de el limite de casillas se hace el rebote de la ficha
@@ -156,8 +189,7 @@ public abstract class LogicaJuego {
     public int getPosicionJugador(int jugador) {
         return posicionJugador[jugador];
     }
-    
- 
+
 
     public CasillaLogica getTablero(int posicion) {
         return tablero[posicion];

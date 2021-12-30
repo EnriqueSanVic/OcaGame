@@ -46,8 +46,20 @@ import javax.swing.border.MatteBorder;
 public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     
     //Constantes de configuracion. 
+
+    /**
+     *
+     */
     protected final Font FUENTE_1 = new Font("Broadway", 1, 15); //Textos.
+
+    /**
+     *
+     */
     protected final Font FUENTE_2 = new Font("Broadway", 1, 22); //Boton dado.
+
+    /**
+     *
+     */
     protected final Font FUENTE_3 = new Font("Broadway", 1, 50); //Numero penalizacion
     
     private final Color COLOR_MENU_BAR = new Color(237,134,253); //Color para el MenuBar.
@@ -102,8 +114,15 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     private final Border blacklineTablero = new MatteBorder(3,2,3,2, COLOR_BORDES );
     
     //Atributos de la clase.
+
+    /**
+     *
+     */
     protected ControladorJuego controlador;
     
+    /**
+     *
+     */
     protected ControladorMenu controladorMenu;
     
     private PanelFondo fondoVistaJuego;
@@ -127,6 +146,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     private PanelPenalizaciones panelPenalizaciones;
     private JLabel penalizacionesTitulo;
     
+    /**
+     *
+     */
     protected Tablero tablero;
     
     private JLabel fondoPanelDado;
@@ -144,6 +166,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     
     private int numeroFinalDado; //Numero que saldrá en la tirada del dado.
     
+    /**
+     *
+     */
     protected final String[] nombresJugadores;
     
 
@@ -390,6 +415,10 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         });
     }
     
+    /**
+     *
+     * @return
+     */
     @Override
     public Image getIconImage() {
         //System.getProperties();
@@ -575,25 +604,43 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         return this.idioma;
     }
    
-    
+    /**
+     *
+     * @param nCasilla
+     * @param escuchador
+     */
     public void crearPuntero(int nCasilla, NotificableTablero escuchador){
         tablero.crearPuntero(nCasilla, escuchador);
     }
     
+    /**
+     *
+     * @param jugador
+     * @param destino
+     */
     public void mover(int jugador, int destino){
         tablero.mover(jugador, destino);
     }
     
+    /**
+     *
+     */
     public void eliminarPuntero(){
         tablero.eliminarPuntero();
     }
     
+    /**
+     *
+     */
     public void reiniciarCasillas(){
         tablero.reiniciarCasillasGraficas();
     }
     
-    
-    
+    /**
+     *
+     * @param jugador
+     * @param casillaSalida
+     */
     public void iniciarJugadorSalida(int jugador, int casillaSalida){
         
         Ficha ficha = null;
@@ -608,6 +655,13 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     }
     
     //retorna true si el jugador quiere salir al menu o false si no quiere
+
+    /**
+     *
+     * @param jugador
+     * @param victoria
+     * @return
+     */
     public boolean mensajeFinPartida(int jugador, boolean victoria){
         
         String mensaje = TextosJuego.MENSAJE_JUGADOR_INICIO[idioma] + this.nombresJugadores[jugador];
@@ -627,6 +681,11 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
     }
     
     //retorna true si el jugador quiere salir al menu o false si no quiere
+
+    /**
+     *
+     * @return
+     */
     public boolean mensajeSalirPartida(){
 
         int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_SALIR_PARTIDA[idioma]);
@@ -639,18 +698,28 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         
     }
     
+    /**
+     *
+     */
     public void mensajeErrorGuardado(){
         
         JOptionPane.showMessageDialog(this, TextosJuego.MENSAJE_ERROR_GUARDADO[idioma]);
     
     }
     
+    /**
+     *
+     */
     public void mensajeErrorCarga(){
         
          JOptionPane.showMessageDialog(this, TextosJuego.MENSAJE_ERROR_CARGA[idioma]);
         
     }
     
+    /**
+     *
+     * @return
+     */
     public boolean mensajeConfirmarCarga(){
         
         int opcion =  JOptionPane.showConfirmDialog(this, TextosJuego.MENSAJE_CONFIRMACION_CARGA[idioma]);
@@ -663,6 +732,9 @@ public abstract class VistaJuego extends JFrame implements VentanaConCorrecion{
         
     }
     
+    /**
+     * Centra el panel del jugo en medio de la ventana.
+     */
     private void centrarEnVentana(){
         UtilidadesGraficas.ponerPanelMedioFrame(fondoVistaJuego, this);
         this.repaint();

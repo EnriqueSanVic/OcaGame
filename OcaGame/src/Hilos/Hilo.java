@@ -1,17 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Hilos;
 
 /**
- *
+ * Interfaz para clases que sean un hilo o manejen uno.
+ * 
+ * Sirve para tratar a todos los hilos de una forma homogenea.
+ * 
+ * 
  * @author Enrique Sánchez
  */
 public interface Hilo {
     
-    
+    /**
+     * Metodo a implementar en cada hilo para matar el hilo.
+     */
     void matar();
     
 }

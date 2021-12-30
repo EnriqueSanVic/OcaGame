@@ -2,12 +2,12 @@
 
 package Vistas.TableroSystem;
 
-import Vistas.TableroSystem.Ficha;
 import java.awt.Color;
 import java.awt.Point;
 import javax.swing.JPanel;
 
 /**
+ * Casilla gráfica de la vista, es una panel transparente para determinar el área util de una casilla.
  *
  * @author Enrique Sánchez 
  */
@@ -21,6 +21,15 @@ public class CasillaGrafica extends JPanel{
     
     protected Ficha slot1, slot2;
 
+    /**
+     * Constructor
+     * 
+     * @param x posicion x 
+     * @param y posicion y
+     * @param width
+     * @param height
+     * @param isHorizontal retorna true si es una casilla horizontal y false si no lo es.
+     */
     public CasillaGrafica(int x, int y, int width, int height, boolean isHorizontal) {
         
         super();
@@ -54,11 +63,18 @@ public class CasillaGrafica extends JPanel{
         
     }
     
-    
+    /**
+     * Retorna el centro relativo de la casilla.
+     * @return 
+     */
     public Point getCentro(){
         return new Point(width/2, height/2);
     }
     
+    /**
+     * 
+     * @return centro absoluto de la casilla respecto a su contenedor.
+     */
     public Point getCentroAbsoluto(){
         
         Point centro = getCentro();

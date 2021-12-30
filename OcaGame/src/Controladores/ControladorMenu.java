@@ -7,10 +7,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
+ * Controlador del menú de la vista de juego.
  *
  * @author Enrique Sánchez 
  */
-public class ControladorMenu implements ActionListener{
+public final class ControladorMenu implements ActionListener{
 
     private ControladorJuego controladorJuego;
     
@@ -19,7 +20,10 @@ public class ControladorMenu implements ActionListener{
     }
     
     
-
+    /**
+     * Escuchador de los eventos de pulsación sobre los botones que componen el menú.
+     * @param es Evento tipo ActionEvent. 
+     */
     @Override
     public void actionPerformed(ActionEvent ae) {
         

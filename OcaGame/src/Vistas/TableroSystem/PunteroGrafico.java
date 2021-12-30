@@ -17,10 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 
 /**
- *
+ * Elemento de puntero grafico para indicar al usuario el punto sobre el que tiene que hacer click.
+ * 
+ * Es un hilo para realizar la animación de tintineo.
+ * 
  * @author Enrique Sánchez 
  */
-public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
+public final class PunteroGrafico extends JLabel implements MouseListener, Hilo{
     
     public static final String ID = "puntero";
     
@@ -45,7 +48,14 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
     
     private Tablero tablero;
             
-
+    /**
+     * Constructor
+     * 
+     * @param centro punto sobre el que se quiere colocar.
+     * @param notificable objeto notificable para notificar el evento de pulsación del elemetno.
+     * @param registrador objeto registrador de hilos para registrar la actividad del hilo. 
+     * @param tablero objeto del tablero al que pertenece.
+     */
     public PunteroGrafico(Point centro, NotificableTablero notificable, RegistradorHilos registrador, Tablero tablero) {
         super();
         
@@ -61,7 +71,7 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
         initGrafico(centro.x,centro.y);
         
        
-        
+        //se inicia un timer para poder actuar como un hilo conjunto a la librería swing
         hiloGUI = new Timer(PERIODO_CAMBIO_IMAGEN, new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
@@ -85,6 +95,12 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
         
     }
 
+    /**
+     * Inicia la parte gráfica del elemento.
+     * 
+     * @param x
+     * @param y 
+     */
     private void initGrafico(int x, int y) {
         
        this.setSize(WIDTH, HEIGHT);
@@ -104,12 +120,17 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
         
     }
 
-   
+   /**
+    * Inicia la actividad de los hilos, gráfico y sonido.
+    */
     public void iniciar() {
         hiloGUI.start();
         hiloSonido.start();
     }
     
+    /**
+     * Para la actividad de los hilos del elemento, los destruye y notifica su eliminación.
+     */
     public void parar(){
         hiloGUI.stop();
         hiloSonido.matar();
@@ -117,6 +138,8 @@ public class PunteroGrafico extends JLabel implements MouseListener, Hilo{
         registrador.eliminarHilo(hiloSonido);
     }
 
+    
+    //escuchador de eventos de raton sobre el elemento.
     @Override
     public void mouseClicked(MouseEvent me) {
     }

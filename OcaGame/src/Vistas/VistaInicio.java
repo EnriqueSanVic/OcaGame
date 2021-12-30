@@ -25,7 +25,7 @@ import javax.swing.border.Border;
 /**
  * @autor: Alvaro
  */
-public class VistaInicio extends JFrame{
+public final class VistaInicio extends JFrame{
     
     //Constantes de configuracion.    
     protected final Font FUENTE_1 = new Font("Broadway", 1, 22); //Textos.

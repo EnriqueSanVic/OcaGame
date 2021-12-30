@@ -14,6 +14,7 @@ import java.io.IOException;
 import javax.swing.Timer;
 
 /**
+ * Controlador de juego del modo individual o modo 1.
  *
  * @author Enrique Sánchez 
  */
@@ -31,6 +32,14 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
     
     private boolean iniciarTurno, controlAutomatico, reevaluarDespuesDeAuto, victoria;
     
+    
+    /**
+     * Constructor del controlador
+     * 
+     * @param idioma Id del idioma con el que se debe de instanciar el modo de juego.
+     * @param jugador1 Nombre del jugador 1.
+     * @param jugador2 Nombre del jugador 2. 
+     */    
     public ControladorJuegoModo1(int idioma, String jugador1, String jugador2) {
         
         super(idioma,jugador1, jugador2);
@@ -42,6 +51,7 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
     }
 
+
     @Override
     protected void matarHilos() {
         super.matarHilos();
@@ -49,7 +59,14 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
     }
     
     
-
+    /**
+     * Metodo para iniciar una partida parametrizada.
+     * 
+     * @param nombre del jugador.
+     * @param posicionJugador1 posicion de inicio del jugador.
+     * @param segundos inicio en el contador.
+     * @param penalizaciones de inicio de penalización. 
+     */
     protected void iniciarPartida(String nombre, int posicionJugador1, int segundos, int penalizaciones) {
         
         logica.setPosicionJugador(Constantes.JUGADOR_1, posicionJugador1);
@@ -187,13 +204,16 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         }
         
         
-        
+        //se evalua si finalmente el jugador ha ganado
         if(logica.isGanador(Constantes.JUGADOR_1)){
              finalizarPartidaPorMeta();
         }
        
     }
 
+    /**
+     * Metodo para iniciar el temporizador del cronómetro de los segundos restantes de juego.
+     */
     private void iniciarTemporizador() {
         
         //si hubiera de otra partida un timer iniciado se para
@@ -221,6 +241,7 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
                     }
                     
                 }else{
+                    //si se acaba el tiempo se finaliza la partida
                     finalizarPartidaPorTiempo();
                 }
             }
@@ -231,7 +252,8 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
     
 
     //retorna si se ha terminado el turno actual o no
-    private boolean evaluardirectivas(DirectivasEvaluacion directivas) {
+    @Override
+    protected boolean evaluardirectivas(DirectivasEvaluacion directivas) {
         
         
         //en el modo un jugador no se evalua el tira otra vez por que siempre tira otra vez
@@ -268,7 +290,9 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
     }
 
-    //accion de fin de partida ya sea por tiempo o por ganar
+    /**
+     * Accion de fin de partida ya sea por tiempo o por ganar
+     */
     private void finalizarPartidaPorTiempo(){
         
         rutinaFinPartida();
@@ -283,6 +307,9 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
     }
     
+    /**
+     * Accion de fin de partida por llegada a la meta.
+     */
     private void finalizarPartidaPorMeta(){
     
         //si se llega a la meta todavía tiene que haber segundos en el contador
@@ -303,6 +330,9 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
     }
      
+    /**
+     * rutina de finalización de partida para parar el cronometro u bloquear el boton del dado.
+     */
     private void rutinaFinPartida(){
         
         timer.stop();
@@ -313,6 +343,9 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
 
     }
     
+    /**
+     * Lanza un mensaje de victoria del usuario y le pregunta si quiere volver a la vista de inicio.
+     */
     private void evaluarFinal() {
         
         if(vista.mensajeFinPartida(Constantes.JUGADOR_1, victoria)){
@@ -322,6 +355,9 @@ public final class ControladorJuegoModo1 extends ControladorJuego{
         
     }
 
+    /**
+     * Creación de una nueva partida desde el principio.
+     */
     @Override
     public void nuevaPartida() {
         iniciarPartida(super.nombres[Constantes.JUGADOR_1], super.POSICION_SALIDA, SEGUNDOS_INICIO, 0);

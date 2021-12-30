@@ -5,10 +5,13 @@ package Modelos;
 import java.io.Serializable;
 
 /**
+ * Clase a modo de estructura de datos de las vatiables relevantes de una partida modo2.
+ * 
+ * Esta clase es parte del guardado de los datos y se puede serializar para guardar una partida modo 2.
  *
  * @author Enrique Sánchez 
  */
-public class DatosPartidaModo2 implements Serializable{
+public final class DatosPartidaModo2 implements Serializable{
 
     private String[] nombres;
     

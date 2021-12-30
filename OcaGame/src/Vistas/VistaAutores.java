@@ -13,7 +13,7 @@ import javax.swing.JDialog;
 /**
  * @autor: Alvaro
  */
-public class VistaAutores extends JDialog{
+public final class VistaAutores extends JDialog{
     
     //Constantes de la clase.
     private final int FRAME_AUTORES_WIDHT = 750, FRAME_AUTORES_HEIGHT = 600;  

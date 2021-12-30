@@ -2,14 +2,14 @@
 package DatosEstaticos;
 
 /**
+ * Clase dedicada a almacenar en español e ingles los textos que aparecen en la app.
+ * En el indice 0 = español; En el indice 1 = ingles.
+ * 
  * @autor: Alvaro
  */
 
-/**
- * Clase dedicada a almacenar en español e ingles los textos que aparecen en la app.
- * En el indice 0 = español; En el indice 1 = ingles.
-*/
-public class TextosJuego {
+
+public final class TextosJuego {
 
     //Menus
     public static final String[] MENU_PARTIDA = {"Partida", "Game"};

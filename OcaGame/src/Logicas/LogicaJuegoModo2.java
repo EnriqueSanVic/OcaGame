@@ -5,13 +5,14 @@ package Logicas;
 import Modelos.DirectivasEvaluacion;
 
 /**
- *
+ * Especificación de la lógica del modo 2.
+ * 
  * @author Enrique Sánchez 
  */
-public class LogicaJuegoModo2 extends LogicaJuego{
+public final class LogicaJuegoModo2 extends LogicaJuego{
 
     //array con los turnos de bloqueo del os jugadores
-    private int[] turnosBloqueo;
+    private final int[] turnosBloqueo;
 
     public LogicaJuegoModo2() {
         super();

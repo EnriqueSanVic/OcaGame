@@ -14,7 +14,14 @@ package Vistas.TableroSystem;
  */
 public interface NotificableTablero {
     
+    /**
+     * Escuchador del evento del toque del puntero gráfico
+     */
     void eventoToquePuntero();
+    
+    /**
+     * Evento de finalización del movimiento de la ficha.
+     */
     void eventoFinalMovimientoFicha();
     
 }

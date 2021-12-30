@@ -10,10 +10,13 @@ import javax.sound.sampled.Clip;
 
 
 /**
+ * Hilo de reproducción de un fichero de audio en bucle.
  *
+ * Ejecutar el Thread para iniciar la reproducción y matar el hilo para pararlo.
+ * 
  * @author Enrique Sánchez 
  */
-public class ReproductorContinuo extends Thread implements Hilo{
+public final class ReproductorContinuo extends Thread implements Hilo{
 
     private File file;
     
@@ -21,6 +24,11 @@ public class ReproductorContinuo extends Thread implements Hilo{
     
     private String id;
     
+    /**
+     * Constructor
+     * 
+     * @param path ruta del fichero de audio. 
+     */
     public ReproductorContinuo(String path) {
         this.id = path;
         this.file = new File(path);

@@ -9,14 +9,18 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- *
+ * Clase de utilidades gráficas.
+ * 
  * @author Enrique Sánchez 
  */
-public class UtilidadesGraficas {
+public final class UtilidadesGraficas {
 
     
     
-    //Metodo que lanza el frame en el medio de la pantalla del usuario al iniciarse la VistaJuego
+    /**
+     * Metodo que lanza el frame en el medio de la pantalla del usuario al iniciarse la VistaJuego
+     * @param ventana AWT que se quiere poner en medio de la pantalla. 
+     */
     public static void ponerMedioPantalla(Window ventana) {
         
         int width, height;
@@ -31,7 +35,12 @@ public class UtilidadesGraficas {
         
     }
     
-    
+    /**
+     * Pone un JPanel en medio de una ventana.
+     * 
+     * @param panel
+     * @param ventana 
+     */
     public static void ponerPanelMedioFrame(JPanel panel, VentanaConCorrecion ventana) {
         
         int width, height;
@@ -46,6 +55,11 @@ public class UtilidadesGraficas {
 
     }
     
+    
+    /**
+     * Pone una VentanaConCorreción en modo pantalla completa o lo quita de este modo dependiendo de su estado.
+     * @param ventana 
+     */
     public static void pantallaCompleta(VentanaConCorrecion ventana) {
         
         

@@ -12,6 +12,7 @@ import java.io.IOException;
 
 
 /**
+ * Controlador de juego del modo dos jugadores o modo 2.
  *
  * @author Enrique Sánchez 
  */
@@ -27,6 +28,13 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
     
     private boolean iniciarTurno, controlAutomatico, reevaluarDespuesDeAuto, tirarOtraVez;
     
+    /**
+     * Constructor del controlador
+     * 
+     * @param idioma Id del idioma con el que se debe de instanciar el modo de juego.
+     * @param jugador1 Nombre del jugador 1.
+     * @param jugador2 Nombre del jugador 2. 
+     */  
     public ControladorJuegoModo2(int idioma, String jugador1, String jugador2) {
         
         super(idioma, jugador1, jugador2);
@@ -54,7 +62,14 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
         
         
     }
-
+    /**
+     * Metodo para iniciar una partida parametrizada.
+     * 
+     * @param nombres array de nombres de los jugadores.
+     * @param posiciones array de posiciones iniciales de los jugadores.
+     * @param turnosBloqueo array de turnos de bloqueo iniciales de los jugadores.
+     * @param turnoActual id del usuario con el turno de inicio.
+     */
     protected void iniciarPartida(String[] nombres, int[] posiciones, int[] turnosBloqueo, int turnoActual) {
         
         logica.setPosicionJugador(Constantes.JUGADOR_1, posiciones[Constantes.JUGADOR_1]);
@@ -85,6 +100,9 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
 
     }
     
+    /**
+     * Metodo para cambiar turno entre los jugadores.
+     */
     private void cambiarTurno(){
         
         if(jugadorTurnoActual == Constantes.JUGADOR_1){
@@ -102,24 +120,36 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
         
     }
     
+    /**
+     * Actualizar turno del jugador actual en la vista.
+     */
     private void actualizarTurnoJugadorVista(){
         
         ((VistaJuegoModo2)vista).enfatizarNombreTurno(jugadorTurnoActual);
         
     }
     
+    /**
+     * Actualizar la penalización de los jugadores en la vista.
+     */
     private void actualizarPenalizacionesJugadorVista(){
         
         ((VistaJuegoModo2)vista).actualizarPenalizacionesJugador(jugadorTurnoActual, ((LogicaJuegoModo2)logica).getTurnosBloqueo(jugadorTurnoActual));
         
     }
     
+    /**
+     * Actualizar la penalización de un jugador en la vista.
+     * 
+     * @param id jugador que se quiere actualizar.
+     */
     private void actualizarPenalizacionesJugadorVista(int jugador){
         
         ((VistaJuegoModo2)vista).actualizarPenalizacionesJugador(jugador, ((LogicaJuegoModo2)logica).getTurnosBloqueo(jugador));
         
     }
 
+    
     @Override
     public void eventoFinalizacionDado() {
 
@@ -231,7 +261,8 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
 
     }
     
-    private boolean evaluardirectivas(DirectivasEvaluacion directivas) {
+    @Override
+    protected boolean evaluardirectivas(DirectivasEvaluacion directivas) {
         
         //en el modo un jugador no se evalua el tira otra vez por que siempre tira otra vez
         
@@ -295,7 +326,13 @@ public final class ControladorJuegoModo2 extends ControladorJuego{
         
         
     }
-
+    
+    /**
+     * Evento de finalización de partida por llegada a meta de un jugador.
+     * 
+     * se le pregunta al usuario si quiere volver a la vista de inicio.
+     * @param id del jugador que ha llegado a la meta.
+     */
     private void finalizarPartidaPorMeta(int jugador) {
         
         vista.bloquearBoton(false);

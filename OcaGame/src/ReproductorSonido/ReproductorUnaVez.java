@@ -11,10 +11,15 @@ import javax.sound.sampled.Clip;
 
 
 /**
+ * Hilo de reproducción de un fichero de audio de una sola ejecución.
+ * 
+ * Ejecutar el Thread para iniciar la reproducción.
+ * 
+ * el hilo se destruye solo pasado un tiempo suficiente para la ejecución del audio.
  *
  * @author Enrique Sánchez 
  */
-public class ReproductorUnaVez extends Thread implements Hilo{
+public final class ReproductorUnaVez extends Thread implements Hilo{
 
     
     private AudioInputStream audio;

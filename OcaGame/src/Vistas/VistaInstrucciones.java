@@ -13,7 +13,7 @@ import javax.swing.JDialog;
 /**
  * @autor: Alvaro
  */
-public class VistaInstrucciones extends JDialog{
+public final class VistaInstrucciones extends JDialog{
     
     //Constantes de configuracion.
     private final int FRAME_INSTRUCCIONES_WIDHT = 750, FRAME_INSTRUCCIONES_HEIGHT = 600;  

@@ -19,7 +19,7 @@ import javax.swing.JPanel;
 /**
  * @autor: Alvaro
  */
-public class DadoGrafico extends JPanel implements Runnable, Hilo{
+public final class DadoGrafico extends JPanel implements Runnable, Hilo{
     
     //Constantes de configuracion.
     

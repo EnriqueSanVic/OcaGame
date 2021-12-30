@@ -2,7 +2,6 @@
 
 package Vistas.TableroSystem;
 
-import Vistas.TableroSystem.Ficha;
 import Hilos.Hilo;
 import Hilos.RegistradorHilos;
 import java.awt.Point;
@@ -10,10 +9,11 @@ import java.awt.Point;
 
 
 /**
+ * Hilo manejador de las fichas graficas para desplazarlas por el tablero.
  *
  * @author Enrique Sánchez 
  */
-public class ManejadorFicha extends Thread implements Hilo{
+public final class ManejadorFicha extends Thread implements Hilo{
     
     private Ficha ficha;
     
@@ -27,6 +27,15 @@ public class ManejadorFicha extends Thread implements Hilo{
     
     private RegistradorHilos registrador;
 
+    /**
+     * Constructor
+     * 
+     * @param casillaDestino posicion de la casilla hasta la que se quiere desplazar la ficha.
+     * @param ficha
+     * @param casillas conjunto de casilla gráficas.
+     * @param notificable objeto notificable para notificarle el evento de finalización del movimiento.
+     * @param registrador objeto registrador de hilos para registrar la actividad del hilo. 
+     */
     public ManejadorFicha(int casillaDestino, Ficha ficha, CasillaGrafica[] casillas, NotificableTablero notificable, RegistradorHilos registrador) {
         
         this.casillaDestino = casillaDestino;
@@ -43,26 +52,32 @@ public class ManejadorFicha extends Thread implements Hilo{
     @Override
     public void run() {
         
+        //elimina la ficha que se va a mover del slot de la casilla en el que se encuentra
         eliminarFichaDelSlot();
         
+        //si es un avance
         if(ficha.getCasillaActual() < casillaDestino){
             
             moverAlante();
-            
+          
+        //si es un retroceso
         }else if(ficha.getCasillaActual() > casillaDestino){
             
             moverAtras();
             
         }
         
+        //se notifica el cese de la actividad del hilo
         registrador.eliminarHilo(this);
         
         
     }
     
-    
+    /**
+     *  Recorre todas las casillas desde la de inicio hasta la de destino desplazando la ficha casilla por casilla.
+     *  Crea la ilusión de movimiento hacia alaante.
+     */
     private void moverAlante(){
-        
         
         while(ficha.getCasillaActual() <  casillaDestino){
              
@@ -72,12 +87,18 @@ public class ManejadorFicha extends Thread implements Hilo{
             
          }
         
+        //se recalcula la posición sobre la ultima casilla para colocar las fichas.
         ManejadorFicha.iniciarEnCasilla(casillaDestino, ficha, casillas);
         
+        //notifica el final del movimiento
         notificable.eventoFinalMovimientoFicha();
         
     }
     
+    /**
+     *  Recorre todas las casillas desde la de inicio hasta la de destino desplazando la ficha casilla por casilla.
+     *  Crea la ilusión de movimiento hacia alaante.
+     */
     private void moverAtras(){
         
         while(ficha.getCasillaActual() >  casillaDestino){
@@ -88,15 +109,21 @@ public class ManejadorFicha extends Thread implements Hilo{
             
         }
         
+        //se recalcula la posición sobre la ultima casilla para colocar las fichas.
         ManejadorFicha.iniciarEnCasilla(casillaDestino, ficha, casillas);
         
+        //notifica el final del movimiento
         notificable.eventoFinalMovimientoFicha();
 
     }
     
+    /**
+     * Mueve el centro una ficha pixel por pixel al centro de una casilla.
+     * @param ficha
+     * @param casilla 
+     */
     private void moverACasilla(Ficha ficha, CasillaGrafica casilla) {
-        
-        
+
         
         Point centroFicha = ficha.getCentroAbsoluto();
         Point centroCasilla = casilla.getCentroAbsoluto();
@@ -119,6 +146,7 @@ public class ManejadorFicha extends Thread implements Hilo{
                 ficha.mover(0, -1);
             }
             
+            //tiene un pequeño delay para hacer un movimiento más suvae
             try {
                 Thread.sleep(TIEMPO_DELAY);
             } catch (InterruptedException ex) {
@@ -133,14 +161,10 @@ public class ManejadorFicha extends Thread implements Hilo{
         
     }
     
-    public void notificarFinMovimiento(){
-        
-    }
-    
-    
+  
     @Override
     public void matar() {
-        //es un hilo que no tiene un bule de ejecución por lo que simepre podemos asegurar que se destruye solo eventualmente
+        //es un hilo que no tiene un bucle de ejecución por lo que simpre podemos asegurar que se destruye solo eventualmente.
     }
 
     public void setFicha(Ficha ficha) {
@@ -151,6 +175,18 @@ public class ManejadorFicha extends Thread implements Hilo{
         this.casillaDestino = casillaDestino;
     }
     
+    /**
+     * Se redistribuyen las dicha de una casilla en la que se coloca una ficha.
+     * 
+     * Si solo hay una ficha esta se queda en el medio.
+     * 
+     * Si hay dos fichas colocan de tal manera que no se superpongan.
+     * 
+     * Existen dos modalidades de colozación de las fichas dependiendo de si la casilla es horizontal o vertical.
+     * @param casilla
+     * @param ficha
+     * @param casillas array de casillas 
+     */
     public static void iniciarEnCasilla(int casilla, Ficha ficha, CasillaGrafica[] casillas){
         
 
@@ -190,7 +226,11 @@ public class ManejadorFicha extends Thread implements Hilo{
  
     }
     
-    //en realizad es mover arriba o a la izquierda dependiendo de la horientación de la casilla
+    /**
+     * Mueve la ficha arriba o a la izquierda de una casilla dependiendo de la horientación de la casilla.
+     * @param ficha 
+     * @param casilla 
+     */
     private static void moverArriba(Ficha ficha, CasillaGrafica casilla){
         
         if(casilla.isHorizontal){
@@ -202,6 +242,11 @@ public class ManejadorFicha extends Thread implements Hilo{
         
     }
     
+    /**
+     * Mueve la ficha abajo o a la derecha de una casilla dependiendo de la horientación de la casilla.
+     * @param ficha 
+     * @param casilla 
+     */
     private static void moverAbajo(Ficha ficha, CasillaGrafica casilla){
     
         if(casilla.isHorizontal){

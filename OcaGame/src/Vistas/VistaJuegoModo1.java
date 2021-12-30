@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 /**
  * @autor: Alvaro
  */
-public class VistaJuegoModo1 extends VistaJuego{
+public final class VistaJuegoModo1 extends VistaJuego{
     
     //Constantes de configuracion.
     

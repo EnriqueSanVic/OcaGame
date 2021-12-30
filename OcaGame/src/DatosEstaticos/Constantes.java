@@ -3,10 +3,11 @@
 package DatosEstaticos;
 
 /**
+ * Clase para almacenar constantes.
  *
  * @author Enrique Sánchez 
  */
-public class Constantes {
+public final class Constantes {
 
     //constante de posicion de jugadores en elos arrays
     

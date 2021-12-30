@@ -11,9 +11,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 /**
- * @autor: Alvaro
+ * Tablero gráfico de la oca
+ * 
+ * @autor: Enrque Sánchez
  */
-public class Tablero extends JPanel{
+public final class Tablero extends JPanel{
     
     private final String IMAGE_PATH = "./img/tablero/tablero.png";
     
@@ -32,6 +34,13 @@ public class Tablero extends JPanel{
     
     private CasillaGrafica[] casillas;
     
+    /**
+     * Constructor
+     * 
+     * @param jugadores de jugadores.
+     * @param notificable objeto notificable para notificar el evento de pulsación del elemento.
+     * @param registradorHilos objeto registrador de hilos para registrar la actividad del hilo. 
+     */
     public Tablero(int jugadores, NotificableTablero notificable, RegistradorHilos registradorHilos) {
         
         /*
@@ -68,6 +77,10 @@ public class Tablero extends JPanel{
         grphcs.drawImage(imagenTablero, 0, 0, this);
     }
 
+    /**
+     * Inicia las fichas gráficas
+     * @param numero de jugadores, máximo 2. 
+     */
     private void initFichas(int jugadores) {
         
         
@@ -91,6 +104,9 @@ public class Tablero extends JPanel{
         
     }
 
+    /**
+     * Inicia las casillas gráficas.
+     */
     private void initCasillas() {
         
         casillas = new CasillaGrafica[63];
@@ -230,6 +246,12 @@ public class Tablero extends JPanel{
 
     }
     
+    /**
+     * Crea un puntero gráfico sobre el tablero encima de una casilla concreta.
+     * 
+     * @param nCasilla numero de la casilla sobre la que se quiere invocar el puntero.
+     * @param escuchadorPuntero objeto notificable para notificar el evento de pulsación del elemento. 
+     */
     public void crearPuntero(int nCasilla, NotificableTablero escuchadorPuntero){
         
         //si existe un puntero por que no se ha controlado la destrucción, se destruye antes de crear otro
@@ -248,6 +270,9 @@ public class Tablero extends JPanel{
         
     }
     
+    /**
+     * Elimina el puntero si es que existe.
+     */
     public void eliminarPuntero() {
 
         if (puntero != null) {
@@ -266,7 +291,11 @@ public class Tablero extends JPanel{
     
 
     
-    
+    /**
+     * Mueve la ficha de un jugador a una casilla de destino
+     * @param jugador.
+     * @param destino casilla de destino.
+     */
     public void mover(int jugador, int destino){
         
         Ficha ficha = null;
@@ -297,6 +326,9 @@ public class Tablero extends JPanel{
         return casillas;
     }
     
+    /**
+     * Reinicia los slots de las casillas gráficas.
+     */
     public void reiniciarCasillasGraficas(){
         
         for(CasillaGrafica i:casillas){

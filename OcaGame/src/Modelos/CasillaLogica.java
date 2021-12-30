@@ -3,10 +3,11 @@
 package Modelos;
 
 /**
+ * Clase a modo de estructura de datos para representar una casilla lógica.
  *
  * @author Enrique Sánchez 
  */
-public class CasillaLogica {
+public final class CasillaLogica {
     
     
     //caracteristicas modo 1
@@ -18,12 +19,23 @@ public class CasillaLogica {
     
     private final boolean tirarOtraVez;
     
+    /**
+     * Constructor
+     * @param avance avence positivo o negativo de la consecuencia de caer sobre la casilla.
+     * @param penalizacion penalización de turnos o tiempo.
+     */
     public CasillaLogica(int avance, int penalizacion) {
         this.avance = avance;
         this.penalizacion = penalizacion;
         this.tirarOtraVez = false;
     }
 
+    /**
+     * Constructor
+     * @param avance avence positivo o negativo de la consecuencia de caer sobre la casilla.
+     * @param penalizacion penalización de turnos o tiempo.
+     * @param tirarOtraVez tirar otra vez-¡.
+     */
     public CasillaLogica(int avance, int penalizacion, boolean tirarOtraVez) {
         this.avance = avance;
         this.penalizacion = penalizacion;

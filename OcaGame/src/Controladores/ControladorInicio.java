@@ -13,7 +13,7 @@ import java.awt.event.WindowEvent;
 /**
  * @autor: Alvaro
  */
-public class ControladorInicio extends WindowAdapter implements ActionListener{
+public final class ControladorInicio extends WindowAdapter implements ActionListener{
     //Constantes de configuracion.
     private final int IDIOMA_ESP = 0;
     private final int IDIOMA_ING = 1;
@@ -119,6 +119,9 @@ public class ControladorInicio extends WindowAdapter implements ActionListener{
         }
     }
 
+    /**
+     * Metodo para comprobar que los directorios de los que depende el sistema existen y si no los crea
+     */
     private void comprobarDirectorios() {
         
         GestorGuardado.crearCarpeta(Constantes.RUTA_DIRECTORIO_GUARDADO);

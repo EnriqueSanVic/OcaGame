@@ -12,7 +12,7 @@ package Modelos;
  *
  * @author Enrique Sánchez 
  */
-public class DirectivasEvaluacion {
+public final class DirectivasEvaluacion {
 
     
     private final int posicion;

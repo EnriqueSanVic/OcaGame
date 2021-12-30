@@ -5,10 +5,11 @@ package Logicas;
 import Modelos.DirectivasEvaluacion;
 
 /**
- *
+ * Especificación de la lógica del modo 1.
+ * 
  * @author Enrique Sánchez 
  */
-public class LogicaJuegoModo1 extends LogicaJuego{
+public final class LogicaJuegoModo1 extends LogicaJuego{
 
     public LogicaJuegoModo1() {
         super();
@@ -16,7 +17,7 @@ public class LogicaJuegoModo1 extends LogicaJuego{
     
     
 
-    //en el modo 1 siempre va a poder avanzar en su turno , no existen los bloqueos
+    //siempre retorna true por que en el modo el jugadro simpre puede tirar.  
     @Override
     public boolean evaluarTurnoInicio(int jugador) {
         return true;
