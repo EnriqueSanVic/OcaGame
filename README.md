@@ -9,5 +9,5 @@ CHARACTERISTICS:
 - System of piece movement on the board and dice system.
 - Model view controller.
 - UX and sound feedback.
-- -Two language modes English, Español.
+- Two language modes English, Español.
 
