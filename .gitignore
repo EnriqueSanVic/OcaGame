@@ -6,3 +6,6 @@ OcaGame/build.xml
 OcaGame/manifest.mf
 documentos/*
 ejecutable/*
+*.html
+*.js
+*.css
