@@ -1,5 +1,5 @@
 # OcaGame
-Multi-platform Oca table game for one or two players developed in Java with the library Swing.
+Cross platform Oca board game for one or two players developed in Java with the library Swing.
 
 The single player mode is a time trial.
 The two-player mode is a race to reach the last square first.
